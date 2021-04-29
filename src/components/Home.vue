@@ -1,68 +1,73 @@
 <template>
-  <div style="max-width:500px;" class="mx-auto mt-5 text-center">
-    <b-overlay :show="show" rounded="sm" @shown="onShown1" @hidden="onHidden1">
-      <b-card title="Card with custom overlay content" :aria-hidden="show ? 'true' : null">
-        <b-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b-card-text>
-        <b-card-text>Click the button to toggle the overlay:</b-card-text>
-        <b-button ref="show" :disabled="show" variant="primary" @click="show = true">
-          Show overlay
-        </b-button>
-      </b-card>
-      <template #overlay>
-        <div class="text-center">
+
+<div class="sivo text-light p-5 mx-5 mt-5 rounded-lg ">
+
+  <h1 style="color:black;" class="text-center ">Glavni izbornik</h1>
+ 
+  <b-card-group deck class="mx-5 mt-5 text-center " >
+
+    <b-card class="mt-5 zeleno"  >
+     
+      <b-card-text class="mt-5" style="font-size:25px; color:black;">
+       Kalorijska vrijednost
+        namirnica
+      </b-card-text>
+      
+      <router-link to = "/Kalkulator_kalorija" > <b-button class="mt-4"  ref="show" pill variant="outline-secondary">
+          Računaj
+        </b-button></router-link>
+
+
+        <template #footer>
         
-          <p id="cancel-label">Please wait...</p>
-          <b-button
-            ref="cancel"
-            variant="outline-danger"
-            size="sm"
-            aria-describedby="cancel-label"
-            @click="show = false"
-          >
-            Cancel
-          </b-button>
-        </div>
+          <b-card-text style="color:black;">Izračunajte kalorije pojedinih namirnica ili čitavog obroka.<br> Planirajte obroke na osnovu kalorija.</b-card-text>
+          
+         
       </template>
-    </b-overlay>
+
+       
+       
+    </b-card>
+
+    <b-card class="mt-5 zeleno" >
+       <b-card-text class="mt-5" style="font-size:25px; color:black;">
+       Plan prehrane
+      </b-card-text>
+      
+      <router-link to = "/Plan_prehrane_home" ><b-button class="mt-4"  ref="show" pill variant="outline-secondary">
+          Planiraj
+        </b-button></router-link>
 
 
-<div style="max-width:500px;" class="mx-auto mt-5 text-center">
-    <b-overlay :show1="show1" rounded="sm" @shown="pokazi" @hidden="sakri">
-      <b-card title="Card with custom overlay content" :aria-hidden="show1 ? 'true' : null">
-        <b-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b-card-text>
-        <b-card-text>Click the button to toggle the overlay:</b-card-text>
-        <b-button ref="show" :disabled="show1" variant="primary" @click="show1 = true">
-          Show overlay
-        </b-button>
-      </b-card>
-      <template #overlay>
-        <div class="text-center">
+        <template #footer>
         
-          <p id="cancel1-label">Please wait...</p>
-          <b-button
-            ref="cancel1"
-            variant="outline-danger"
-            size="sm"
-            aria-describedby="cancel1-label"
-            @click="show1 = false"
-          >
-            Cancel
-          </b-button>
-        </div>
+          <b-card-text style="color:black;"  >Izrada plana prehrane u odnosu na spol, dob, zdravstveno stanje i tjelesnu aktivnost ili kao cijela obitelj.</b-card-text>
+          
+         
       </template>
-    </b-overlay>
-  </div>
+    </b-card>
+
+    <b-card class="mt-5 zeleno" >
+      <b-card-text class="mt-5" style="font-size:25px; color:black;">
+       Vaše stanje
+      </b-card-text>
+      
+      <b-button class="mt-4"  ref="show" pill variant="outline-secondary">
+          Razmatraj
+        </b-button>
 
 
-
-    
-  </div>
-
-
-
-
-
-
+        <template #footer>
+        
+          <b-card-text style="color:black;"  >Pogledajte vaš prehrambeni plan i izračunajte kako napredujete u vašem cilju.</b-card-text>
+          
+         
+      </template>
+    </b-card>
+  </b-card-group>
+  
+  <br><br><br><br><br><br><br>
+</div>
 
 
 
@@ -73,31 +78,30 @@
   export default {
     data() {
       return {
-        show: false,
-        show1: false,
-
-
-
+      
       }
-    },
-    methods: {
-      onShown1() {
-        // Focus the cancel button when the overlay is showing
-        this.$refs.cancel.focus()
-      },
-      onHidden1() {
-        // Focus the show button when the overlay is removed
-        this.$refs.show.focus()
-      },
-
-      pokazi() {
-        // Focus the cancel button when the overlay is showing
-        this.$refs.cancel1.focus()
-      },
-      sakri() {
-        // Focus the show button when the overlay is removed
-        this.$refs.show1.focus()
       }
-    }
-  }
+      }
+ 
 </script>
+
+<style scoped>
+
+.sivo{
+
+  background-color: #F8F8F8;
+  
+  fill: rgba(196, 196, 196, 1);
+  filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.788));
+  overflow: visible;
+  border-radius: 8px;
+
+}
+
+.zeleno{
+  background-color: #30CFC0;
+   filter: drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.788));
+}
+
+
+</style>

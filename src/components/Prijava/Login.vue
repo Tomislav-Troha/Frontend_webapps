@@ -13,7 +13,7 @@
     </div>
     <br>
     <div class="text-center">
-      <mdb-btn class="rounded-lg">Prijava</mdb-btn>
+      <router-link to = "/Home" > <mdb-btn class="rounded-lg">Prijava</mdb-btn></router-link>
 <br><br>
 
 <mdb-modal-footer class="mx-5 pt-3 mb-1">

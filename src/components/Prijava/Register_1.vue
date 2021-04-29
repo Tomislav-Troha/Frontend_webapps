@@ -16,7 +16,7 @@
       <mdb-input label="Lozinka"  type="password"/>
     </div>
     <div class="text-center">
-       <mdb-btn class="rounded-lg">Registriraj se!</mdb-btn>
+       <router-link to = "/Home" > <mdb-btn class="rounded-lg">Registriraj se!</mdb-btn></router-link>
 <br><br>
 <mdb-modal-footer class="mx-5 pt-3 mb-1">
             <p class="font-small grey-text d-flex justify-content-end">Imate račun? <router-link to = "/" ><a href="#" class="blue-text ml-1">Prijavite se!</a></router-link></p>
