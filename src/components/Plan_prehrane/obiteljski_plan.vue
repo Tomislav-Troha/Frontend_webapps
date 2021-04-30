@@ -6,9 +6,9 @@
 
 <b-form inline>
 
-<b-button  class="rounded-lg  mx-auto  " style="font-size:20px; width:300px; height:80px;" variant="info" >Radni tjedan</b-button>
-<b-button  class="rounded-lg  mx-auto" style="font-size:20px; width:300px; height:80px;" variant="info" >Vikend </b-button>
-<b-button  class="rounded-lg mx-auto" style="font-size:20px; width:300px; height:80px;" variant="info" >Odaberi sam</b-button>
+<b-button  v-on:click="isHidden = !isHidden" v-if="!isHidden1" class="rounded-lg  mx-auto  " style="font-size:20px; width:300px; height:80px;" variant="info" ><p  v-if="isHidden==true">Nazad</p><p v-if="isHidden==false">Radni tjedan</p></b-button>
+<b-button v-on:click="isHidden1  = !isHidden1" v-if="!isHidden" class="rounded-lg  mx-auto" style="font-size:20px; width:300px; height:80px;" variant="info" ><p v-if="isHidden1==true">Nazad</p><p v-if="isHidden1==false">Vikend </p></b-button>
+
 
 
 </b-form>
@@ -22,10 +22,16 @@
 
 
      <br><br>
+      <div v-if="isHidden" class="wrapper fadeInDown rounded-lg">
 
-<div  class="calorie container  p-4 mx-auto mt-5 rounded-lg " style="background-color: #f8f8f8; !important;  ">
+  <div class="rounded-lg"  id="formContent">
+
+<div   style="background-color: #f8f8f8; !important;  ">
 
    <h1 class="text-center mb-5 ">Radni tjedan</h1>
+
+
+  
 
 <b-form class="mx-4 text-center " >
    
@@ -64,7 +70,7 @@
           <b-form-select 
             
             id="input-1"
-            v-model="odabirJela.hrana"
+            
             :options="hrana"
             required
           >
@@ -72,36 +78,77 @@
         </b-input-group>
 
 
-        <b-input-group v-if="odabirObroka.DorucakRucakVecera" class=" mx-auto my-4 " style="width:210px;">
+       
+
+        <b-input-group   v-if="odabirObroka.DorucakRucakVecera == 'Doručak'"  class=" mx-auto my-4 " style="width:210px;">
           <b-form-select 
             
             id="input-1"
-            v-model="odabirJela.hrana"
-            :options="hrana"
+            v-model="varijante.dorucak"
+            :options="dorucak"
             required
           >
           </b-form-select>
         </b-input-group>
 
-        <b-input-group v-if="odabirJela.hrana" class=" mx-auto my-4 " style="width:210px;">
+        
+        <b-input-group  v-if="odabirObroka.DorucakRucakVecera == 'Ručak'" class=" mx-auto my-4 " style="width:210px;">
           <b-form-select 
             
             id="input-1"
-            v-model="vrsteHrane.mlijecni_proizvodi"
-            :options="mlijecni_proizvodi"
+            v-model="varijante.rucak"
+            :options="rucak"
             required
           >
           </b-form-select>
         </b-input-group>
 
-<b-button v-if="vrsteHrane.mlijecni_proizvodi"  class="rounded-lg  mx-auto  " style="font-size:20px; width:200px; height:60px;" variant="info" >Spremi</b-button>
 
+ 
+
+
+
+<b-button   v-if="varijante.dorucak == 'Doručak pun ugljikohidrata' || varijante.rucak == 'Krumpir-gulaš sa svinjskim mesom i povrćem'"  class="rounded-lg py-2 px-4  " style="font-size:20px; width:100px; height:40px;" variant="info" >Više</b-button>
+<b-button   v-if="varijante.dorucak == 'Doručak za trčanje' " class="rounded-lg py-2 px-4  " style="font-size:20px; width:100px; height:40px;" variant="info" >Više</b-button>
+
+
+
+
+
+<b-button    v-if="varijante.dorucak  || varijante.rucak"  class="rounded-lg py-2 px-1  " style="font-size:20px; width:100px; height:40px;" variant="info" >Spremi</b-button>
+
+
+
+        
+<obiteljski_plan_recepti />
         
 </b-form>
 
 
 
 
+  </div>
+   </div>
+
+
+</div>
+
+<div v-if="isHidden1" class="wrapper fadeInDown rounded-lg">
+
+  <div class="rounded-lg"  id="formContent">
+
+<div   style="background-color: #f8f8f8; !important;  ">
+
+
+ <h1 class="text-center mb-5 ">Vikend</h1>
+
+
+</div>
+  </div>
+
+
+</div>
+
 
 
 
@@ -111,20 +158,39 @@
 
 
 
-</div>
+
+
+
+
 </template>
 
 <script>
 
+import obiteljski_plan_recepti from '@/components/Plan_prehrane/obiteljski_plan_recepti'
 
 
 export default {
+  components: {obiteljski_plan_recepti},
+  name:"obiteljski_plan",
+  
+  
+  
+ 
 
+
+ 
     data(){
 
+       
          
         
         return{
+
+        
+
+          isHidden: false,
+          isHidden1: false,
+          isHidden2: false,
 
             feedback:null,
 
@@ -137,29 +203,37 @@ export default {
             },
 
             odabirJela: {
-                hrana:null
+                hranaDorucak:null
             },
 
-            vrsteHrane: {
-                mlijecni_proizvodi:null
+            varijante: {
+              dorucak:null,
+              rucak:null,
+              vecera:null
+               
 
             },
 
+            
+            
 
-
-
-
-            mlijecni_proizvodi:[
-                {text:"Odaberi jedan ", value:null},
-                "Mlijeko",
-                "Jogurt"
+            dorucak:[
+                {text:"--Odaberi varijantu-- ", value:null},
+                "Doručak pun ugljikohidrata",
+                "Doručak za trčanje",
+                "Ne volite jutarnji obrok",
+                "Doručak za one koji žele smršaviti",
+                "Doručak za one u nedostatku vremena"
             ],
 
             
-            hrana:[
-                {text:"Odaberi vrstu hrane", value:null},
-                "Mliječni proizvodi",
-                "Kruh"
+            rucak:[
+                {text:"--Odaberi varijantu--", value:null},
+                "Krumpir-gulaš sa svinjskim mesom i povrćem",
+                "Umak od mljevene junetine s palentom",
+                "Dinstani kiseli kupus, restani krumpir i svinjski odresci",
+                "Panirani otkošteni batak i zabatak s pečenim povrćem",
+                "Salata od tune, tjestenine i vrhnja"
             ],
            
 
@@ -187,10 +261,7 @@ export default {
 
             
 
-            meso: [
-                 {text:"Ručak", value: null},
-                 this.meso="1234"
-            ],
+            
 
             kruh: [
 
@@ -231,26 +302,48 @@ export default {
         
     },
 
+    
+
     methods:{
+
+ 
+    
+      
 
         onclick(){
              if(this.odabirObroka.DorucakRucakVecera === "Doručak"){
 
-                this.feedback="Odabrali ste doručak i imate na raspolaganju dvije vrste hrane"
+                this.feedback="Odabrali ste doručak i imate na raspolaganju 5 varijanti"
+
+              
                 
 
         }
+
+        else if(this.odabirObroka.DorucakRucakVecera === "Ručak"){
+
+           this.feedback="Odabrali ste ručak i imate na raspolaganju 5 varijanti"
+
+           
+
+        }
+
         else{
             this.feedback=null
         }
-        }
+        },
 
-       
+           
 
-    }
+
+    },
 
     
+    
 }
+
+ 
+
 
 </script>
 
@@ -258,7 +351,7 @@ export default {
 
 
 
-<style scoped>
+<style >
 
 .calorie {
   
@@ -268,6 +361,66 @@ export default {
   border-radius: 25px;
 }
 
+.wrapper {
+  
+  display: flex;
+  align-items: center;
+  flex-direction: column; 
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+  padding: 20px;
+}
 
+#formContent {
+  fill: rgba(196, 196, 196, 1);
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border-radius: 10px 10px 10px 10px;
+  background-color: #f8f8f8;
+  padding: 30px;
+  width: 90%;
+  max-width: 450px;
+  position: relative;
+  padding: 0px;
+  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+/* Simple CSS3 Fade-in-down Animation */
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
 
 </style>

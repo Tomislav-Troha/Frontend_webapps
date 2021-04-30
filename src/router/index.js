@@ -7,6 +7,7 @@ import Kalkulator_kalorija from '@/components/Kalkulator_kalorija'
 import Plan_prehrane from '@/components/Plan_prehrane/plan_prehrane_home'
 import Obiteljski_plan from '@/components/Plan_prehrane/obiteljski_plan'
 
+
 Vue.use(Router)
 
 const router =  new Router({
@@ -44,6 +45,8 @@ const router =  new Router({
     name: 'obiteljski_plan',
     component: Obiteljski_plan
   },
+
+ 
   
 ]
 })

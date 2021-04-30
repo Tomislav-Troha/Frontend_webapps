@@ -23,16 +23,23 @@
       
         
 <b-navbar-nav >
-        <b-nav-item-dropdown right>
+        <b-nav-item right>Nadimak obitelji
           <!-- Using 'button-content' slot -->
           <template #button-content>
             <em style="font-size:25px;"></em>
           </template>
-          <b-dropdown-item href="#" ></b-dropdown-item>
-          <b-dropdown-item href="#" ></b-dropdown-item>
-          <b-dropdown-item href="#" ></b-dropdown-item>
+         
+         
+        </b-nav-item>
 
-        </b-nav-item-dropdown>
+        <b-nav-item right>Odjava
+          <!-- Using 'button-content' slot -->
+          <template #button-content>
+            <em style="font-size:25px;"></em>
+          </template>
+          
+         
+        </b-nav-item>
      </b-navbar-nav >
     </b-collapse>
   </b-navbar>

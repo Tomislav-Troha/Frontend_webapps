@@ -14,7 +14,6 @@ Vue.component(component, mdbvue[component])
 
 
 
-
 Vue.use(BootstrapVue)
 
 
