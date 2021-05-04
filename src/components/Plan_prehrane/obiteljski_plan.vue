@@ -6,8 +6,9 @@
 
 <b-form inline>
 
-<b-button  v-on:click="isHidden = !isHidden" v-if="!isHidden1" class="rounded-lg  mx-auto  " style="font-size:20px; width:300px; height:80px;" variant="info" ><p  v-if="isHidden==true">Nazad</p><p v-if="isHidden==false">Radni tjedan</p></b-button>
-<b-button v-on:click="isHidden1  = !isHidden1" v-if="!isHidden" class="rounded-lg  mx-auto" style="font-size:20px; width:300px; height:80px;" variant="info" ><p v-if="isHidden1==true">Nazad</p><p v-if="isHidden1==false">Vikend </p></b-button>
+
+<b-button  v-on:click="isHidden = !isHidden" v-if="!isHidden1" class="mx-auto " style="color:white; font-size:20px; width:300px; height:80px; border-radius:30px; ; background-color:#30CFC0; !important;" variant="border-radius:30px; ; background-color:#30CFC0; !important;" ><p class="mt-2" v-if="isHidden==true">Nazad</p><p class="mt-3" v-if="isHidden==false">Radni tjedan</p></b-button>
+<b-button v-on:click="isHidden1  = !isHidden1" v-if="!isHidden" class=" mx-auto" style="color:white; font-size:20px; width:300px; height:80px; border-radius:30px; ; background-color:#30CFC0; !important;" variant="border-radius:30px; ; background-color:#30CFC0; !important;" ><p class="mt-2" v-if="isHidden1==true">Nazad</p><p class="mt-3" v-if="isHidden1==false">Vikend </p></b-button>
 
 
 
@@ -103,24 +104,34 @@
           </b-form-select>
         </b-input-group>
 
+         <b-input-group  v-if="odabirObroka.DorucakRucakVecera == 'Večera'" class=" mx-auto my-4 " style="width:210px;">
+          <b-form-select 
+            
+            id="input-1"
+            v-model="varijante.vecera"
+            :options="vecera"
+            required
+          >
+          </b-form-select>
+        </b-input-group>
+
+
 
  
 
 
 
-<b-button   v-if="varijante.dorucak == 'Doručak pun ugljikohidrata' || varijante.rucak == 'Krumpir-gulaš sa svinjskim mesom i povrćem'"  class="rounded-lg py-2 px-4  " style="font-size:20px; width:100px; height:40px;" variant="info" >Više</b-button>
-<b-button   v-if="varijante.dorucak == 'Doručak za trčanje' " class="rounded-lg py-2 px-4  " style="font-size:20px; width:100px; height:40px;" variant="info" >Više</b-button>
 
 
 
 
 
-<b-button    v-if="varijante.dorucak  || varijante.rucak"  class="rounded-lg py-2 px-1  " style="font-size:20px; width:100px; height:40px;" variant="info" >Spremi</b-button>
+<b-button    v-if="varijante.dorucak  || varijante.rucak || varijante.vecera " class="rounded-lg py-2 px-1  " style="font-size:20px; width:100px; height:40px;" variant="info" >Spremi</b-button>
 
 
 
         
-<obiteljski_plan_recepti />
+
         
 </b-form>
 
@@ -141,6 +152,92 @@
 
 
  <h1 class="text-center mb-5 ">Vikend</h1>
+
+ <b-form class="mx-4 text-center " >
+   
+    <b-input-group   class=" mx-auto my-4 " style="width:210px;">
+          <b-form-select 
+            
+            id="input-1"
+            v-model="radni_tjedan.vikend_dan"
+            :options="vikend_dan"
+            required
+          >
+          </b-form-select>
+        </b-input-group>
+
+
+
+        <b-input-group  v-if="radni_tjedan.vikend_dan"  class=" mx-auto my-4 " style="width:210px;">
+          <b-form-select 
+             
+            id="input-1"
+            v-model="odabirObroka.DorucakRucakVecera"
+            :options="DorucakRucakVecera"
+            required
+          >
+          </b-form-select>
+         
+        </b-input-group>
+
+
+    
+
+    <p>{{this.feedback}}</p>
+
+ 
+         <b-input-group v-if="onclick()" class=" mx-auto my-4 " style="width:210px;">
+          <b-form-select 
+            
+            id="input-1"
+            
+            :options="hrana"
+            required
+          >
+          </b-form-select>
+        </b-input-group>
+
+
+       
+
+        <b-input-group   v-if="odabirObroka.DorucakRucakVecera == 'Doručak'"  class=" mx-auto my-4 " style="width:210px;">
+          <b-form-select 
+            
+            id="input-1"
+            v-model="varijante.dorucak"
+            :options="dorucak"
+            required
+          >
+          </b-form-select>
+        </b-input-group>
+
+        
+        <b-input-group  v-if="odabirObroka.DorucakRucakVecera == 'Ručak'" class=" mx-auto my-4 " style="width:210px;">
+          <b-form-select 
+            
+            id="input-1"
+            v-model="varijante.rucak"
+            :options="rucak"
+            required
+          >
+          </b-form-select>
+        </b-input-group>
+
+         <b-input-group  v-if="odabirObroka.DorucakRucakVecera == 'Večera'" class=" mx-auto my-4 " style="width:210px;">
+          <b-form-select 
+            
+            id="input-1"
+            v-model="varijante.vecera"
+            :options="vecera"
+            required
+          >
+          </b-form-select>
+         </b-input-group>
+
+
+         <b-button    v-if="varijante.dorucak  || varijante.rucak || varijante.vecera " class="rounded-lg py-2 px-1  " style="font-size:20px; width:100px; height:40px;" variant="info" >Spremi</b-button>
+
+ </b-form>
 
 
 </div>
@@ -195,7 +292,8 @@ export default {
             feedback:null,
 
             radni_tjedan: {
-                 dan:null,            
+                 dan:null,   
+                 vikend_dan:null,         
             },
 
             odabirObroka: {
@@ -235,6 +333,15 @@ export default {
                 "Panirani otkošteni batak i zabatak s pečenim povrćem",
                 "Salata od tune, tjestenine i vrhnja"
             ],
+
+             vecera:[
+                {text:"--Odaberi varijantu--", value:null},
+                "Jaja",
+                "Hrenovke",
+                "Piletina",
+                "Pahuljice",
+                "Kruška"
+            ],
            
 
              DorucakRucakVecera: [
@@ -255,6 +362,12 @@ export default {
                 "Četvrtak",
                 "Petak"
                
+            ],
+
+            vikend_dan: [
+              {text:"Odaberi dan", value:null},
+              "Subota",
+              "Nedjelja"
             ],
             
            
@@ -328,6 +441,14 @@ export default {
 
         }
 
+        else if(this.odabirObroka.DorucakRucakVecera === "Večera"){
+
+           this.feedback="Odabrali ste večeru i imate na raspolaganju 5 varijanti"
+
+           
+
+        }
+
         else{
             this.feedback=null
         }
@@ -388,7 +509,7 @@ export default {
 }
 
 /* Simple CSS3 Fade-in-down Animation */
-.fadeInDown {
+.fadeInDown{
   -webkit-animation-name: fadeInDown;
   animation-name: fadeInDown;
   -webkit-animation-duration: 1s;
@@ -422,5 +543,6 @@ export default {
     transform: none;
   }
 }
+
 
 </style>

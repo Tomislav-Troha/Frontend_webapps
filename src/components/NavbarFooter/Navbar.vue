@@ -1,22 +1,27 @@
 <template>
 
-<div class="mx-5">
+<div class="mx-5 ">
   <b-navbar toggleable="lg" class="navbar rounded-lg">
       
        <b-navbar-brand >
            
-       <a class="mx-3" id="befit">Family health</a>
+       <h2 class="mx-3" id="befit">Family health</h2>
+       
             
       
 
 </b-navbar-brand>
 
 
+
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+    
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav class="mx-auto">
-   
+   <h1 v-if="$route.name === 'plan_prehrane_home'">Plan prehrane</h1>
+   <h1 v-if="$route.name === 'obiteljski_plan'">Obiteljski plan</h1>
+   <h1 v-if="$route.name === 'pojedinacni_plan'">Pojedinačni plan</h1>
 </b-navbar-nav>
 
       <!-- Right aligned nav items -->
@@ -32,6 +37,8 @@
          
         </b-nav-item>
 
+       
+
         <b-nav-item right>Odjava
           <!-- Using 'button-content' slot -->
           <template #button-content>
@@ -40,8 +47,9 @@
           
          
         </b-nav-item>
+        
      </b-navbar-nav >
-    </b-collapse>
+    </b-collapse>   
   </b-navbar>
 </div>
 </template>
@@ -79,7 +87,7 @@ export default {
   font-family: "Script MT";
   font-style: normal;
   font-weight: normal;
-  font-size: 50px;
+  font-size: 44px;
   color: #000000 !important;
   
   

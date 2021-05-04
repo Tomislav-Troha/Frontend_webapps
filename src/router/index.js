@@ -6,6 +6,7 @@ import Home from '@/components/Home'
 import Kalkulator_kalorija from '@/components/Kalkulator_kalorija'
 import Plan_prehrane from '@/components/Plan_prehrane/plan_prehrane_home'
 import Obiteljski_plan from '@/components/Plan_prehrane/obiteljski_plan'
+import Pojedinacni_plan from '@/components/Plan_prehrane/pojedinacni_plan'
 
 
 Vue.use(Router)
@@ -44,6 +45,11 @@ const router =  new Router({
     path: '/obiteljski_plan',
     name: 'obiteljski_plan',
     component: Obiteljski_plan
+  },
+  {
+    path: '/pojedinacni_plan',
+    name: 'pojedinacni_plan',
+    component: Pojedinacni_plan
   },
 
  
