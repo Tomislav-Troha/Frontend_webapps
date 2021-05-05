@@ -7,6 +7,10 @@ import Kalkulator_kalorija from '@/components/Kalkulator_kalorija'
 import Plan_prehrane from '@/components/Plan_prehrane/plan_prehrane_home'
 import Obiteljski_plan from '@/components/Plan_prehrane/obiteljski_plan'
 import Pojedinacni_plan from '@/components/Plan_prehrane/pojedinacni_plan'
+import Pojedinacni_zene from '@/components/Plan_prehrane/pojedinacni_zene'
+import Pojedinacni_muski from '@/components/Plan_prehrane/pojedinacni_muski'
+
+
 
 
 Vue.use(Router)
@@ -50,6 +54,16 @@ const router =  new Router({
     path: '/pojedinacni_plan',
     name: 'pojedinacni_plan',
     component: Pojedinacni_plan
+  },
+  {
+    path: '/pojedinacni_zene',
+    name: 'pojedinacni_zene',
+    component: Pojedinacni_zene
+  },
+  {
+    path: '/pojedinacni_muski',
+    name: 'pojedinacni_muski',
+    component: Pojedinacni_muski
   },
 
  
