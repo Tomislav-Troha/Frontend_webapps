@@ -172,8 +172,8 @@
           <b-form-select 
              
             id="input-1"
-            v-model="odabirObroka.DorucakRucakVecera"
-            :options="DorucakRucakVecera"
+            v-model="odabirObroka.DorucakRucakVecera1"
+            :options="DorucakRucakVecera1"
             required
           >
           </b-form-select>
@@ -186,7 +186,7 @@
     <p>{{this.feedback}}</p>
 
  
-         <b-input-group v-if="onclick()" class=" mx-auto my-4 " style="width:210px;">
+         <b-input-group v-if="onclick1()" class=" mx-auto my-4 " style="width:210px;">
           <b-form-select 
             
             id="input-1"
@@ -200,7 +200,7 @@
 
        
 
-        <b-input-group   v-if="odabirObroka.DorucakRucakVecera == 'Doručak'"  class=" mx-auto my-4 " style="width:210px;">
+        <b-input-group   v-if="odabirObroka.DorucakRucakVecera1 == 'Doručak'"  class=" mx-auto my-4 " style="width:210px;">
           <b-form-select 
             
             id="input-1"
@@ -212,7 +212,7 @@
         </b-input-group>
 
         
-        <b-input-group  v-if="odabirObroka.DorucakRucakVecera == 'Ručak'" class=" mx-auto my-4 " style="width:210px;">
+        <b-input-group  v-if="odabirObroka.DorucakRucakVecera1 == 'Ručak'" class=" mx-auto my-4 " style="width:210px;">
           <b-form-select 
             
             id="input-1"
@@ -223,7 +223,7 @@
           </b-form-select>
         </b-input-group>
 
-         <b-input-group  v-if="odabirObroka.DorucakRucakVecera == 'Večera'" class=" mx-auto my-4 " style="width:210px;">
+         <b-input-group  v-if="odabirObroka.DorucakRucakVecera1 == 'Večera'" class=" mx-auto my-4 " style="width:210px;">
           <b-form-select 
             
             id="input-1"
@@ -298,6 +298,7 @@ export default {
 
             odabirObroka: {
                 DorucakRucakVecera:null,
+                DorucakRucakVecera1:null,
             },
 
             odabirJela: {
@@ -345,6 +346,14 @@ export default {
            
 
              DorucakRucakVecera: [
+                    {text:"Odaberi dnevni obrok", value:null},
+                    "Doručak",
+                    "Ručak",
+                    "Večera"
+
+                ],
+
+               DorucakRucakVecera1: [
                     {text:"Odaberi dnevni obrok", value:null},
                     "Doručak",
                     "Ručak",
@@ -419,12 +428,31 @@ export default {
 
     methods:{
 
+      onclick1(){
+         if(this.odabirObroka.DorucakRucakVecera1 === "Doručak"){
+            this.feedback="Odabrali ste doručak i imate na raspolaganju 5 varijanti"
+        }
+
+        else if( this.odabirObroka.DorucakRucakVecera1 === "Ručak"){
+            this.feedback="Odabrali ste ručak i imate na raspolaganju 5 varijanti"
+        }
+
+        else if(  this.odabirObroka.DorucakRucakVecera1 === "Večera"){
+            this.feedback="Odabrali ste večeru i imate na raspolaganju 5 varijanti"
+        }
+
+        else{
+            this.feedback=null
+        }
+        },
+    
+
  
     
       
 
         onclick(){
-             if(this.odabirObroka.DorucakRucakVecera === "Doručak"){
+             if(this.odabirObroka.DorucakRucakVecera === "Doručak"  ){
 
                 this.feedback="Odabrali ste doručak i imate na raspolaganju 5 varijanti"
 
@@ -433,7 +461,7 @@ export default {
 
         }
 
-        else if(this.odabirObroka.DorucakRucakVecera === "Ručak"){
+        else if(this.odabirObroka.DorucakRucakVecera === "Ručak" ){
 
            this.feedback="Odabrali ste ručak i imate na raspolaganju 5 varijanti"
 
@@ -447,6 +475,18 @@ export default {
 
            
 
+        }
+
+        else if(this.odabirObroka.DorucakRucakVecera1 === "Doručak"){
+            this.feedback="Odabrali ste doručak i imate na raspolaganju 5 varijanti"
+        }
+
+        else if( this.odabirObroka.DorucakRucakVecera1 === "Ručak"){
+            this.feedback="Odabrali ste ručak i imate na raspolaganju 5 varijanti"
+        }
+
+        else if(  this.odabirObroka.DorucakRucakVecera1 === "Večera"){
+            this.feedback="Odabrali ste večeru i imate na raspolaganju 5 varijanti"
         }
 
         else{

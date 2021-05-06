@@ -52,9 +52,9 @@
        Vaše stanje
       </h2>
       
-     <b-button class="mt-5" size="lg" ref="show" variant="border-radius:40px; ; background-color:#30CFC0; !important;" style="font-family:Segoe UI; color:white; border-radius:40px; ; background-color:#30CFC0; !important;">
+    <router-link to="/TvojeStanje_home"> <b-button class="mt-5" size="lg" ref="show" variant="border-radius:40px; ; background-color:#30CFC0; !important;" style="font-family:Segoe UI; color:white; border-radius:40px; ; background-color:#30CFC0; !important;">
           Razmatraj
-        </b-button>
+        </b-button> </router-link>
 
 
         <template #footer>

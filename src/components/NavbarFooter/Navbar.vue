@@ -22,6 +22,7 @@
    <h1 v-if="$route.name === 'plan_prehrane_home'">Plan prehrane</h1>
    <h1 v-if="$route.name === 'obiteljski_plan'">Obiteljski plan</h1>
    <h1 v-if="$route.name === 'pojedinacni_plan'">Pojedinačni plan</h1>
+   <h1 v-if="$route.name === 'tvojeStanje_home'">Vaše stanje</h1>
 </b-navbar-nav>
 
       <!-- Right aligned nav items -->

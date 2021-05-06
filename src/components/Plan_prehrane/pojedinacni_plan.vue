@@ -24,7 +24,7 @@
        <h1 style="font-family:Script MT;">Djeca</h1>
 
        
-    <b-button class="mx-auto mt-5" size="lg" variant="background-color:#30CFC0; !important; font-family:Segoe UI; " style="font-family:Segoe UI; color:white; border-radius:40px; ; background-color:#30CFC0; !important;" >Odaberi cilj</b-button>
+    <router-link to="/Pojedinacni_djeca"><b-button class="mx-auto mt-5" size="lg" variant="background-color:#30CFC0; !important; font-family:Segoe UI; " style="font-family:Segoe UI; color:white; border-radius:40px; ; background-color:#30CFC0; !important;" >Odaberi cilj</b-button></router-link>
         
       
     </b-card>

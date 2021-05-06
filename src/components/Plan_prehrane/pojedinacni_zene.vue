@@ -63,7 +63,7 @@
             
             id="input-1"
             v-model="spol.zene"
-            
+            disabled
             required>
             
         </b-form-input>
@@ -72,7 +72,7 @@
           <b-form-input 
             v-if="opcija.zene=='Mršavljenje'"
             id="input-1"
-            
+            disabled
             v-model="spol.aktivnost_m"
             required
           >
@@ -81,7 +81,7 @@
            <b-form-input 
             v-if="opcija.zene=='Fitness'"
             id="input-1"
-            
+            disabled
             v-model="spol.aktivnost_f"
             required
           >
@@ -90,7 +90,7 @@
            <b-form-input 
             v-if="opcija.zene=='Trudnice'"
             id="input-1"
-            
+            disabled
             v-model="spol.aktivnost_t"
             required
           >
@@ -308,6 +308,8 @@ export default {
 
         onsubmit(evt) {
 
+            
+
             evt.preventDefault();
             JSON.stringify(this.form);
 
@@ -324,7 +326,10 @@ export default {
                 this.rezultat3 = (((this.form.tezina*9)+(this.form.visina*5.5)-(this.form.dob*5)+5))*1.2
 
             }
-            }
+           
+        }
+
+        
     }
     
 }

@@ -1,11 +1,11 @@
 <template>
     
-     <div  class="calorie p-4 mx-auto mt-5 rounded-lg  w-75  w-75   " style="background-color: #f8f8f8; !important;  ">
+     <div  class="calorie p-4 mx-auto mt-5   w-75  w-75   " style="background-color: #f8f8f8; !important;  ">
 
 
-<div>
+<div  >
   <b-card-group deck class="text-center">
-    <b-card class="mt-4 "
+    <b-card class="mt-4 " style="border-radius:22px;"
 
       header-tag="header"
       footer="Odaberite svoj tjedni plan za cijelu obitelj"
@@ -16,7 +16,7 @@
       <router-link to = "/Obiteljski_plan" ><b-button size="lg" class="mt-5 " style=" width:150px; font-family:Segoe UI; color:white; border-radius:30px; ; background-color:#30CFC0; !important;"  variant=" border-radius:30px; background-color:#30CFC0; !important;" >GO</b-button></router-link>
     </b-card>
 
-    <b-card class="mt-4" title="Pojedinačni plan" header-tag="header" footer-tag="footer">
+    <b-card class="mt-4" title="Pojedinačni plan" header-tag="header" footer-tag="footer" style="border-radius:22px;">
       
       
      <router-link to = "/Pojedinacni_plan" > <b-button size="lg" class="mt-5  " style="width:150px; font-family:Segoe UI; color:white; border-radius:30px; ; background-color:#30CFC0; !important;"  variant=" border-radius:30px; background-color:#30CFC0; !important;" >GO</b-button></router-link>
@@ -57,7 +57,7 @@ export default {
   fill: rgba(196, 196, 196, 1);
   filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.788));
   overflow: visible;
-  border-radius: 25px;
+  border-radius: 8px;
 }
 
 

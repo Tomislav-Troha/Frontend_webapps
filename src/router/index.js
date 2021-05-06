@@ -9,6 +9,9 @@ import Obiteljski_plan from '@/components/Plan_prehrane/obiteljski_plan'
 import Pojedinacni_plan from '@/components/Plan_prehrane/pojedinacni_plan'
 import Pojedinacni_zene from '@/components/Plan_prehrane/pojedinacni_zene'
 import Pojedinacni_muski from '@/components/Plan_prehrane/pojedinacni_muski'
+import Pojedinacni_djeca from '@/components/Plan_prehrane/pojedinacni_djeca'
+import TvojeStanje_home from '@/components/Tvoje_stanje/tvojeStanje_home'
+import Vas_obiteljski_plan from '@/components/Tvoje_stanje/vas_obiteljski_plan'
 
 
 
@@ -65,8 +68,23 @@ const router =  new Router({
     name: 'pojedinacni_muski',
     component: Pojedinacni_muski
   },
+  {
+    path: '/pojedinacni_djeca',
+    name: 'pojedinacni_djeca',
+    component: Pojedinacni_djeca
+  },
+  {
+    path: '/tvojeStanje_home',
+    name: 'tvojeStanje_home',
+    component: TvojeStanje_home
+  },
+  {
+    path: '/vas_obiteljski_plan',
+    name: 'vas_obiteljski_plan',
+    component: Vas_obiteljski_plan
+  },
 
- 
+  
   
 ]
 })
