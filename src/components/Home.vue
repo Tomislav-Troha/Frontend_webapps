@@ -2,6 +2,9 @@
 
 <div class="sivo mx-auto mt-5">
 
+  
+
+
   <h1 style="color:black;" class="text-center  ">Glavni izbornik</h1>
  
   <b-card-group style="max-width:1600px;" deck class="zeleno text-center mx-auto " >
@@ -96,6 +99,7 @@
   overflow: visible;
   border-radius: 8px;
   max-width: 1700px;
+  
 
 }
 
@@ -103,6 +107,7 @@
   
    filter: drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.09));
 }
+
 
 
 </style>

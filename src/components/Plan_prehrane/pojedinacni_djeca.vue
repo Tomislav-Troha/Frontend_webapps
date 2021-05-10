@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div  class="calorie p-4 mx-auto mt-5   w-50 text-center" style="background-color: #f8f8f8; !important;  ">
+  <div  class="calorie p-4 mx-auto mt-5 fadeInDown  w-50 text-center" style="background-color: #f8f8f8; !important;  ">
 
 <h1 style="font-family:Segoe UI">Djeca</h1>
 

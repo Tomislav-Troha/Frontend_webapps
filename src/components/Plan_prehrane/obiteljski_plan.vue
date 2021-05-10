@@ -34,28 +34,28 @@
 
   
 
-<b-form class="mx-4 text-center " >
+<b-form @submit.prevent="spremiPoTjednu" class="mx-4 text-center " >
    
-    <b-input-group   class=" mx-auto my-4 " style="width:210px;">
+    <b-input-group  class=" mx-auto my-4 " style="width:210px;">
           <b-form-select 
             
             id="input-1"
             v-model="radni_tjedan.dan"
             :options="dan"
-            required
+            
           >
           </b-form-select>
         </b-input-group>
 
 
 
-        <b-input-group  v-if="radni_tjedan.dan"  class=" mx-auto my-4 " style="width:210px;">
+        <b-input-group  v-if="radni_tjedan.dan "  class=" mx-auto my-4 " style="width:210px;">
           <b-form-select 
              
             id="input-1"
             v-model="odabirObroka.DorucakRucakVecera"
             :options="DorucakRucakVecera"
-            required
+            
           >
           </b-form-select>
          
@@ -64,16 +64,16 @@
 
     
 
-    <p>{{this.feedback}}</p>
+    <p v-if="radni_tjedan.dan ">{{this.feedback}}</p>
 
  
-         <b-input-group v-if="onclick()" class=" mx-auto my-4 " style="width:210px;">
+         <b-input-group v-if="onclick()  && radni_tjedan.dan " class=" mx-auto my-4 " style="width:210px;">
           <b-form-select 
             
             id="input-1"
             
-            :options="hrana"
-            required
+            
+           
           >
           </b-form-select>
         </b-input-group>
@@ -81,53 +81,63 @@
 
        
 
-        <b-input-group   v-if="odabirObroka.DorucakRucakVecera == 'Doručak'"  class=" mx-auto my-4 " style="width:210px;">
+        <b-input-group   v-if="odabirObroka.DorucakRucakVecera == 'Doručak' && radni_tjedan.dan "  class=" mx-auto my-4 " style="width:210px;">
           <b-form-select 
             
             id="input-1"
             v-model="varijante.dorucak"
             :options="dorucak"
-            required
+            
           >
           </b-form-select>
         </b-input-group>
 
         
-        <b-input-group  v-if="odabirObroka.DorucakRucakVecera == 'Ručak'" class=" mx-auto my-4 " style="width:210px;">
+        <b-input-group  v-if="odabirObroka.DorucakRucakVecera == 'Ručak' && radni_tjedan.dan  " class=" mx-auto my-4 " style="width:210px;">
           <b-form-select 
             
             id="input-1"
             v-model="varijante.rucak"
             :options="rucak"
-            required
+            
           >
           </b-form-select>
         </b-input-group>
 
-         <b-input-group  v-if="odabirObroka.DorucakRucakVecera == 'Večera'" class=" mx-auto my-4 " style="width:210px;">
+         <b-input-group  v-if="odabirObroka.DorucakRucakVecera == 'Večera' && radni_tjedan.dan  " class=" mx-auto my-4 " style="width:210px;">
           <b-form-select 
             
             id="input-1"
             v-model="varijante.vecera"
             :options="vecera"
-            required
+            
           >
           </b-form-select>
         </b-input-group>
+
+
+ <b-alert v-if=" radni_tjedan.dan" class="text-center mx-auto pt-4" style="background-color:#30CFC0; border-radius:25px; max-width:200px; color:white;"
+      :show="dismissCountDown"
+     
+      
+      @dismissed="dismissCountDown=0"
+      @dismiss-count-down="countDownChanged"
+      fade
+    >
+      <p>{{spremiTjedan}}</p>
+     
+    </b-alert>
+
+ 
 
 
 
  
 
 
-
-
-
-
-
-
-<b-button    v-if="varijante.dorucak  || varijante.rucak || varijante.vecera " class="rounded-lg py-2 px-1  " style="font-size:20px; width:100px; height:40px;" variant="info" >Spremi</b-button>
-
+ 
+<b-button v-if=" radni_tjedan.dan && odabirObroka.DorucakRucakVecera  "  type="submit" @click="showAlert"  class="rounded-lg py-2 px-1  " style="font-size:20px; width:100px; height:40px;" variant="info" >Spremi</b-button>
+ 
 
 
         
@@ -153,7 +163,7 @@
 
  <h1 class="text-center mb-5 ">Vikend</h1>
 
- <b-form class="mx-4 text-center " >
+ <b-form @submit.prevent="spremiPoTjednu1" class="mx-4 text-center " >
    
     <b-input-group   class=" mx-auto my-4 " style="width:210px;">
           <b-form-select 
@@ -161,7 +171,7 @@
             id="input-1"
             v-model="radni_tjedan.vikend_dan"
             :options="vikend_dan"
-            required
+            
           >
           </b-form-select>
         </b-input-group>
@@ -174,7 +184,7 @@
             id="input-1"
             v-model="odabirObroka.DorucakRucakVecera1"
             :options="DorucakRucakVecera1"
-            required
+            
           >
           </b-form-select>
          
@@ -183,16 +193,16 @@
 
     
 
-    <p>{{this.feedback}}</p>
+    <p v-if="radni_tjedan.vikend_dan">{{this.feedback1}}</p>
 
  
-         <b-input-group v-if="onclick1()" class=" mx-auto my-4 " style="width:210px;">
+         <b-input-group v-if="onclick1() &&  radni_tjedan.vikend_dan " class=" mx-auto my-4 " style="width:210px;">
           <b-form-select 
             
             id="input-1"
             
             :options="hrana"
-            required
+            
           >
           </b-form-select>
         </b-input-group>
@@ -200,42 +210,55 @@
 
        
 
-        <b-input-group   v-if="odabirObroka.DorucakRucakVecera1 == 'Doručak'"  class=" mx-auto my-4 " style="width:210px;">
+        <b-input-group   v-if="odabirObroka.DorucakRucakVecera1 == 'Doručak' && radni_tjedan.vikend_dan"  class=" mx-auto my-4 " style="width:210px;">
           <b-form-select 
             
             id="input-1"
             v-model="varijante.dorucak"
             :options="dorucak"
-            required
+            
           >
           </b-form-select>
         </b-input-group>
 
         
-        <b-input-group  v-if="odabirObroka.DorucakRucakVecera1 == 'Ručak'" class=" mx-auto my-4 " style="width:210px;">
+        <b-input-group  v-if="odabirObroka.DorucakRucakVecera1 == 'Ručak' && radni_tjedan.vikend_dan" class=" mx-auto my-4 " style="width:210px;">
           <b-form-select 
             
             id="input-1"
             v-model="varijante.rucak"
             :options="rucak"
-            required
+            
           >
           </b-form-select>
         </b-input-group>
 
-         <b-input-group  v-if="odabirObroka.DorucakRucakVecera1 == 'Večera'" class=" mx-auto my-4 " style="width:210px;">
+         <b-input-group  v-if="odabirObroka.DorucakRucakVecera1 == 'Večera' && radni_tjedan.vikend_dan" class=" mx-auto my-4 " style="width:210px;">
           <b-form-select 
             
             id="input-1"
             v-model="varijante.vecera"
             :options="vecera"
-            required
+            
           >
           </b-form-select>
          </b-input-group>
 
 
-         <b-button    v-if="varijante.dorucak  || varijante.rucak || varijante.vecera " class="rounded-lg py-2 px-1  " style="font-size:20px; width:100px; height:40px;" variant="info" >Spremi</b-button>
+         <b-alert v-if=" radni_tjedan.vikend_dan" class="text-center mx-auto pt-4" style="background-color:#30CFC0; border-radius:25px; max-width:200px; color:white;"
+      :show="dismissCountDown"
+     
+      
+      @dismissed="dismissCountDown1=0"
+      @dismiss-count-down="countDownChanged1"
+      fade
+    >
+      <p>{{spremiTjedan1}}</p>
+     
+    </b-alert>
+
+
+<b-button v-if=" radni_tjedan.vikend_dan && odabirObroka.DorucakRucakVecera1   "  type="submit" @click="showAlert1"  class="rounded-lg py-2 px-1  " style="font-size:20px; width:100px; height:40px;" variant="info" >Spremi</b-button>
 
  </b-form>
 
@@ -283,13 +306,22 @@ export default {
         
         return{
 
+          dismissSecs: 1.5,
+          dismissCountDown: 0,
+          showDismissibleAlert: false,
+
+          spremiTjedan:"",
+          spremiTjedan1:"",
+          
+
         
 
           isHidden: false,
           isHidden1: false,
           isHidden2: false,
 
-            feedback:null,
+            feedback:"",
+            feedback1:"",
 
             radni_tjedan: {
                  dan:null,   
@@ -385,36 +417,7 @@ export default {
 
             
 
-            kruh: [
-
-                {text:"Ručak", value: null},
-                this.kruh="9999"
-            ],
-
-            ribe: [
-
-                {text:"Ručak ", value: null},
-                this.varijabla
-            ],
-
-            brza_hrana: [
-
-                {text:"Ručak", value: null},
-                this.varijabla
-            ],
-
-             voce: [
-
-                {text:"Večera", value: null},
-                this.varijabla
-            ],
-
-             povrce: [
-
-                {text:"Večera", value: null},
-                this.varijabla
-            ],
-
+            
             
         }
     
@@ -424,25 +427,88 @@ export default {
         
     },
 
-    
+
 
     methods:{
 
+
+      showAlert() {
+        
+        this.dismissCountDown = this.dismissSecs
+      },
+
+      showAlert1() {
+        
+        this.dismissCountDown = this.dismissSecs
+      },
+
+
+      countDownChanged(dismissCountDown) {
+        this.dismissCountDown = dismissCountDown
+      },
+
+       countDownChanged1(dismissCountDown1) {
+        this.dismissCountDown = dismissCountDown1
+      },
+
+       
+      spremiPoTjednu(){
+
+   
+        if(this.varijante.rucak || this.varijante.dorucak || this.varijante.vecera && this.odabirObroka.DorucakRucakVecera){
+          this.spremiTjedan = "Uspješno spremljeno"
+            setTimeout(function () { location.reload(1); }, 1500);
+          
+           }
+           
+
+        else if(!this.odabirObroka.DorucakRucakVecera && !this.varijante.rucak || !this.varijante.dorucak || !this.varijante.vecera ) { 
+          this.spremiTjedan = "Odaberi varijantu  :)"
+        }
+
+        
+      
+
+      },
+
+      spremiPoTjednu1(){
+
+   
+        if(this.odabirObroka.DorucakRucakVecera1 && this.varijante.rucak || this.varijante.dorucak || this.varijante.vecera){
+          this.spremiTjedan1 = "Uspješno spremljeno"
+           setTimeout(function () { location.reload(1); }, 1500);
+          
+          
+           }
+           
+
+        else if(!this.odabirObroka.DorucakRucakVecera1 && !this.varijante.rucak || !this.varijante.dorucak || !this.varijante.vecera ) { 
+          this.spremiTjedan1 = "Odaberi varijantu  :)"
+        }
+
+        
+      
+
+      },
+
+
+
+
       onclick1(){
          if(this.odabirObroka.DorucakRucakVecera1 === "Doručak"){
-            this.feedback="Odabrali ste doručak i imate na raspolaganju 5 varijanti"
+            this.feedback1="Odabrali ste doručak i imate na raspolaganju 5 varijanti"
         }
 
         else if( this.odabirObroka.DorucakRucakVecera1 === "Ručak"){
-            this.feedback="Odabrali ste ručak i imate na raspolaganju 5 varijanti"
+            this.feedback1="Odabrali ste ručak i imate na raspolaganju 5 varijanti"
         }
 
         else if(  this.odabirObroka.DorucakRucakVecera1 === "Večera"){
-            this.feedback="Odabrali ste večeru i imate na raspolaganju 5 varijanti"
+            this.feedback1="Odabrali ste večeru i imate na raspolaganju 5 varijanti"
         }
 
         else{
-            this.feedback=null
+            this.feedback1=null
         }
         },
     
@@ -477,17 +543,7 @@ export default {
 
         }
 
-        else if(this.odabirObroka.DorucakRucakVecera1 === "Doručak"){
-            this.feedback="Odabrali ste doručak i imate na raspolaganju 5 varijanti"
-        }
-
-        else if( this.odabirObroka.DorucakRucakVecera1 === "Ručak"){
-            this.feedback="Odabrali ste ručak i imate na raspolaganju 5 varijanti"
-        }
-
-        else if(  this.odabirObroka.DorucakRucakVecera1 === "Večera"){
-            this.feedback="Odabrali ste večeru i imate na raspolaganju 5 varijanti"
-        }
+      
 
         else{
             this.feedback=null

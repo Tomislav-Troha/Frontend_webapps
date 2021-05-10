@@ -1,7 +1,7 @@
 <template>
  
     <div 
-      class="calorie  p-4 mx-auto mt-5 rounded-lg  w-75   "
+      class="calorie  p-4 mx-auto mt-5 rounded-lg  w-75 fadeInDown   "
       style="background-color: #f8f8f8; !important;  "
       
     >

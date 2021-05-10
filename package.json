@@ -12,6 +12,7 @@
     "mdbvue": "^6.7.2",
     "vue": "^2.6.11",
     "vue-info-card": "^0.1.4",
+    "vue-page-transition": "^0.2.2",
     "vue-router": "^3.2.0",
     "vue2-transitions": "^0.3.0"
   },

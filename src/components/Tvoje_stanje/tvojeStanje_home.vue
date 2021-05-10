@@ -28,9 +28,9 @@
       Vaš pojedinačni plan
       </h2>
       
-      <b-button class="mt-5" size="lg" ref="show" variant="border-radius:40px; ; background-color:#30CFC0; !important;" style="font-family:Segoe UI; color:white; border-radius:40px; ; background-color:#30CFC0; !important;">
+    <router-link to="/Vas_pojedinacni_plan">  <b-button class="mt-5" size="lg" ref="show" variant="border-radius:40px; ; background-color:#30CFC0; !important;" style="font-family:Segoe UI; color:white; border-radius:40px; ; background-color:#30CFC0; !important;">
           Dalje
-        </b-button>
+        </b-button> </router-link>
 
 
       
@@ -41,9 +41,9 @@
        BMI, udio masti
       </h2>
       
-     <b-button class="mt-5" size="lg" ref="show" variant="border-radius:40px; ; background-color:#30CFC0; !important;" style="font-family:Segoe UI; color:white; border-radius:40px; ; background-color:#30CFC0; !important;">
+    <router-link to="/index"> <b-button class="mt-5" size="lg" ref="show" variant="border-radius:40px; ; background-color:#30CFC0; !important;" style="font-family:Segoe UI; color:white; border-radius:40px; ; background-color:#30CFC0; !important;">
           Dalje
-        </b-button> 
+        </b-button> </router-link>
 
 
         

@@ -12,7 +12,8 @@ import Pojedinacni_muski from '@/components/Plan_prehrane/pojedinacni_muski'
 import Pojedinacni_djeca from '@/components/Plan_prehrane/pojedinacni_djeca'
 import TvojeStanje_home from '@/components/Tvoje_stanje/tvojeStanje_home'
 import Vas_obiteljski_plan from '@/components/Tvoje_stanje/vas_obiteljski_plan'
-
+import Vas_pojedinacni_plan from '@/components/Tvoje_stanje/vas_pojedinacni_plan'
+import Index from '@/components/Tvoje_stanje/index'
 
 
 
@@ -26,7 +27,7 @@ const router =  new Router({
   {
     path: '/',
     name: 'login',
-    component: Login
+    component: Login,
   },
   {
     path: '/register_1',
@@ -41,7 +42,8 @@ const router =  new Router({
   {
     path: '/kalkulator_kalorija',
     name: 'kalkulator_kalorija',
-    component: Kalkulator_kalorija
+    component: Kalkulator_kalorija,
+   
   },
   {
     path: '/plan_prehrane_home',
@@ -83,9 +85,20 @@ const router =  new Router({
     name: 'vas_obiteljski_plan',
     component: Vas_obiteljski_plan
   },
+  {
+    path: '/vas_pojedinacni_plan',
+    name: 'vas_pojedinacni_plan',
+    component: Vas_pojedinacni_plan
+  },
+  {
+    path: '/index',
+    name: 'index',
+    component: Index
+  },
+
 
   
-  
+ 
 ]
 })
 
