@@ -61,7 +61,7 @@
             
             id="input-1"
             v-model="spol.muskarci"
-            
+            disabled
             required>
             
         </b-form-input>
@@ -70,7 +70,7 @@
           <b-form-input 
             v-if="opcija.muskarci=='Mršavljenje'"
             id="input-1"
-            
+            disabled
             v-model="spol.aktivnost_m"
             required
           >
@@ -79,7 +79,7 @@
            <b-form-input 
             v-if="opcija.muskarci=='Teretana'"
             id="input-1"
-            
+            disabled
             v-model="spol.aktivnost_t"
             required
           >
@@ -122,7 +122,7 @@
           >
           </b-form-input>
         </b-form-group>
-       <b-button  type="sumbit" size="lg" variant="background-color:#30CFC0; !important; font-family:Segoe UI; " style="font-family:Segoe UI; color:white; border-radius:40px; ; background-color:#30CFC0; !important;">Izračunaj</b-button>
+       <b-button v-on:click="jeSakriven = true"  type="sumbit" size="lg" variant="background-color:#30CFC0; !important; font-family:Segoe UI; " style="font-family:Segoe UI; color:white; border-radius:40px; ; background-color:#30CFC0; !important;">Izračunaj</b-button>
 
 
         
@@ -133,12 +133,15 @@
   </div>
 
 
-  <div v-if="opcija.muskarci=='Mršavljenje' || opcija.muskarci == 'Teretana' " class="calorie p-4 mx-auto mt-5 rounded-lg  w-50 text-center" style="background-color: #f8f8f8; !important;  ">
+  <div v-if="opcija.muskarci=='Mršavljenje' && jeSakriven && rezultat1 !== 0 || opcija.muskarci == 'Teretana'  && jeSakriven && rezultat2 !== 0" class="calorie p-4 mx-auto mt-5 rounded-lg  w-50 text-center" style="background-color: #f8f8f8; !important;  ">
 
-<h5 v-if="opcija.muskarci=='Mršavljenje'">Vaš dnevni unos kalorija mora biti {{rezultat1.toFixed(0)}}<br> i sljedeće namirnice koje bi trebali konzumirati su:</h5>
-<h5 v-if="opcija.muskarci=='Teretana'">Vaš dnevni unos kalorija mora biti {{rezultat2.toFixed(0)}}<br> i sljedeće namirnice koje bi trebali konzumirati su:</h5>
+<h5 v-if="opcija.muskarci=='Mršavljenje' && rezultat1>500 && rezultat1<6000">Vaš dnevni unos kalorija mora biti {{rezultat1.toFixed(0)}}<br> i sljedeće namirnice koje bi trebali konzumirati su:</h5>
+<h5 v-if="opcija.muskarci=='Teretana' && rezultat2>500 && rezultat2<6000">Vaš dnevni unos kalorija mora biti {{rezultat2.toFixed(0)}}<br> i sljedeće namirnice koje bi trebali konzumirati su:</h5>
 
- <b-card
+<p style="font-size:25px; color:red;">{{feedback}}</p>
+
+
+ <b-card v-if="rezultat1 !== 0 && rezultat1>500 && rezultat1<6000 || rezultat2 !== 0 && rezultat2>500 && rezultat2<6000"
         
         class="text-left mx-auto "
         style="background-color:#F8F8F8;"
@@ -245,6 +248,10 @@ export default {
     data(){
         return{
 
+            jeSakriven:false,
+
+            feedback:"",
+
             rezultat1:0,
             rezultat2:0,
             rezultat3:0,
@@ -297,11 +304,26 @@ export default {
 
             if(this.opcija.muskarci == "Mršavljenje") {
                 this.rezultat1 = (((this.form.tezina*9)+(this.form.visina*6.25)-(this.form.dob*5)+5))*1.2
-            }
+            
 
-            else if (this.opcija.muskarci == "Teretana"){
+                    if(this.rezultat1 < 500 || this.rezultat1 > 6000 ){
+                  return this.feedback = "Krivo uneseni podaci, pokušajte ponovno"
+            }
+            else{this.feedback=""}
+            }
+            
+            
+
+
+            if (this.opcija.muskarci == "Teretana"){
                 this.rezultat2 = (((this.form.tezina*10)+(this.form.visina*6.25)-(this.form.dob*5)+5))*1.9
 
+
+                    if(this.rezultat2 < 500 || this.rezultat2 > 6000 ){
+                  return this.feedback = "Krivo uneseni podaci, pokušajte ponovno"
+            }
+            else{this.feedback=""}
+            
             }
 
            

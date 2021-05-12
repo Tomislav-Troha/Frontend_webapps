@@ -15,9 +15,13 @@
     <b-input-group class=" mx-auto my-4 " style="width:182px;">
           <b-form-select 
             
+         
             id="input-1"
-            v-model="form.meso"
-            :options="meso"
+           
+            :options="form.meso"
+           
+           
+            
             required
           >
           </b-form-select>
@@ -243,16 +247,16 @@
   </b-form>
 <p></p>
 
-<b-form class="mx-4"> <b-button @click="pozoviBackend()" class="mx-5 my-4" pill variant="info">Izračunaj</b-button></b-form>
+<b-form class="mx-4"> <b-button  class="mx-5 my-4" pill variant="info">Izračunaj</b-button></b-form>
     
     
     <b-form inline class="py-3 mx-4">
           <b-form-input  class="mx-5 mt-5 py-4 " id="inline-form-input-username" placeholder="Ukupna vrijednost: "></b-form-input>
-          <p class="mt-5">{{varijabla}}</p>
+        
           </b-form>
 
 
-
+<p>{{form.meso}}</p>
 
       
 
@@ -265,13 +269,18 @@
 
 <script>
 
+import {Meso} from "@/services"
+
 export default {
+
+
+
     data() {
         return {
 
             varijabla: '1234',
 
-            form: {
+             form: {
                 meso: null,
                 kruh: null,
                 ribe: null,
@@ -282,10 +291,11 @@ export default {
             },
 
             meso: [
-                 {text:"Odaberi vrstu mesa", value: null},
+
+                {text:"Odaberi vrstu mesa", value: null},
                 
-                this.varijabla
             ],
+           
 
             kruh: [
 
@@ -328,19 +338,18 @@ export default {
     },
 
 created() {
-    this.pozoviBackend('http://localhost:3200/meso/1');
+    this.pozoviBackend();
 },
 
 methods:{
-    async pozoviBackend(adresa) {
-        let response = await fetch(adresa);
-        let odgovor = await response.text();
-
-        this.varijabla = odgovor;
+    async pozoviBackend(term) {
         
-    }
-}
+        this.form.meso = await Meso.getAll(term)
+        
+    },
     
+} 
+
 }
 
 

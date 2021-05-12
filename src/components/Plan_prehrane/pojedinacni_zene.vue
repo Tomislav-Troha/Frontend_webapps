@@ -131,6 +131,7 @@
           >
           </b-form-input>
         </b-form-group>
+        
        <b-button v-on:click="jeSakriven = true"  type="sumbit" size="lg" variant="background-color:#30CFC0; !important; font-family:Segoe UI; " style="font-family:Segoe UI; color:white; border-radius:40px; ; background-color:#30CFC0; !important;">Izračunaj</b-button>
 
 
@@ -142,17 +143,18 @@
   </div>
 
 
-  <div  v-if=" opcija.zene=='Mršavljenje' && jeSakriven || opcija.zene == 'Fitness' && jeSakriven || opcija.zene == 'Trudnice' && jeSakriven"  class="calorie p-4 mx-auto mt-5 rounded-lg  w-50 text-center" style="background-color: #f8f8f8; !important;  ">
+  <div  v-if=" opcija.zene=='Mršavljenje' && jeSakriven && rezultat1 !== 0 || opcija.zene == 'Fitness' && jeSakriven && rezultat2 !== 0 || opcija.zene == 'Trudnice' && jeSakriven && rezultat3 !== 0"  class="calorie p-4 mx-auto mt-5 rounded-lg  w-50 text-center" style="background-color: #f8f8f8; !important;  ">
 
-<h5 v-if="opcija.zene=='Mršavljenje'">Vaš dnevni unos mora biti {{rezultat1.toFixed(0)}} kalorija<br> i sljedeće namirnice koje bi trebali konzumirati su:</h5>
-<h5 v-if="opcija.zene=='Fitness'">Vaš dnevni unos mora biti {{rezultat2.toFixed(0)}} kalorija<br> i sljedeće namirnice koje bi trebali konzumirati su:</h5>
-<h5 v-if="opcija.zene=='Trudnice'">Vaš dnevni unos mora biti {{rezultat3.toFixed(0)}} kalorija<br> i sljedeće namirnice koje bi trebali konzumirati su:</h5>
+<h5 v-if="opcija.zene=='Mršavljenje' && rezultat1>500 && rezultat1<6000">Vaš dnevni unos mora biti {{rezultat1.toFixed(0)}} kalorija<br> i sljedeće namirnice koje bi trebali konzumirati su:</h5>
+<h5 v-if="opcija.zene=='Fitness' && rezultat2>500 && rezultat2<6000">Vaš dnevni unos mora biti {{rezultat2.toFixed(0)}} kalorija<br> i sljedeće namirnice koje bi trebali konzumirati su:</h5>
+<h5 v-if="opcija.zene=='Trudnice' && rezultat3>500 && rezultat3<6000">Vaš dnevni unos mora biti {{rezultat3.toFixed(0)}} kalorija<br> i sljedeće namirnice koje bi trebali konzumirati su:</h5>
+
+<p style="font-size:25px; color:red;">{{feedback}}</p>
 
 
 
 
-
- <b-card
+ <b-card v-if="rezultat1>500 && rezultat1<6000 || rezultat2>500 && rezultat2<6000 || rezultat3>500 && rezultat3<6000" 
         
         class="text-left mx-auto "
         style="background-color:#F8F8F8;"
@@ -258,6 +260,7 @@ export default {
 
     data(){
         return{
+            feedback:"",
 
             jeSakriven:false,
 
@@ -313,21 +316,54 @@ export default {
             evt.preventDefault();
             JSON.stringify(this.form);
 
-            if(this.opcija.zene == "Mršavljenje") {
+            if(this.opcija.zene === "Mršavljenje") {
                 this.rezultat1 = (((this.form.tezina*10)+(this.form.visina*6.25)-(this.form.dob*5)+5))*1.2
+
+
+                if(this.rezultat1 < 500 || this.rezultat1 > 6000 ){
+                  return this.feedback = "Krivo uneseni podaci, pokušajte ponovno"
+            }
+            else{this.feedback=""}
             }
 
-            else if (this.opcija.zene == "Fitness"){
+           
+
+
+             if (this.opcija.zene == "Fitness"){
                 this.rezultat2 = (((this.form.tezina*10)+(this.form.visina*6.25)-(this.form.dob*5)+5))*1.9
 
-            }
 
-            else if (this.opcija.zene == "Trudnice"){
+                         if(this.rezultat2 < 500 || this.rezultat2 > 6000 ){
+                           return this.feedback = "Krivo uneseni podaci, pokušajte ponovno"
+            }
+            else{this.feedback=""}
+            }
+            
+         
+
+
+
+             if (this.opcija.zene == "Trudnice"){
                 this.rezultat3 = (((this.form.tezina*9)+(this.form.visina*5.5)-(this.form.dob*5)+5))*1.2
 
+
+                       if(this.rezultat3 < 500 || this.rezultat3 > 6000 ){
+                  return this.feedback = "Krivo uneseni podaci, pokušajte ponovno"
             }
+            else{this.feedback=""}
+            }
+            
+
+             
+             
+            
+
+             
+
            
-        }
+        },
+
+      
 
         
     }
