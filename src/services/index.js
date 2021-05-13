@@ -14,8 +14,10 @@ let Meso = {
         let data = response.data
         data = data.map(doc => {
             return {
+                id: doc.id,
                 Vrsta_mesa: doc.naziv,
-                
+                kolicina: doc.kolicina
+               
             };
         });
         return data

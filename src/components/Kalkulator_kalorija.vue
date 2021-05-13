@@ -13,24 +13,22 @@
   <b-form inline class="mx-4 " >
    
     <b-input-group class=" mx-auto my-4 " style="width:182px;">
-          <b-form-select 
-            
-         
-            id="input-1"
-           
-            :options="form.meso"
-           
-           
-            
-            required
-          >
-          </b-form-select>
+     
+         <select @change="promjeniKolicinuMeso($event)" class="form-control" > <option value="" selected disabled>Odaberi meso</option> 
+         <option v-for="meso in meso" :value="meso.id" :key="meso.id">{{ meso.Vrsta_mesa }}</option></select>
+      
         </b-input-group>
 
     
     
-    <b-input-group class="mx-auto my-4" >
-      <b-form-input type="number"  placeholder="Broj kalorija po porciji"></b-form-input>
+    <b-input-group class="mx-auto my-4"  >
+      
+            
+           <b-form-input v-model="brojporcijaPH" >
+             
+               
+           </b-form-input>
+        
     </b-input-group>
 
     
@@ -55,8 +53,7 @@
           <b-form-select 
             
             
-            v-model="form.kruh"
-            :options="kruh"
+            
             required
           >
           </b-form-select>
@@ -64,7 +61,7 @@
 
     
     <b-input-group class="mx-auto my-4 " >
-      <b-form-input type="number"  placeholder="Broj kalorija po porciji"></b-form-input>
+      <b-form-input type="number"  placeholder="Broj kalorija po porciji" v-model="form.kruh"></b-form-input>
     </b-input-group>
 
     
@@ -256,7 +253,9 @@
           </b-form>
 
 
-<p>{{form.meso}}</p>
+<div >{{odabranoMeso}}</div>
+
+
 
       
 
@@ -279,10 +278,11 @@ export default {
         return {
 
             varijabla: '1234',
+            brojporcijaPH: "Broj kalorija po porciji",
 
              form: {
-                meso: null,
-                kruh: null,
+               
+               
                 ribe: null,
                 brza_hrana: null,
                 voce: null,
@@ -290,18 +290,17 @@ export default {
                 mlijecni_proizvodi: null
             },
 
-            meso: [
+            meso:{
+              type: Array,
+                default: () => [],
+            },
 
-                {text:"Odaberi vrstu mesa", value: null},
-                
-            ],
+              
+               
+           
            
 
-            kruh: [
-
-                {text:"Odaberi vrstu kruha", value: null},
-                this.varijabla
-            ],
+           
 
             ribe: [
 
@@ -331,7 +330,10 @@ export default {
 
                 {text:"Mliječni proizvodi", value: null},
                 this.varijabla
-            ]
+            ],
+
+            odabranoMeso: null
+            
         }
 
         
@@ -342,9 +344,17 @@ created() {
 },
 
 methods:{
+
+    promjeniKolicinuMeso (event) { 
+
+      this.odabranoMeso = event.target.options[event.target.options.selectedIndex].text },
+
+
+
     async pozoviBackend(term) {
         
-        this.form.meso = await Meso.getAll(term)
+        this.meso = await Meso.getAll(term)
+        
         
     },
     
