@@ -1,6 +1,6 @@
 <template>
  
-    <div 
+    <div  @submit.prevent="onsubmit"
       class="calorie  p-4 mx-auto mt-5 rounded-lg  w-75  "
       style="background-color: #f8f8f8; !important;  "
       
@@ -8,40 +8,45 @@
 
     <h1 class="text-center mb-5 ">Kalkulator kalorija obroka</h1>
     
-    
+     
 
   <b-form inline class="mx-4 " >
    
-    <b-input-group class=" mx-auto my-4 " style="width:182px;">
-     
-         <select @change="promjeniKolicinuMeso($event)" class="form-control" > <option value="" selected disabled>Odaberi meso</option> 
-         <option v-for="meso in meso" :value="meso.id" :key="meso.id">{{ meso.Vrsta_mesa }}</option></select>
+    <b-form-group class=" mx-auto my-4 "     label="Naziv jela:">
       
-        </b-input-group>
+         <b-form-select style="width:220px;"  class="form-control" v-model="odabranoMeso" :options="placeholderMeso">
+         <option v-for="meso in meso" v-bind:value="meso.kolicina" v-bind:key="meso.id">{{ meso.Vrsta_mesa}}</option>
+         </b-form-select>
+        
+        </b-form-group>
 
     
     
-    <b-input-group class="mx-auto my-4"  >
+    <b-form-group class="mx-auto my-4" label="Broj kalorija: " >
       
-            
-           <b-form-input v-model="brojporcijaPH" >
+            <b-form class="form-control" style="width:200px;"  >
              
+           <span>{{odabranoMeso}} kcal</span>
+            </b-form>
                
-           </b-form-input>
+          
         
-    </b-input-group>
+    </b-form-group>
 
     
  
-    <b-input-group class="mx-auto my-4" >
-      <b-form-input type="number"   placeholder="Broj porcija"></b-form-input>
-    </b-input-group>
+    <b-form-group class="mx-auto my-4"  label="Broj porcija: ">
+      <b-form-input style="width:200px;" type="number" v-model="multiplajerMeso"   placeholder="Broj porcija"></b-form-input>
+    </b-form-group>
 
     
      
-    <b-input-group class="mx-auto my-4" >
-      <b-form-input type="number"   placeholder="Ukupno kalorija"></b-form-input>
-    </b-input-group>
+    <b-form-group class="mx-auto my-4"   label="Ukupno kalorija: ">
+      <b-form class="form-control" style="width:200px;">
+             
+           <span>{{odabranoMeso * multiplajerMeso}}</span>
+            </b-form>
+    </b-form-group>
 
     
   </b-form>
@@ -49,29 +54,32 @@
 
 <b-form inline class="mx-4">
     
-    <b-input-group class="mx-auto my-4" style="width:182px;" >
-          <b-form-select 
-            
-            
-            
-            required
-          >
-          </b-form-select>
+   <b-input-group class=" mx-auto my-4 " style="width:220px;">
+     
+         <b-form-select class="form-control" v-model="odabranoKruh" :options="placeholderKruh" >
+         <option v-for="kruh in kruh" v-bind:value="kruh.kolicina" v-bind:key="kruh.id">{{ kruh.Vrsta_kruha }}</option>
+         </b-form-select>
         </b-input-group>
 
     
     <b-input-group class="mx-auto my-4 " >
-      <b-form-input type="number"  placeholder="Broj kalorija po porciji" v-model="form.kruh"></b-form-input>
+     <b-form class="form-control" style="width:200px;">
+             
+           <span>{{odabranoKruh}} kcal</span>
+            </b-form>
     </b-input-group>
 
     
-    <b-input-group class="mx-auto my-4 " >
-      <b-form-input type="number"   placeholder="Broj porcija"></b-form-input>
+    <b-input-group class="mx-auto my-4 " style="width:200px;">
+      <b-form-input type="number" v-model="multiplajerKruh"  placeholder="Broj porcija"></b-form-input>
     </b-input-group>
 
     
-    <b-input-group class="mx-auto my-4" >
-      <b-form-input type="number"  placeholder="Ukupno kalorija"></b-form-input>
+    <b-input-group class="mx-auto my-4" style="width:200px;">
+     <b-form class="form-control" style="width:200px;">
+             
+           <span>{{odabranoKruh * multiplajerKruh}}</span>
+            </b-form>
     </b-input-group>
 
     
@@ -80,31 +88,34 @@
 
   <b-form inline class="mx-4">
    
-    <b-input-group class=" mx-auto my-4 " style="width:182px;">
-          <b-form-select
-             
-            
-            v-model="form.ribe"
-            :options="ribe"
-            required
-          >
-          </b-form-select>
+    <b-input-group class=" mx-auto my-4 " style="width:220px;">
+     
+         <b-form-select class="form-control" v-model="odabranoRiba" :options="placeholderRiba" > 
+         <option v-for="ribe in ribe" v-bind:value="ribe.kolicina" v-bind:key="ribe.id">{{ ribe.Vrsta_ribe }}</option>
+         </b-form-select>
         </b-input-group>
+
 
   
   
-    <b-input-group class="mx-auto my-4" >
-      <b-form-input type="number"  placeholder="Broj kalorija po porciji"></b-form-input>
+    <b-input-group class="mx-auto my-4"  style="width:200px;">
+     <b-form class="form-control" style="width:200px;">
+             
+           <span>{{odabranoRiba}} kcal</span>
+            </b-form>
     </b-input-group>
 
     
-    <b-input-group class="mx-auto my-4" >
-      <b-form-input type="number"  placeholder="Broj porcija"></b-form-input>
+    <b-input-group class="mx-auto my-4"  style="width:200px;">
+      <b-form-input type="number" v-model="multiplajerRiba" placeholder="Broj porcija"></b-form-input>
     </b-input-group>
 
   
-    <b-input-group class="mx-auto my-4" >
-      <b-form-input type="number"  placeholder="Ukupno kalorija"></b-form-input>
+    <b-input-group class="mx-auto my-4" style="width:200px;">
+     <b-form class="form-control" style="width:200px;">
+             
+           <span>{{odabranoRiba * multiplajerRiba}}</span>
+            </b-form>
     </b-input-group>
 
     
@@ -116,30 +127,32 @@
 
   <b-form inline class="mx-4 ">
     
-    <b-input-group class="mx-auto my-4  "   style="width:182px;">
-          <b-form-select  
-            
-           
-            v-model="form.brza_hrana"
-            :options="brza_hrana"
-            required
-          >
-          </b-form-select>
+    <b-input-group class=" mx-auto my-4 " style="width:220px;">
+     
+         <b-form-select class="form-control" v-model="odabranoBH" :options="placeholderBH"> 
+         <option v-for="brza_hrana in brza_hrana" v-bind:value="brza_hrana.kolicina" v-bind:key="brza_hrana.id">{{ brza_hrana.Vrsta_BH }}</option>
+         </b-form-select>
         </b-input-group>
 
     
     <b-input-group class="mx-auto my-4" >
-      <b-form-input type="number"  placeholder="Broj kalorija po porciji"></b-form-input>
+      <b-form class="form-control" style="width:200px;">
+             
+           <span>{{odabranoBH}} kcal</span>
+            </b-form>
     </b-input-group>
 
     
-    <b-input-group class="mx-auto my-4" >
-      <b-form-input type="number"  placeholder="Broj porcija"></b-form-input>
+    <b-input-group class="mx-auto my-4" style="width:200px;">
+      <b-form-input type="number"  placeholder="Broj porcija" v-model="multiplajerBH"></b-form-input>
     </b-input-group>
 
    
-    <b-input-group class="mx-auto my-4" >
-      <b-form-input type="number"  placeholder="Ukupno kalorija"></b-form-input>
+    <b-input-group class="mx-auto my-4" style="width:200px;">
+       <b-form class="form-control" style="width:200px;" disabled>
+             
+           <span >{{odabranoBH * multiplajerBH}}</span>
+            </b-form>
     </b-input-group>
 
     
@@ -149,29 +162,31 @@
 
   <b-form inline class="mx-4">
     
-    <b-input-group class="mx-auto my-4" style="width:182px;" >
-          <b-form-select
-            
-            
-            v-model="form.voce"
-            :options="voce"
-            required
-          >
-          </b-form-select>
+   <b-input-group class=" mx-auto my-4 " style="width:220px;">
+     
+         <b-form-select class="form-control" v-model="odabranoVoce" :options="placeholderVoce"> 
+         <option v-for="voce in voce" v-bind:value="voce.kolicina" v-bind:key="voce.id">{{ voce.Vrsta_voca }}</option>
+         </b-form-select>
         </b-input-group>
 
     
     <b-input-group class="mx-auto my-4" >
-      <b-form-input type="number"  placeholder="Broj kalorija po porciji"></b-form-input>
+      <b-form class="form-control" style="width:200px;">
+             
+           <span>{{odabranoVoce}} kcal</span>
+            </b-form>
     </b-input-group>
 
-    <b-input-group class="mx-auto my-4" >
-      <b-form-input type="number"  placeholder="Broj porcija"></b-form-input>
+    <b-input-group class="mx-auto my-4" style="width:200px;">
+      <b-form-input type="number" v-model="multiplajerVoce"  placeholder="Broj porcija"></b-form-input>
     </b-input-group>
 
     
-    <b-input-group class="mx-auto my-4" >
-      <b-form-input type="number"  placeholder="Ukupno kalorija"></b-form-input>
+    <b-input-group class="mx-auto my-4" style="width:200px;">
+       <b-form class="form-control" style="width:200px;" disabled>
+             
+           <span >{{odabranoVoce * multiplajerVoce}}</span>
+            </b-form>
     </b-input-group>
 
     
@@ -181,30 +196,32 @@
 
   <b-form inline class="mx-4">
    
-    <b-input-group class="mx-auto my-4" style="width:182px;">
-          <b-form-select
-            
-            
-            v-model="form.povrce"
-            :options="povrce"
-            required
-          >
-          </b-form-select>
+  <b-input-group class=" mx-auto my-4 " style="width:220px;">
+     
+         <b-form-select class="form-control" v-model="odabranoPovrce" :options="placeholderPovrce">
+         <option v-for="povrce in povrce" v-bind:value="povrce.kolicina" v-bind:key="povrce.id">{{ povrce.Vrsta_povrca }}</option>
+         </b-form-select>
         </b-input-group>
 
     
     <b-input-group class="mx-auto my-4" >
-      <b-form-input type="number"  placeholder="Broj kalorija po porciji"></b-form-input>
+        <b-form class="form-control" style="width:200px;">
+             
+           <span>{{odabranoPovrce}} kcal</span>
+            </b-form>
     </b-input-group>
 
    
-    <b-input-group class="mx-auto my-4" >
-      <b-form-input type="number"  placeholder="Broj porcija"></b-form-input>
+    <b-input-group class="mx-auto my-4" style="width:200px;">
+      <b-form-input type="number" v-model="multiplajerPovrce" placeholder="Broj porcija"></b-form-input>
     </b-input-group>
 
     
-    <b-input-group class="mx-auto my-4" >
-      <b-form-input type="number" placeholder="Ukupno kalorija"></b-form-input>
+    <b-input-group class="mx-auto my-4" style="width:200px;">
+       <b-form class="form-control" style="width:200px;" disabled>
+             
+           <span >{{odabranoPovrce * multiplajerPovrce}}</span>
+            </b-form>
     </b-input-group>
 
     
@@ -214,46 +231,58 @@
 
   <b-form inline class="mx-4">
     
-    <b-input-group class="mx-auto my-4" style="width:182px;">
-          <b-form-select
-            
-            
-            v-model="form.mlijecni_proizvodi"
-            :options="mlijecni_proizvodi"
-            required
-          >
-          </b-form-select>
+   <b-input-group class=" mx-auto my-4 " style="width:220px;">
+     
+         <b-form-select class="form-control" v-model="odabranoMlPro" :options="placeholderMlPro">
+
+         <option
+          v-for="mlijecni_proizvodi in mlijecni_proizvodi" v-bind:value="mlijecni_proizvodi.kolicina" 
+          v-bind:key="mlijecni_proizvodi.id">{{ mlijecni_proizvodi.Vrsta_MlPro }} 
+         </option>
+
+         </b-form-select>
         </b-input-group>
 
     
     <b-input-group class="mx-auto my-4" >
-      <b-form-input type="number"  placeholder="Broj kalorija po porciji"></b-form-input>
+        <b-form class="form-control" style="width:200px;">
+             
+           <span>{{odabranoMlPro}} kcal</span>
+            </b-form>
     </b-input-group>
 
    
-    <b-input-group class="mx-auto my-4">
-      <b-form-input type="number"  placeholder="Broj porcija"></b-form-input>
+    <b-input-group class="mx-auto my-4" style="width:200px;">
+      <b-form-input type="number" v-model="multiplajerMlPro" placeholder="Broj porcija"></b-form-input>
     </b-input-group>
 
     
-    <b-input-group class="mx-auto my-4" >
-      <b-form-input type="number"  placeholder="Ukupno kalorija"></b-form-input>
+    <b-input-group class="mx-auto my-4" style="width:200px;">
+    <b-form class="form-control" style="width:200px;" disabled>
+             
+           <span >{{odabranoMlPro * multiplajerMlPro}}</span>
+            </b-form>
     </b-input-group>
 
     
   </b-form>
 <p></p>
 
-<b-form class="mx-4"> <b-button  class="mx-5 my-4" pill variant="info">Izračunaj</b-button></b-form>
-    
-    
-    <b-form inline class="py-3 mx-4">
-          <b-form-input  class="mx-5 mt-5 py-4 " id="inline-form-input-username" placeholder="Ukupna vrijednost: "></b-form-input>
-        
-          </b-form>
 
+     <b-form class="mx-5 ">
+    <b-form-group class="mx-5 my-5" label="Ukupna vrijednost: " >
+      
+            <b-form class="form-control text-center py-2" style="width:250px; height:60px;"   >
+             
+           <span style="font-size:25px;">{{odabranoMlPro * multiplajerMlPro + odabranoPovrce * multiplajerPovrce + odabranoVoce * multiplajerVoce
+                                          + odabranoBH * multiplajerBH + odabranoRiba * multiplajerRiba + odabranoKruh * multiplajerKruh +
+                                          odabranoMeso * multiplajerMeso}}  </span>
+            </b-form>
+               
+    </b-form-group>
+     </b-form>
 
-<div >{{odabranoMeso}}</div>
+<div ></div>
 
 
 
@@ -268,21 +297,60 @@
 
 <script>
 
-import {Meso} from "@/services"
+import {Meso, Kruh, Ribe, Brza_hrana, Voce, Povrce, MlPro} from "@/services"
 
 export default {
 
 
 
     data() {
+
         return {
 
-            varijabla: '1234',
-            brojporcijaPH: "Broj kalorija po porciji",
+            odabranoMeso:"Broj kalorija",
+            odabranoKruh:"Broj kalorija",
+            odabranoRiba:"Broj kalorija",
+            odabranoBH:"Broj kalorija",
+            odabranoVoce:"Broj kalorija",
+            odabranoPovrce:"Broj kalorija",
+            odabranoMlPro:"Broj kalorija",
+
+            placeholderMeso: [
+              {value: "Broj kalorija", text:"Meso"},
+            ],
+            placeholderKruh: [
+               {value: "Broj kalorija", text:"Kruh"}
+            ],
+            placeholderRiba: [
+               {value: "Broj kalorija", text:"Riba"}
+            ],
+            placeholderBH: [
+               {value: "Broj kalorija", text:"Brza hrana"}
+            ],
+             placeholderVoce: [
+               {value: "Broj kalorija", text:"Voće"}
+            ],
+             placeholderPovrce: [
+               {value: "Broj kalorija", text:"Povrće"}
+            ],
+             placeholderMlPro: [
+               {value: "Broj kalorija", text:"Mliječni proizovodi"}
+            ],
+
+
+          multiplajerMeso:null,
+          multiplajerRiba:null,
+          multiplajerKruh:null,
+          multiplajerBH:null,
+          multiplajerVoce:null,
+          multiplajerPovrce:null,
+          multiplajerMlPro:null,
+
 
              form: {
                
-               
+                meso:null,
+                kruh:null,
                 ribe: null,
                 brza_hrana: null,
                 voce: null,
@@ -292,47 +360,29 @@ export default {
 
             meso:{
               type: Array,
-                default: () => [],
-            },
+                default: () => [], },
 
-              
-               
-           
-           
+            kruh:{
+              type: Array,
+                default: () => [], },
 
-           
+             ribe:{type: Array,
+                default: () => [],},
 
-            ribe: [
+             brza_hrana:{type: Array,
+                default: () => [],},
 
-                {text:"Odaberi vrstu ribe ", value: null},
-                this.varijabla
-            ],
+            voce:{type: Array,
+                default: () => [],},
 
-            brza_hrana: [
+            povrce:{type: Array,
+                default: () => [],},
 
-                {text:"Brza hrana", value: null},
-                this.varijabla
-            ],
+             mlijecni_proizvodi:{type: Array,
+                default: () => [],},
 
-             voce: [
 
-                {text:"Voće", value: null},
-                this.varijabla
-            ],
-
-             povrce: [
-
-                {text:"Povrće", value: null},
-                this.varijabla
-            ],
-
-             mlijecni_proizvodi: [
-
-                {text:"Mliječni proizvodi", value: null},
-                this.varijabla
-            ],
-
-            odabranoMeso: null
+            
             
         }
 
@@ -345,20 +395,28 @@ created() {
 
 methods:{
 
-    promjeniKolicinuMeso (event) { 
+ 
 
-      this.odabranoMeso = event.target.options[event.target.options.selectedIndex].text },
+   
+  
 
 
 
     async pozoviBackend(term) {
         
         this.meso = await Meso.getAll(term)
-        
+        this.kruh = await Kruh.getAll(term)
+        this.ribe = await Ribe.getAll(term)
+        this.brza_hrana = await Brza_hrana.getAll(term)
+        this.voce = await Voce.getAll(term)
+        this.povrce = await Povrce.getAll(term)
+        this.mlijecni_proizvodi = await MlPro.getAll(term)
         
     },
-    
-} 
+
+   
+},
+
 
 }
 
