@@ -61,7 +61,7 @@
             
             
           >
-           <strong >pecena jaja&nbsp; </strong>
+           <p style="font-weight: bold;">{{zajutrak13[Math.floor(Math.random()*zajutrak13.length)]}}&nbsp;</p>
            
            </b-form-group>
 
@@ -76,7 +76,7 @@
             
             
           >
-           <strong >pecena jaja&nbsp; </strong>
+           <p style="font-weight: bold;">{{dorucak13[Math.floor(Math.random()*dorucak13.length)]}}&nbsp;</p>
            
            </b-form-group>
 
@@ -91,24 +91,10 @@
             
             
           >
-           <strong >pecena jaja&nbsp; </strong>
+        <p style="font-weight: bold;">{{rucak13[Math.floor(Math.random()*rucak13.length)]}}&nbsp;</p>
            
            </b-form-group>
 
-            <b-form-group 
-            id="fieldset-horizontal"
-            label="Užina ="
-            label-for="input-horizontal"
-            label-cols-sm="2"
-            label-cols-lg="2"
-            content-cols-sm
-            content-cols-lg="4"
-            
-            
-          >
-           <strong >pecena jaja&nbsp; </strong>
-           
-           </b-form-group>
 
             <b-form-group 
             id="fieldset-horizontal"
@@ -121,12 +107,13 @@
             
             
           >
-           <strong >pecena jaja&nbsp; </strong>
+        <p style="font-weight: bold;">{{vecera13[Math.floor(Math.random()*vecera13.length)]}}&nbsp;</p>
            
            </b-form-group>
 
         </b-form>
  </b-card>
+<h5 class="mt-4"><router-link to="/Kalkulator_kalorija"><span style="color:blue;">Ovdje</span></router-link> pogledajte koliko vaša hrana ima kalorija</h5>
 
   </div>
 </div>
@@ -173,6 +160,13 @@ export default {
                 djeca:null
             },
 
+          zajutrak13:["Mlijeko", "Griz", "Frutek"],
+          dorucak13:["Čokolino", "Grizolino", "Mozzarela"],
+          rucak13:["Tjestenina sa jajima", "Žitne pahuljice", "Piletina", "Puretina", "Juha", "Varivo"],
+          vecera13:["Dvopek", "Kolač", "Sirovo povrće", "Voćna salata", "Kompot", "Sviježi sir"],
+
+
+          
 
 
             djeca: [
@@ -197,6 +191,9 @@ export default {
     },
 
     methods: {
+
+
+      
 
         onsubmit(evt) {
 

@@ -11,7 +11,7 @@
 
  <b-form  class="mx-4 " >
    
-    <b-input-group  class=" mx-auto my-4 " style="width:182px;">
+    <b-input-group  class=" mx-auto my-4 " style="max-width:182px;">
           <b-form-select 
             
             id="input-1"
@@ -68,7 +68,7 @@
             
         </b-form-input>
         </b-form-group>
-        <b-form-group  id="input-group-1" label="Aktivnost:" label-for="input-1">
+        <b-form-group  id="input-group-1" label="Cilj:" label-for="input-1">
           <b-form-input 
             v-if="opcija.zene=='Mršavljenje'"
             id="input-1"
@@ -132,7 +132,8 @@
           </b-form-input>
         </b-form-group>
         
-       <b-button v-on:click="jeSakriven = true"  type="sumbit" size="lg" variant="background-color:#30CFC0; !important; font-family:Segoe UI; " style="font-family:Segoe UI; color:white; border-radius:40px; ; background-color:#30CFC0; !important;">Izračunaj</b-button>
+       <b-button v-on:click="jeSakriven = true" class=""  type="sumbit" size="lg" variant=" background-color:#30CFC0; !important; font-family:Segoe UI; " style=" font-family:Segoe UI; color:white; border-radius:40px; ; background-color:#30CFC0; !important;">Izračunaj</b-button>
+
 
 
         
@@ -145,99 +146,18 @@
 
   <div  v-if=" opcija.zene=='Mršavljenje' && jeSakriven && rezultat1 !== 0 || opcija.zene == 'Fitness' && jeSakriven && rezultat2 !== 0 || opcija.zene == 'Trudnice' && jeSakriven && rezultat3 !== 0"  class="calorie p-4 mx-auto mt-5 rounded-lg  w-50 text-center" style="background-color: #f8f8f8; !important;  ">
 
-<h5 v-if="opcija.zene=='Mršavljenje' && rezultat1>500 && rezultat1<6000">Vaš dnevni unos mora biti {{rezultat1.toFixed(0)}} kalorija<br> i sljedeće namirnice koje bi trebali konzumirati su:</h5>
-<h5 v-if="opcija.zene=='Fitness' && rezultat2>500 && rezultat2<6000">Vaš dnevni unos mora biti {{rezultat2.toFixed(0)}} kalorija<br> i sljedeće namirnice koje bi trebali konzumirati su:</h5>
-<h5 v-if="opcija.zene=='Trudnice' && rezultat3>500 && rezultat3<6000">Vaš dnevni unos mora biti {{rezultat3.toFixed(0)}} kalorija<br> i sljedeće namirnice koje bi trebali konzumirati su:</h5>
+<h3 v-if="opcija.zene=='Mršavljenje' && rezultat1>500 && rezultat1<6000">Vaš dnevni unos mora biti {{rezultat1.toFixed(0)}} kalorija<br></h3>
+<h3 v-if="opcija.zene=='Fitness' && rezultat2>500 && rezultat2<6000">Vaš dnevni unos mora biti {{rezultat2.toFixed(0)}} kalorija<br></h3>
+<h3 v-if="opcija.zene=='Trudnice' && rezultat3>500 && rezultat3<6000">Vaš dnevni unos mora biti {{rezultat3.toFixed(0)}} kalorija<br></h3>
 
 <p style="font-size:25px; color:red;">{{feedback}}</p>
 
 
+       <b-button class=""  size="lg" variant=" background-color:#30CFC0; !important; font-family:Segoe UI; " style=" font-family:Segoe UI; color:white; border-radius:40px; ; background-color:#30CFC0; !important;">Spremi</b-button>
 
 
- <b-card v-if="rezultat1>500 && rezultat1<6000 || rezultat2>500 && rezultat2<6000 || rezultat3>500 && rezultat3<6000" 
-        
-        class="text-left mx-auto "
-        style="background-color:#F8F8F8;"
-      >
-        <b-form class="text-left">
-          <b-form-group 
-            id="fieldset-horizontal"
-            label="Zajutrak ="
-            label-for="input-horizontal"
-            label-cols-sm="2"
-            label-cols-lg="2"
-            content-cols-sm
-            content-cols-lg="4"
-            
-            
-          >
-           <strong >pecena jaja&nbsp; </strong>
-           
-           </b-form-group>
-
-            <b-form-group 
-            id="fieldset-horizontal"
-            label="Doručak ="
-            label-for="input-horizontal"
-            label-cols-sm="2"
-            label-cols-lg="2"
-            content-cols-sm
-            content-cols-lg="4"
-            
-            
-          >
-           <strong >pecena jaja&nbsp; </strong>
-           
-           </b-form-group>
-
-            <b-form-group 
-            id="fieldset-horizontal"
-            label="Ručak ="
-            label-for="input-horizontal"
-            label-cols-sm="2"
-            label-cols-lg="2"
-            content-cols-sm
-            content-cols-lg="4"
-            
-            
-          >
-           <strong >jabuku&nbsp; </strong>
-           
-           </b-form-group>
-
-            <b-form-group 
-            id="fieldset-horizontal"
-            label="Užina ="
-            label-for="input-horizontal"
-            label-cols-sm="2"
-            label-cols-lg="2"
-            content-cols-sm
-            content-cols-lg="4"
-            
-            
-          >
-           <strong >pecena jaja&nbsp; </strong>
-           
-           </b-form-group>
-
-            <b-form-group 
-            id="fieldset-horizontal"
-            label="Večera ="
-            label-for="input-horizontal"
-            label-cols-sm="2"
-            label-cols-lg="2"
-            content-cols-sm
-            content-cols-lg="4"
-            
-            
-          >
-           <strong >pecena jaja&nbsp; </strong>
-           
-           </b-form-group>
-
-        </b-form>
- </b-card>
-
+ 
+<h5 class="mt-4"><router-link to="/Kalkulator_kalorija"><span style="color:blue;">Ovdje</span></router-link> pogledajte koliko vaša hrana ima kalorija</h5>
   </div>
 </div>
 
@@ -256,7 +176,12 @@
 
 
 <script>
+
+import {Meso, Kruh, Ribe, Brza_hrana, Voce, Povrce, MlPro} from "@/services"
+
+
 export default {
+
 
     data(){
         return{
@@ -304,11 +229,17 @@ export default {
                 dob:null
 
             },
+
+         
+          
         }
     },
 
+    
+
     methods: {
 
+     
         onsubmit(evt) {
 
             

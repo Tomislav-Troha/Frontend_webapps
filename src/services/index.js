@@ -28,7 +28,7 @@ let Kruh = {
     async getAll(namirniceKruh) {
         let response = await Service.get(`/kruh?${namirniceKruh}`)
         let data = response.data
-        data = data.data.map(doc => {
+        data = data.map(doc => {
             return {
                 id: doc.id,
                 Vrsta_kruha: doc.naziv,
@@ -45,7 +45,7 @@ let Ribe = {
     async getAll(namirniceRibe) {
         let response = await Service.get(`/ribe?${namirniceRibe}`)
         let data = response.data
-        data = data.data.map(doc => {
+        data = data.map(doc => {
             return {
                 id: doc.id,
                 Vrsta_ribe: doc.naziv,
@@ -61,7 +61,7 @@ let Brza_hrana = {
     async getAll(namirniceBH) {
         let response = await Service.get(`/brza_hrana?${namirniceBH}`)
         let data = response.data
-        data = data.data.map(doc => {
+        data = data.map(doc => {
             return {
                 id: doc.id,
                 Vrsta_BH: doc.naziv,
@@ -77,7 +77,7 @@ let Voce = {
     async getAll(namirniceVoce) {
         let response = await Service.get(`/voce?${namirniceVoce}`)
         let data = response.data
-        data = data.data.map(doc => {
+        data = data.map(doc => {
             return {
                 id: doc.id,
                 Vrsta_voca: doc.naziv,
@@ -93,7 +93,7 @@ let Povrce = {
     async getAll(namirnicePovrce) {
         let response = await Service.get(`/povrce?${namirnicePovrce}`)
         let data = response.data
-        data = data.data.map(doc => {
+        data = data.map(doc => {
             return {
                 id: doc.id,
                 Vrsta_povrca: doc.naziv,
@@ -109,7 +109,7 @@ let MlPro = {
     async getAll(namirniceMlPro) {
         let response = await Service.get(`/mlijecni_proizvodi?${namirniceMlPro}`)
         let data = response.data
-        data = data.data.map(doc => {
+        data = data.map(doc => {
             return {
                 id: doc.id,
                 Vrsta_MlPro: doc.naziv,

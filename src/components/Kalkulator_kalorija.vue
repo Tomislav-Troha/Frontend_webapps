@@ -12,9 +12,9 @@
 
   <b-form inline class="mx-4 " >
    
-    <b-form-group class=" mx-auto my-4 "     label="Naziv jela:">
+    <b-form-group class=" mx-auto my-4 "     label="Meso:">
       
-         <b-form-select style="width:220px;"  class="form-control" v-model="odabranoMeso" :options="placeholderMeso">
+         <b-form-select style="width:220px;"  class="form-control" v-model="odabranoMeso" :options="placeholderMeso" >
          <option v-for="meso in meso" v-bind:value="meso.kolicina" v-bind:key="meso.id">{{ meso.Vrsta_mesa}}</option>
          </b-form-select>
         
@@ -44,7 +44,7 @@
     <b-form-group class="mx-auto my-4"   label="Ukupno kalorija: ">
       <b-form class="form-control" style="width:200px;">
              
-           <span>{{odabranoMeso * multiplajerMeso}}</span>
+           <span>{{odabranoMeso * multiplajerMeso}} kcal</span>
             </b-form>
     </b-form-group>
 
@@ -78,7 +78,7 @@
     <b-input-group class="mx-auto my-4" style="width:200px;">
      <b-form class="form-control" style="width:200px;">
              
-           <span>{{odabranoKruh * multiplajerKruh}}</span>
+           <span>{{odabranoKruh * multiplajerKruh}} kcal</span>
             </b-form>
     </b-input-group>
 
@@ -114,7 +114,7 @@
     <b-input-group class="mx-auto my-4" style="width:200px;">
      <b-form class="form-control" style="width:200px;">
              
-           <span>{{odabranoRiba * multiplajerRiba}}</span>
+           <span>{{odabranoRiba * multiplajerRiba}} kcal</span>
             </b-form>
     </b-input-group>
 
@@ -151,7 +151,7 @@
     <b-input-group class="mx-auto my-4" style="width:200px;">
        <b-form class="form-control" style="width:200px;" disabled>
              
-           <span >{{odabranoBH * multiplajerBH}}</span>
+           <span >{{odabranoBH * multiplajerBH}} kcal</span>
             </b-form>
     </b-input-group>
 
@@ -185,7 +185,7 @@
     <b-input-group class="mx-auto my-4" style="width:200px;">
        <b-form class="form-control" style="width:200px;" disabled>
              
-           <span >{{odabranoVoce * multiplajerVoce}}</span>
+           <span >{{odabranoVoce * multiplajerVoce}} kcal</span>
             </b-form>
     </b-input-group>
 
@@ -220,7 +220,7 @@
     <b-input-group class="mx-auto my-4" style="width:200px;">
        <b-form class="form-control" style="width:200px;" disabled>
              
-           <span >{{odabranoPovrce * multiplajerPovrce}}</span>
+           <span >{{odabranoPovrce * multiplajerPovrce}} kcal</span>
             </b-form>
     </b-input-group>
 
@@ -260,7 +260,7 @@
     <b-input-group class="mx-auto my-4" style="width:200px;">
     <b-form class="form-control" style="width:200px;" disabled>
              
-           <span >{{odabranoMlPro * multiplajerMlPro}}</span>
+           <span >{{odabranoMlPro * multiplajerMlPro}} kcal</span>
             </b-form>
     </b-input-group>
 
@@ -272,11 +272,11 @@
      <b-form class="mx-5 ">
     <b-form-group class="mx-5 my-5" label="Ukupna vrijednost: " >
       
-            <b-form class="form-control text-center py-2" style="width:250px; height:60px;"   >
+            <b-form class="form-control text-center py-2" style="max-width:250px; height:60px;"   >
              
            <span style="font-size:25px;">{{odabranoMlPro * multiplajerMlPro + odabranoPovrce * multiplajerPovrce + odabranoVoce * multiplajerVoce
                                           + odabranoBH * multiplajerBH + odabranoRiba * multiplajerRiba + odabranoKruh * multiplajerKruh +
-                                          odabranoMeso * multiplajerMeso}}  </span>
+                                          odabranoMeso * multiplajerMeso}} kcal  </span>
             </b-form>
                
     </b-form-group>
@@ -307,44 +307,44 @@ export default {
 
         return {
 
-            odabranoMeso:"Broj kalorija",
-            odabranoKruh:"Broj kalorija",
-            odabranoRiba:"Broj kalorija",
-            odabranoBH:"Broj kalorija",
-            odabranoVoce:"Broj kalorija",
-            odabranoPovrce:"Broj kalorija",
-            odabranoMlPro:"Broj kalorija",
+            odabranoMeso:0,
+            odabranoKruh:0,
+            odabranoRiba:0,
+            odabranoBH:0,
+            odabranoVoce:0,
+            odabranoPovrce:0,
+            odabranoMlPro:0,
 
             placeholderMeso: [
-              {value: "Broj kalorija", text:"Meso"},
+              {value: 0, text:"Meso"},
             ],
             placeholderKruh: [
-               {value: "Broj kalorija", text:"Kruh"}
+               {value: 0, text:"Kruh"}
             ],
             placeholderRiba: [
-               {value: "Broj kalorija", text:"Riba"}
+               {value: 0, text:"Riba"}
             ],
             placeholderBH: [
-               {value: "Broj kalorija", text:"Brza hrana"}
+               {value: 0, text:"Brza hrana"}
             ],
              placeholderVoce: [
-               {value: "Broj kalorija", text:"Voće"}
+               {value: 0, text:"Voće"}
             ],
              placeholderPovrce: [
-               {value: "Broj kalorija", text:"Povrće"}
+               {value: 0, text:"Povrće"}
             ],
              placeholderMlPro: [
-               {value: "Broj kalorija", text:"Mliječni proizovodi"}
+               {value: 0, text:"Mliječni proizovodi"}
             ],
 
 
-          multiplajerMeso:null,
-          multiplajerRiba:null,
-          multiplajerKruh:null,
-          multiplajerBH:null,
-          multiplajerVoce:null,
-          multiplajerPovrce:null,
-          multiplajerMlPro:null,
+          multiplajerMeso:1,
+          multiplajerRiba:1,
+          multiplajerKruh:1,
+          multiplajerBH:1,
+          multiplajerVoce:1,
+          multiplajerPovrce:1,
+          multiplajerMlPro:1,
 
 
              form: {

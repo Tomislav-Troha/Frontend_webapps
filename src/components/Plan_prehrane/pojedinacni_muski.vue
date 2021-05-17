@@ -11,7 +11,7 @@
 
  <b-form  class="mx-4 " >
    
-    <b-input-group  class=" mx-auto my-4 " style="width:182px;">
+    <b-input-group  class=" mx-auto my-4 " style="max-width:182px;">
           <b-form-select 
             
             id="input-1"
@@ -66,7 +66,7 @@
             
         </b-form-input>
         </b-form-group>
-        <b-form-group  id="input-group-1" label="Aktivnost:" label-for="input-1">
+        <b-form-group  id="input-group-1" label="Cilj:" label-for="input-1">
           <b-form-input 
             v-if="opcija.muskarci=='Mršavljenje'"
             id="input-1"
@@ -135,96 +135,16 @@
 
   <div v-if="opcija.muskarci=='Mršavljenje' && jeSakriven && rezultat1 !== 0 || opcija.muskarci == 'Teretana'  && jeSakriven && rezultat2 !== 0" class="calorie p-4 mx-auto mt-5 rounded-lg  w-50 text-center" style="background-color: #f8f8f8; !important;  ">
 
-<h5 v-if="opcija.muskarci=='Mršavljenje' && rezultat1>500 && rezultat1<6000">Vaš dnevni unos kalorija mora biti {{rezultat1.toFixed(0)}}<br> i sljedeće namirnice koje bi trebali konzumirati su:</h5>
-<h5 v-if="opcija.muskarci=='Teretana' && rezultat2>500 && rezultat2<6000">Vaš dnevni unos kalorija mora biti {{rezultat2.toFixed(0)}}<br> i sljedeće namirnice koje bi trebali konzumirati su:</h5>
+<h3 v-if="opcija.muskarci=='Mršavljenje' && rezultat1>500 && rezultat1<6000">Vaš dnevni unos mora biti {{rezultat1.toFixed(0)}} kalorija <br></h3>
+<h3 v-if="opcija.muskarci=='Teretana' && rezultat2>500 && rezultat2<6000">Vaš dnevni unos mora biti {{rezultat2.toFixed(0)}} kalorija <br></h3>
 
 <p style="font-size:25px; color:red;">{{feedback}}</p>
 
 
- <b-card v-if="rezultat1 !== 0 && rezultat1>500 && rezultat1<6000 || rezultat2 !== 0 && rezultat2>500 && rezultat2<6000"
-        
-        class="text-left mx-auto "
-        style="background-color:#F8F8F8;"
-      >
-        <b-form class="text-left">
-          <b-form-group 
-            id="fieldset-horizontal"
-            label="Zajutrak ="
-            label-for="input-horizontal"
-            label-cols-sm="2"
-            label-cols-lg="2"
-            content-cols-sm
-            content-cols-lg="4"
-            
-            
-          >
-           <strong >pecena jaja&nbsp; </strong>
-           
-           </b-form-group>
+<b-button class=""  size="lg" variant=" background-color:#30CFC0; !important; font-family:Segoe UI; " style=" font-family:Segoe UI; color:white; border-radius:40px; ; background-color:#30CFC0; !important;">Spremi</b-button>
 
-            <b-form-group 
-            id="fieldset-horizontal"
-            label="Doručak ="
-            label-for="input-horizontal"
-            label-cols-sm="2"
-            label-cols-lg="2"
-            content-cols-sm
-            content-cols-lg="4"
-            
-            
-          >
-           <strong >pecena jaja&nbsp; </strong>
-           
-           </b-form-group>
-
-            <b-form-group 
-            id="fieldset-horizontal"
-            label="Ručak ="
-            label-for="input-horizontal"
-            label-cols-sm="2"
-            label-cols-lg="2"
-            content-cols-sm
-            content-cols-lg="4"
-            
-            
-          >
-           <strong >pecena jaja&nbsp; </strong>
-           
-           </b-form-group>
-
-            <b-form-group 
-            id="fieldset-horizontal"
-            label="Užina ="
-            label-for="input-horizontal"
-            label-cols-sm="2"
-            label-cols-lg="2"
-            content-cols-sm
-            content-cols-lg="4"
-            
-            
-          >
-           <strong >pecena jaja&nbsp; </strong>
-           
-           </b-form-group>
-
-            <b-form-group 
-            id="fieldset-horizontal"
-            label="Večera ="
-            label-for="input-horizontal"
-            label-cols-sm="2"
-            label-cols-lg="2"
-            content-cols-sm
-            content-cols-lg="4"
-            
-            
-          >
-           <strong >pecena jaja&nbsp; </strong>
-           
-           </b-form-group>
-
-        </b-form>
- </b-card>
-
+ 
+<h5 class="mt-4"><router-link to="/Kalkulator_kalorija"><span style="color:blue;">Ovdje</span></router-link> pogledajte koliko namirnica ima kalorija</h5>
   </div>
 </div>
 
