@@ -3,7 +3,7 @@
 
     <div 
       class="pojplan  p-4 mx-auto mt-5 "
-      style="background-color: #f8f8f8; !important; max-width:1400px;  "
+      style="background-color: #f8f8f8; !important; "
       
     >
 
@@ -173,7 +173,7 @@ export default {
   filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.788));
   overflow: visible;
    border-radius: 20px;
-   width: 1200px;
+   max-width: 1200px;
 }
 
 

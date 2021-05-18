@@ -12,7 +12,7 @@
 
   <b-form inline class="mx-4" >
    
-    <b-input-group class=" mx-auto my-4 " style="width:182px;">
+    <b-form-group class=" mx-auto my-4 " style="width:182px;" label="Dani u tjednu">
           <b-form-input 
             style="background-color:#30CFC0;"
             id="input-1"
@@ -21,29 +21,48 @@
             
           >
           </b-form-input>
-        </b-input-group>
+        </b-form-group>
+
 
     
-    
-    <b-input-group class="mx-auto my-4" v-for="dorucak in dorucak" :value="dorucak.dorucak" :key="dorucak.id" >
-     <b-form class="form-control" style="max-width:300px;">
-             
-           <span>{{dorucak.rucak}} </span>
+      
+    <b-form-group class="mx-auto my-4" label="Doručak">
+      
+            <b-form class="form-control" style="width:250px;"  >
+               {{dorucak.dorucak}}
+        
             </b-form>
-    </b-input-group>
-
-    
+               
+          
+        
+    </b-form-group>
+   
+   
+  
  
-    <b-input-group class="mx-auto my-4" >
-      <b-form-input   placeholder="Ručak"></b-form-input>
-    </b-input-group>
+    <b-form-group class="mx-auto my-4" label="Ručak">
+      
+            <b-form class="form-control" style="width:200px;"  >
+             {{rucak.rucak}}
+        
+            </b-form>
+               
+          
+        
+    </b-form-group>
 
     
      
-    <b-input-group class="mx-auto my-4" >
-      <b-form-input   placeholder="Večera"></b-form-input>
-    </b-input-group>
-
+    <b-form-group class="mx-auto my-4" label="Večera">
+      
+            <b-form class="form-control" style="width:200px;"  >
+             {{vecera.vecera}}
+        
+            </b-form>
+               
+          
+        
+    </b-form-group>
     
   </b-form>
 
@@ -236,7 +255,7 @@
 
 
     
-    
+  
    
 
 
@@ -252,11 +271,13 @@
 
 <script>
 
-import {spremljeneVarijenteTjedan} from "@/services"
+import {spremljeneVarijenteTjedan, NadipoId} from "@/services"
 
 export default {
     data() {
         return {
+
+          ponDorucak:null,
 
             dani:{
                 ponedjeljak:"Ponedjeljak",
@@ -269,8 +290,8 @@ export default {
             },
 
             dorucak:{},
-            rucak:null,
-            vecera:null,
+            rucak:{},
+            vecera:{},
 
 
           
@@ -287,9 +308,11 @@ export default {
 
   methods:{
 
-    async pozoviBackend(term){
+    async pozoviBackend(){
 
-      this.dorucak = await spremljeneVarijenteTjedan.getAll(term)
+      this.dorucak = await NadipoId.getOne("60a39dfa3e2c6f2ba83b6d58")
+      this.rucak = await NadipoId.getOne("60a39dfd3e2c6f2ba83b6d59")
+      this.vecera = await NadipoId.getOne("60a39dff3e2c6f2ba83b6d5a")
 
     }
 
