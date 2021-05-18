@@ -287,6 +287,7 @@
 <script>
 
 import obiteljski_plan_recepti from '@/components/Plan_prehrane/obiteljski_plan_recepti'
+import {Service} from '@/services/index.js'
 
 
 export default {
@@ -431,6 +432,7 @@ export default {
 
     methods:{
 
+     
 
       showAlert() {
         
@@ -452,12 +454,27 @@ export default {
       },
 
        
-      spremiPoTjednu(){
+     async spremiPoTjednu(){
 
    
         if(this.varijante.rucak || this.varijante.dorucak || this.varijante.vecera && this.odabirObroka.DorucakRucakVecera){
           this.spremiTjedan = "Uspješno spremljeno"
-            setTimeout(function () { location.reload(1); }, 1500);
+
+          let NewSpremiPoTjednu = {
+            radni_dan: this.radni_tjedan.dan,
+            obrok: this.odabirObroka.DorucakRucakVecera,
+            dorucak: this.varijante.dorucak,
+            rucak: this.varijante.rucak,
+            vecera: this.varijante.vecera
+          }
+          console.log(NewSpremiPoTjednu)
+           //setTimeout(function () { location.reload(1); }, 1500);
+
+        Service.post('/SpremiTjedan', NewSpremiPoTjednu)
+
+        .then((result) => {
+          console.log(result)
+        })
           
            }
            

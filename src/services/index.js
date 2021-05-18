@@ -8,6 +8,28 @@ let Service = axios.create({
    
 //vezan za pojedine rute
 
+let spremljeneVarijenteTjedan = {
+
+    async getAll(tjedneVarijante) {
+        let response = await Service.get(`/SpremiTjedan?${tjedneVarijante}`)
+        let data = response.data
+        data = data.map(doc => {
+            return {
+                id: doc._id,
+                radni_dan: doc.radni_dan,
+                obrok: doc.obrok,
+                dorucak: doc.dorucak,
+                rucak: doc.rucak,
+                vecera: doc.vecera
+               
+            };
+        });
+        return data
+    }
+      
+}
+
+
 let Meso = {
     async getAll(namirniceMeso) {
         let response = await Service.get(`/meso?${namirniceMeso}`)
@@ -141,4 +163,4 @@ let MlPro = {
 
 
 
-export {Service, Meso, Kruh, Ribe, Brza_hrana, Voce, Povrce, MlPro}
+export  {Service, Meso, Kruh, Ribe, Brza_hrana, Voce, Povrce, MlPro, spremljeneVarijenteTjedan}

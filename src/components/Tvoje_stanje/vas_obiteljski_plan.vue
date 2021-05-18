@@ -25,8 +25,11 @@
 
     
     
-    <b-input-group class="mx-auto my-4" >
-      <b-form-input  placeholder="Doručak"></b-form-input>
+    <b-input-group class="mx-auto my-4" v-for="dorucak in dorucak" :value="dorucak.dorucak" :key="dorucak.id" >
+     <b-form class="form-control" style="max-width:300px;">
+             
+           <span>{{dorucak.rucak}} </span>
+            </b-form>
     </b-input-group>
 
     
@@ -229,7 +232,7 @@
 
     
   </b-form>
-<p></p>
+
 
 
     
@@ -249,6 +252,8 @@
 
 <script>
 
+import {spremljeneVarijenteTjedan} from "@/services"
+
 export default {
     data() {
         return {
@@ -261,7 +266,11 @@ export default {
                 petak:"Petak",
                 subota:"Subota",
                 nedjelja:"Nedjelja"
-            }
+            },
+
+            dorucak:{},
+            rucak:null,
+            vecera:null,
 
 
           
@@ -271,7 +280,20 @@ export default {
 
         }
         
-         }
+         },
+         created() {
+            this.pozoviBackend();
+},
+
+  methods:{
+
+    async pozoviBackend(term){
+
+      this.dorucak = await spremljeneVarijenteTjedan.getAll(term)
+
+    }
+
+  }
         
              }
     
