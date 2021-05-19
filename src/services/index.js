@@ -2,8 +2,8 @@ import axios from "axios";
 
 //vezan uz konkretni backend
 let Service = axios.create({
-    baseURL: 'http://localhost:3000',
-    timeout: 1000
+    baseURL: 'http://localhost:3200',
+    timeout: 3000
 })
    
 //vezan za pojedine rute
