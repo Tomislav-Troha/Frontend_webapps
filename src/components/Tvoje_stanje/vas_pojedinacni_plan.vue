@@ -15,37 +15,34 @@
 
  <b-form class="mx-auto" >
      <h3 class="text-center pb-4">Žene</h3>
-      <b-form-group
-        id="input-group-1"
-        label="Spol:"
-        label-for="input-1"
-      >
-        <b-form-input
-          id="input-1"
+     <b-form-group class="mx-auto my-4" label="Spol">
+      
+            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%;"  >
+               {{zeneSpol.spol}}
+   
+            </b-form>
+
+     </b-form-group>
+               
           
-          type="email"
-	
-          disabled
-        ></b-form-input>
-      </b-form-group>
+        
+     <b-form-group class="mx-auto my-4" label="Cilj:">
+      
+            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%;"  >
+               {{zeneSpol.cilj}}
+   
+            </b-form>
 
-      <b-form-group id="input-group-2" label="Cilj:" label-for="input-2">
-        <b-form-input
-          id="input-2"
-          
+     </b-form-group>
 
-          disabled
-        ></b-form-input>
-      </b-form-group>
+       <b-form-group class="mx-auto my-4" label="Dnevni unos kalorija:">
+      
+            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%;"  >
+               {{zeneSpol.kalorije}} kcal
+   
+            </b-form>
 
-      <b-form-group id="input-group-3" label="Kalorije:" label-for="input-3">
-        <b-form-input
-          id="input-3"
-          
-
-          disabled
-        ></b-form-input>
-      </b-form-group>
+     </b-form-group>
 
  </b-form>
 
@@ -135,7 +132,7 @@
 
 <script>
 
-import {spremljeneVarijenteTjedan} from "@/services"
+import {PojedinacniPlan} from "@/services"
 
 export default {
 
@@ -144,9 +141,25 @@ export default {
       dorucak:null,
       rucak:null,
       vecera:null,
+
+      zeneSpol:"",
     }
   },
 
+  created(){
+    this.pozoviBackend();
+  },
+
+methods:{
+  async pozoviBackend(){
+
+    this.zeneSpol = await PojedinacniPlan.getOne("60a38c7b8d1ad63034a23671")  
+    
+
+
+
+  }
+}
 
 }
 

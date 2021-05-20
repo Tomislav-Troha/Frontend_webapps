@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div  class="calorie p-4 mx-auto mt-5 fadeInDown  w-50 text-center" style="background-color: #f8f8f8; !important;  ">
+  <div  class="calorie p-4 mx-auto mt-5 fadeInDown   text-center" style="max-width:744px; background-color: #f8f8f8; !important;  ">
 
 <h1 style="font-family:Segoe UI">Djeca</h1>
 
@@ -11,7 +11,7 @@
 
  <b-form  class="mx-4 " >
    
-    <b-input-group  class=" mx-auto my-4 " style="width:182px;">
+    <b-input-group  class=" mx-auto my-4 " style="max-width:182px;">
           <b-form-select 
             
             id="input-1"
@@ -39,7 +39,7 @@
  
 
 
-  <div v-if="opcija.djeca=='1 - 3'" class="calorie p-4 mx-auto mt-5 rounded-lg  w-50 text-center" style="background-color: #f8f8f8; !important;  ">
+  <div v-if="opcija.djeca=='1 - 3'" class="calorie p-4 mx-auto mt-5 rounded-lg  text-center" style="max-width:744px; background-color: #f8f8f8; !important;  ">
 
 <h5 v-if="opcija.djeca=='1 - 3'">Odabrali ste prehranu za djecu od 1-3 godine i dobili ste jedan od jelovnika: </h5>
 <h5 v-if="opcija.muskarci=='Teretana'">Vaš dnevni unos kalorija mora biti {{rezultat2.toFixed(0)}}<br> i sljedeće namirnice koje bi trebali konzumirati su:</h5>

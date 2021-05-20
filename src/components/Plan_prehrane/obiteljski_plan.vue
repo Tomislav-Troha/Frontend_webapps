@@ -37,6 +37,7 @@
 <b-form @submit.prevent="spremiPoTjednu" class="mx-4 text-center " >
    
     <b-input-group  class=" mx-auto my-4 " style="width:210px;">
+      
           <b-form-select 
             
             id="input-1"
@@ -45,6 +46,7 @@
             
           >
           </b-form-select>
+      
         </b-input-group>
 
 
@@ -454,7 +456,7 @@ export default {
       },
 
        
-     async spremiPoTjednu(){
+      spremiPoTjednu(){
 
    
         if(this.varijante.rucak || this.varijante.dorucak || this.varijante.vecera && this.odabirObroka.DorucakRucakVecera){
@@ -616,8 +618,81 @@ setTimeout(function () { location.reload(1); }, 1500);
    
         if(this.odabirObroka.DorucakRucakVecera1 && this.varijante.rucak || this.varijante.dorucak || this.varijante.vecera){
           this.spremiTjedan1 = "Uspješno spremljeno"
-           setTimeout(function () { location.reload(1); }, 1500);
+
+          let NewSpremiPoTjednu = {
+            radni_dan: this.radni_tjedan.dan,
+            obrok: this.odabirObroka.DorucakRucakVecera,
+            dorucak: this.varijante.dorucak,
+            rucak: this.varijante.rucak,
+            vecera: this.varijante.vecera
+          }
+         
           
+          if(this.radni_tjedan.vikend_dan == "Subota" && this.odabirObroka.DorucakRucakVecera1 == "Doručak") {
+
+           Service.patch('/SpremiTjedan/60a4116709b3a991da95d8b5', NewSpremiPoTjednu)
+
+         .then((result) => {
+          console.log(result)
+        })
+
+        }
+
+
+         else if(this.radni_tjedan.vikend_dan == "Subota" && this.odabirObroka.DorucakRucakVecera1 == "Ručak") {
+
+           Service.patch('/SpremiTjedan/60a569e7cc15356506973c00', NewSpremiPoTjednu)
+
+         .then((result) => {
+          console.log(result)
+        })
+
+        }
+
+        else if(this.radni_tjedan.vikend_dan == "Subota" && this.odabirObroka.DorucakRucakVecera1 == "Večera") {
+
+           Service.patch('/SpremiTjedan/60a56a0bcc15356506973c01', NewSpremiPoTjednu)
+
+         .then((result) => {
+          console.log(result)
+        })
+
+        }
+
+        else if(this.radni_tjedan.vikend_dan == "Nedjelja" && this.odabirObroka.DorucakRucakVecera1 == "Doručak") {
+
+           Service.patch('/SpremiTjedan/60a56a2ecc15356506973c02', NewSpremiPoTjednu)
+
+         .then((result) => {
+          console.log(result)
+        })
+
+        }
+
+        else if(this.radni_tjedan.vikend_dan == "Nedjelja" && this.odabirObroka.DorucakRucakVecera1 == "Ručak") {
+
+           Service.patch('/SpremiTjedan/60a56a4fcc15356506973c03', NewSpremiPoTjednu)
+
+         .then((result) => {
+          console.log(result)
+        })
+
+        }
+
+         else if(this.radni_tjedan.vikend_dan == "Nedjelja" && this.odabirObroka.DorucakRucakVecera1 == "Večera") {
+
+           Service.patch('/SpremiTjedan/60a56a68cc15356506973c04', NewSpremiPoTjednu)
+
+         .then((result) => {
+          console.log(result)
+        })
+
+        }
+
+
+        
+          setTimeout(function () { location.reload(1); }, 1500);
+        
           
            }
            

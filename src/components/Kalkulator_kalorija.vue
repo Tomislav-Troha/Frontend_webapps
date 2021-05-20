@@ -12,9 +12,9 @@
 
   <b-form inline class="mx-4 " >
    
-    <b-form-group class=" mx-auto my-4 "     label="Meso:">
+    <b-form-group class=" mx-auto my-4 " label="Meso:">
       
-         <b-form-select style="width:220px;"  class="form-control" v-model="odabranoMeso" :options="placeholderMeso" >
+         <b-form-select style="width:220px; max-width:100%;"   v-model="odabranoMeso" :options="placeholderMeso" >
          <option v-for="meso in meso" v-bind:value="meso.kolicina" v-bind:key="meso.id">{{ meso.Vrsta_mesa}}</option>
          </b-form-select>
         
@@ -22,9 +22,9 @@
 
     
     
-    <b-form-group class="mx-auto my-4" label="Broj kalorija: " >
+    <b-form-group class="mx-auto my-4" label="Broj kalorija: ">
       
-            <b-form class="form-control" style="width:200px;"  >
+            <b-form class="form-control" style="width:200px; max-width:100%;">
              
            <span>{{odabranoMeso}} kcal</span>
             </b-form>
@@ -42,7 +42,7 @@
     
      
     <b-form-group class="mx-auto my-4"   label="Ukupno kalorija: ">
-      <b-form class="form-control" style="width:200px;">
+      <b-form class="form-control" style="width:200px; max-width:100%;">
              
            <span>{{odabranoMeso * multiplajerMeso}} kcal</span>
             </b-form>
@@ -54,7 +54,7 @@
 
 <b-form inline class="mx-4">
     
-   <b-input-group class=" mx-auto my-4 " style="width:220px;">
+   <b-input-group class=" mx-auto my-4 " style="width:220px; max-width:100%;">
      
          <b-form-select class="form-control" v-model="odabranoKruh" :options="placeholderKruh" >
          <option v-for="kruh in kruh" v-bind:value="kruh.kolicina" v-bind:key="kruh.id">{{ kruh.Vrsta_kruha }}</option>
@@ -62,21 +62,21 @@
         </b-input-group>
 
     
-    <b-input-group class="mx-auto my-4 " >
-     <b-form class="form-control" style="width:200px;">
+    <b-input-group class="mx-auto my-4 " style="width:200px; max-width:100%;" >
+     <b-form class="form-control" style="width:200px; max-width:100%;">
              
            <span>{{odabranoKruh}} kcal</span>
             </b-form>
     </b-input-group>
 
     
-    <b-input-group class="mx-auto my-4 " style="width:200px;">
+    <b-input-group class="mx-auto my-4 " style="width:200px; max-width:100%;">
       <b-form-input type="number" v-model="multiplajerKruh"  placeholder="Broj porcija"></b-form-input>
     </b-input-group>
 
     
-    <b-input-group class="mx-auto my-4" style="width:200px;">
-     <b-form class="form-control" style="width:200px;">
+    <b-input-group class="mx-auto my-4" style="width:200px; max-width:100%;">
+     <b-form class="form-control" style="width:200px; max-width:100%;">
              
            <span>{{odabranoKruh * multiplajerKruh}} kcal</span>
             </b-form>
@@ -88,7 +88,7 @@
 
   <b-form inline class="mx-4">
    
-    <b-input-group class=" mx-auto my-4 " style="width:220px;">
+    <b-input-group class=" mx-auto my-4 " style="width:220px; max-width:100%;">
      
          <b-form-select class="form-control" v-model="odabranoRiba" :options="placeholderRiba" > 
          <option v-for="ribe in ribe" v-bind:value="ribe.kolicina" v-bind:key="ribe.id">{{ ribe.Vrsta_ribe }}</option>
@@ -98,21 +98,21 @@
 
   
   
-    <b-input-group class="mx-auto my-4"  style="width:200px;">
-     <b-form class="form-control" style="width:200px;">
+    <b-input-group class="mx-auto my-4"  style="width:200px; max-width:100%;">
+     <b-form class="form-control" style="width:200px; max-width:100%;">
              
            <span>{{odabranoRiba}} kcal</span>
             </b-form>
     </b-input-group>
 
     
-    <b-input-group class="mx-auto my-4"  style="width:200px;">
+    <b-input-group class="mx-auto my-4"  style="width:200px; max-width:100%;">
       <b-form-input type="number" v-model="multiplajerRiba" placeholder="Broj porcija"></b-form-input>
     </b-input-group>
 
   
-    <b-input-group class="mx-auto my-4" style="width:200px;">
-     <b-form class="form-control" style="width:200px;">
+    <b-input-group class="mx-auto my-4" style="width:200px; max-width:100%;">
+     <b-form class="form-control" style="width:200px; max-width:100%;">
              
            <span>{{odabranoRiba * multiplajerRiba}} kcal</span>
             </b-form>
@@ -127,7 +127,7 @@
 
   <b-form inline class="mx-4 ">
     
-    <b-input-group class=" mx-auto my-4 " style="width:220px;">
+    <b-input-group class=" mx-auto my-4 " style="width:220px; max-width:100%;">
      
          <b-form-select class="form-control" v-model="odabranoBH" :options="placeholderBH"> 
          <option v-for="brza_hrana in brza_hrana" v-bind:value="brza_hrana.kolicina" v-bind:key="brza_hrana.id">{{ brza_hrana.Vrsta_BH }}</option>
@@ -135,21 +135,21 @@
         </b-input-group>
 
     
-    <b-input-group class="mx-auto my-4" >
-      <b-form class="form-control" style="width:200px;">
+    <b-input-group class="mx-auto my-4" style="width:200px; max-width:100%;" >
+      <b-form class="form-control" style="width:200px; max-width:100%;">
              
            <span>{{odabranoBH}} kcal</span>
             </b-form>
     </b-input-group>
 
     
-    <b-input-group class="mx-auto my-4" style="width:200px;">
+    <b-input-group class="mx-auto my-4" style="width:200px; max-width:100%;">
       <b-form-input type="number"  placeholder="Broj porcija" v-model="multiplajerBH"></b-form-input>
     </b-input-group>
 
    
-    <b-input-group class="mx-auto my-4" style="width:200px;">
-       <b-form class="form-control" style="width:200px;" disabled>
+    <b-input-group class="mx-auto my-4" style="width:200px; max-width:100%;">
+       <b-form class="form-control" style="width:200px; max-width:100%;" disabled>
              
            <span >{{odabranoBH * multiplajerBH}} kcal</span>
             </b-form>
@@ -162,7 +162,7 @@
 
   <b-form inline class="mx-4">
     
-   <b-input-group class=" mx-auto my-4 " style="width:220px;">
+   <b-input-group class=" mx-auto my-4 " style="width:220px; max-width:100%;">
      
          <b-form-select class="form-control" v-model="odabranoVoce" :options="placeholderVoce"> 
          <option v-for="voce in voce" v-bind:value="voce.kolicina" v-bind:key="voce.id">{{ voce.Vrsta_voca }}</option>
@@ -170,20 +170,20 @@
         </b-input-group>
 
     
-    <b-input-group class="mx-auto my-4" >
-      <b-form class="form-control" style="width:200px;">
+    <b-input-group class="mx-auto my-4" style="width:200px; max-width:100%;">
+      <b-form class="form-control" style="width:200px; max-width:100%;">
              
            <span>{{odabranoVoce}} kcal</span>
             </b-form>
     </b-input-group>
 
-    <b-input-group class="mx-auto my-4" style="width:200px;">
+    <b-input-group class="mx-auto my-4" style="width:200px; max-width:100%;">
       <b-form-input type="number" v-model="multiplajerVoce"  placeholder="Broj porcija"></b-form-input>
     </b-input-group>
 
     
-    <b-input-group class="mx-auto my-4" style="width:200px;">
-       <b-form class="form-control" style="width:200px;" disabled>
+    <b-input-group class="mx-auto my-4" style="width:200px; max-width:100%;">
+       <b-form class="form-control" style="width:200px; max-width:100%;" disabled>
              
            <span >{{odabranoVoce * multiplajerVoce}} kcal</span>
             </b-form>
@@ -196,7 +196,7 @@
 
   <b-form inline class="mx-4">
    
-  <b-input-group class=" mx-auto my-4 " style="width:220px;">
+  <b-input-group class=" mx-auto my-4 " style="width:220px; max-width:100%;">
      
          <b-form-select class="form-control" v-model="odabranoPovrce" :options="placeholderPovrce">
          <option v-for="povrce in povrce" v-bind:value="povrce.kolicina" v-bind:key="povrce.id">{{ povrce.Vrsta_povrca }}</option>
@@ -204,21 +204,21 @@
         </b-input-group>
 
     
-    <b-input-group class="mx-auto my-4" >
-        <b-form class="form-control" style="width:200px;">
+    <b-input-group class="mx-auto my-4" style="width:200px; max-width:100%;">
+        <b-form class="form-control" style="width:200px; max-width:100%;">
              
            <span>{{odabranoPovrce}} kcal</span>
             </b-form>
     </b-input-group>
 
    
-    <b-input-group class="mx-auto my-4" style="width:200px;">
+    <b-input-group class="mx-auto my-4" style="width:200px; max-width:100%;">
       <b-form-input type="number" v-model="multiplajerPovrce" placeholder="Broj porcija"></b-form-input>
     </b-input-group>
 
     
-    <b-input-group class="mx-auto my-4" style="width:200px;">
-       <b-form class="form-control" style="width:200px;" disabled>
+    <b-input-group class="mx-auto my-4" style="width:200px; max-width:100%;">
+       <b-form class="form-control" style="width:200px; max-width:100%;" disabled>
              
            <span >{{odabranoPovrce * multiplajerPovrce}} kcal</span>
             </b-form>
@@ -231,7 +231,7 @@
 
   <b-form inline class="mx-4">
     
-   <b-input-group class=" mx-auto my-4 " style="width:220px;">
+   <b-input-group class=" mx-auto my-4 " style="width:220px; max-width:100%;">
      
          <b-form-select class="form-control" v-model="odabranoMlPro" :options="placeholderMlPro">
 
@@ -244,21 +244,21 @@
         </b-input-group>
 
     
-    <b-input-group class="mx-auto my-4" >
-        <b-form class="form-control" style="width:200px;">
+    <b-input-group class="mx-auto my-4" style="width:200px; max-width:100%;">
+        <b-form class="form-control" style="width:200px; max-width:100%;">
              
            <span>{{odabranoMlPro}} kcal</span>
             </b-form>
     </b-input-group>
 
    
-    <b-input-group class="mx-auto my-4" style="width:200px;">
+    <b-input-group class="mx-auto my-4" style="width:200px; max-width:100%;">
       <b-form-input type="number" v-model="multiplajerMlPro" placeholder="Broj porcija"></b-form-input>
     </b-input-group>
 
     
-    <b-input-group class="mx-auto my-4" style="width:200px;">
-    <b-form class="form-control" style="width:200px;" disabled>
+    <b-input-group class="mx-auto my-4" style="width:200px; max-width:100%;">
+    <b-form class="form-control" style="width:200px; max-width:100%;" disabled>
              
            <span >{{odabranoMlPro * multiplajerMlPro}} kcal</span>
             </b-form>

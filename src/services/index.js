@@ -5,8 +5,23 @@ let Service = axios.create({
     baseURL: 'http://localhost:3200',
     timeout: 3000
 })
+
    
 //vezan za pojedine rute
+
+let PojedinacniPlan = {
+
+    async getOne(id){
+        let response = await Service.get(`/pojedinacniPlan/${id}`);
+        let doc = response.data;
+        return{
+            id: doc._id,
+            spol: doc.spol,
+            cilj: doc.cilj,
+            kalorije: doc.kalorije         
+        }
+    }
+}
 
 let NadipoId = {
 
@@ -24,13 +39,12 @@ let NadipoId = {
         }
     }
 
-
-
 }
 
 let spremljeneVarijenteTjedan = {
 
     async getAll(tjedneVarijante) {
+        
         let response = await Service.get(`/SpremiTjedan?${tjedneVarijante}`)
         let data = response.data
         data = data.map(doc => {
@@ -183,4 +197,4 @@ let MlPro = {
 
 
 
-export  {Service, Meso, Kruh, Ribe, Brza_hrana, Voce, Povrce, MlPro, spremljeneVarijenteTjedan, NadipoId}
+export  {Service, Meso, Kruh, Ribe, Brza_hrana, Voce, Povrce, MlPro, spremljeneVarijenteTjedan, NadipoId, PojedinacniPlan}

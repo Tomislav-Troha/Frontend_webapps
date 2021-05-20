@@ -16,6 +16,7 @@
     "vue-info-card": "^0.1.4",
     "vue-page-transition": "^0.2.2",
     "vue-router": "^3.2.0",
+    "vue-select": "^3.11.2",
     "vue2-transitions": "^0.3.0"
   },
   "devDependencies": {

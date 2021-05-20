@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div  class="calorie p-4 mx-auto mt-5 fadeInDown  w-50 text-center" style="background-color: #f8f8f8; !important;  ">
+  <div  class="calorie p-4 mx-auto mt-5 fadeInDown  text-center" style="max-width:744px; background-color: #f8f8f8; !important;  ">
 
 <h1 style="font-family:Segoe UI">Žene</h1>
 
@@ -35,7 +35,7 @@
 
   </div>
 
-  <div v-if="opcija.zene=='Mršavljenje' || opcija.zene == 'Fitness' || opcija.zene == 'Trudnice' "  class="calorie p-4 mx-auto mt-5 rounded-lg  w-50 text-center" style="background-color: #f8f8f8; !important;  ">
+  <div v-if="opcija.zene=='Mršavljenje' || opcija.zene == 'Fitness' || opcija.zene == 'Trudnice' "  class="calorie p-4 mx-auto mt-5 rounded-lg  text-center" style="max-width:744px; background-color: #f8f8f8; !important;  ">
 
       <h5 v-if="opcija.zene=='Mršavljenje'" >Odabrali ste opciju mršavljenje,<br> da bi ste dobili
                                              plan, izračunajte svoju dnevnu kalorijsku 
@@ -57,7 +57,7 @@
     >
 
 
-    <b-form @submit="onsubmit" class="text-left">
+    <b-form @submit.prevent="onsubmit" class="text-left">
         <b-form-group id="input-group-1" label="Spol:" label-for="input-1">
           <b-form-input 
             
@@ -132,7 +132,7 @@
           </b-form-input>
         </b-form-group>
         
-       <b-button v-on:click="jeSakriven = true" class=""  type="sumbit" size="lg" variant=" background-color:#30CFC0; !important; font-family:Segoe UI; " style=" font-family:Segoe UI; color:white; border-radius:40px; ; background-color:#30CFC0; !important;">Izračunaj</b-button>
+       <b-button v-on:click="jeSakriven = true" class="" type="submit" size="lg" variant=" background-color:#30CFC0; !important; font-family:Segoe UI; " style=" font-family:Segoe UI; color:white; border-radius:40px; ; background-color:#30CFC0; !important;">Izračunaj</b-button>
 
 
 
@@ -143,8 +143,8 @@
 </div>
   </div>
 
-
-  <div  v-if=" opcija.zene=='Mršavljenje' && jeSakriven && rezultat1 !== 0 || opcija.zene == 'Fitness' && jeSakriven && rezultat2 !== 0 || opcija.zene == 'Trudnice' && jeSakriven && rezultat3 !== 0"  class="calorie p-4 mx-auto mt-5 rounded-lg  w-50 text-center" style="background-color: #f8f8f8; !important;  ">
+<b-form @submit.prevent="spremi">
+  <div  v-if=" opcija.zene=='Mršavljenje' && jeSakriven && rezultat1 !== 0 || opcija.zene == 'Fitness' && jeSakriven && rezultat2 !== 0 || opcija.zene == 'Trudnice' && jeSakriven && rezultat3 !== 0"  class="calorie p-4 mx-auto mt-5 rounded-lg  text-center" style="max-width:744px; background-color: #f8f8f8; !important;  ">
 
 <h3 v-if="opcija.zene=='Mršavljenje' && rezultat1>500 && rezultat1<6000">Vaš dnevni unos mora biti {{rezultat1.toFixed(0)}} kalorija<br></h3>
 <h3 v-if="opcija.zene=='Fitness' && rezultat2>500 && rezultat2<6000">Vaš dnevni unos mora biti {{rezultat2.toFixed(0)}} kalorija<br></h3>
@@ -153,12 +153,14 @@
 <p style="font-size:25px; color:red;">{{feedback}}</p>
 
 
-       <b-button class=""  size="lg" variant=" background-color:#30CFC0; !important; font-family:Segoe UI; " style=" font-family:Segoe UI; color:white; border-radius:40px; ; background-color:#30CFC0; !important;">Spremi</b-button>
+       <b-button  type="submit"  size="lg"  variant=" background-color:#30CFC0; !important; font-family:Segoe UI; " style=" font-family:Segoe UI; color:white; border-radius:40px; ; background-color:#30CFC0; !important;">Spremi</b-button>
 
-
+<p>{{spremiFeedback}}</p>
  
 <h5 class="mt-4"><router-link to="/Kalkulator_kalorija"><span style="color:blue;">Ovdje</span></router-link> pogledajte koliko vaša hrana ima kalorija</h5>
+
   </div>
+  </b-form>
 </div>
 
 
@@ -177,8 +179,7 @@
 
 <script>
 
-import {Meso, Kruh, Ribe, Brza_hrana, Voce, Povrce, MlPro} from "@/services"
-
+import {Service} from '@/services/index.js'
 
 export default {
 
@@ -186,6 +187,7 @@ export default {
     data(){
         return{
             feedback:"",
+            spremiFeedback:"",
 
             jeSakriven:false,
 
@@ -235,7 +237,7 @@ export default {
         }
     },
 
-    
+   
 
     methods: {
 
@@ -249,7 +251,6 @@ export default {
 
             if(this.opcija.zene === "Mršavljenje") {
                 this.rezultat1 = (((this.form.tezina*10)+(this.form.visina*6.25)-(this.form.dob*5)+5))*1.2
-
 
                 if(this.rezultat1 < 500 || this.rezultat1 > 6000 ){
                   return this.feedback = "Krivo uneseni podaci, pokušajte ponovno"
@@ -283,23 +284,73 @@ export default {
             }
             else{this.feedback=""}
             }
-            
-
-             
-             
-            
-
-             
-
-           
+     
         },
+
+        spremi(){
+
+          if(this.spol.zene){
+
+            this.spremiFeedback="Uspjesno spremljeno"
+
+       
+
+          if(this.spol.zene && this.spol.aktivnost_m){
+
+            let NewSpremiPojedinacnoZeneM = {
+                   spol: this.spol.zene,
+                   cilj: this.spol.aktivnost_m,
+                   kalorije: this.rezultat1,
+        }
+
+                      Service.patch('/pojedinacniPlan/60a38c7b8d1ad63034a23671', NewSpremiPojedinacnoZeneM)
+
+                    .then((result) => {
+                      console.log(result)
+                    })
+          }
+
+           if(this.spol.zene && this.spol.aktivnost_f){
+
+             let NewSpremiPojedinacnoZeneMF = {
+                   spol: this.spol.zene,
+                   cilj: this.spol.aktivnost_f,
+                   kalorije: this.rezultat2,
+        }
+
+             Service.patch('/pojedinacniPlan/60a38c7b8d1ad63034a23671', NewSpremiPojedinacnoZeneMF)
+
+                    .then((result) => {
+                      console.log(result)
+                    })
+
+          }
+
+
+            if(this.spol.zene && this.spol.aktivnost_t){
+
+             let NewSpremiPojedinacnoZeneMT = {
+                   spol: this.spol.zene,
+                   cilj: this.spol.aktivnost_t,
+                   kalorije: this.rezultat3,
+        }
+
+             Service.patch('/pojedinacniPlan/60a38c7b8d1ad63034a23671', NewSpremiPojedinacnoZeneMT)
+
+                    .then((result) => {
+                      console.log(result)
+                    })
+
+          }
+        }
+        }
 
       
 
-        
+    }
     }
     
-}
+
 </script>
 
 

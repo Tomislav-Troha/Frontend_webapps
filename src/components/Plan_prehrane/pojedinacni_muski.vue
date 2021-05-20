@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div  class="calorie p-4 mx-auto mt-5 fadeInDown  w-50 text-center" style="background-color: #f8f8f8; !important;  ">
+  <div  class="calorie p-4 mx-auto mt-5 fadeInDown  text-center" style="max-width:744px; background-color: #f8f8f8; !important;  ">
 
 <h1 style="font-family:Segoe UI">Muškarci</h1>
 
@@ -35,7 +35,7 @@
 
   </div>
 
-  <div v-if="opcija.muskarci=='Mršavljenje' || opcija.muskarci == 'Teretana'"   class="calorie p-4 mx-auto mt-5 rounded-lg  w-50 text-center" style="background-color: #f8f8f8; !important;  ">
+  <div v-if="opcija.muskarci=='Mršavljenje' || opcija.muskarci == 'Teretana'"   class="calorie p-4 mx-auto mt-5 rounded-lg   text-center" style="max-width:744px; background-color: #f8f8f8; !important;  ">
 
       <h5 v-if="opcija.muskarci=='Mršavljenje'" >Odabrali ste opciju mršavljenje,<br> da bi ste dobili
                                              plan, izračunajte svoju dnevnu kalorijsku 
@@ -133,7 +133,7 @@
   </div>
 
 
-  <div v-if="opcija.muskarci=='Mršavljenje' && jeSakriven && rezultat1 !== 0 || opcija.muskarci == 'Teretana'  && jeSakriven && rezultat2 !== 0" class="calorie p-4 mx-auto mt-5 rounded-lg  w-50 text-center" style="background-color: #f8f8f8; !important;  ">
+  <div v-if="opcija.muskarci=='Mršavljenje' && jeSakriven && rezultat1 !== 0 || opcija.muskarci == 'Teretana'  && jeSakriven && rezultat2 !== 0" class="calorie p-4 mx-auto mt-5 rounded-lg text-center" style="max-width:744px; background-color: #f8f8f8; !important;  ">
 
 <h3 v-if="opcija.muskarci=='Mršavljenje' && rezultat1>500 && rezultat1<6000">Vaš dnevni unos mora biti {{rezultat1.toFixed(0)}} kalorija <br></h3>
 <h3 v-if="opcija.muskarci=='Teretana' && rezultat2>500 && rezultat2<6000">Vaš dnevni unos mora biti {{rezultat2.toFixed(0)}} kalorija <br></h3>
