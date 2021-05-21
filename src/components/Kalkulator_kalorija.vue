@@ -14,7 +14,7 @@
    
     <b-form-group class=" mx-auto my-4 " label="Meso:">
       
-         <b-form-select style="width:220px; max-width:100%;"   v-model="odabranoMeso" :options="placeholderMeso" >
+         <b-form-select class="form-control tamnije" style="width:220px; max-width:100%;"   v-model="odabranoMeso" :options="placeholderMeso" >
          <option v-for="meso in meso" v-bind:value="meso.kolicina" v-bind:key="meso.id">{{ meso.Vrsta_mesa}}</option>
          </b-form-select>
         
@@ -42,7 +42,7 @@
     
      
     <b-form-group class="mx-auto my-4"   label="Ukupno kalorija: ">
-      <b-form class="form-control" style="width:200px; max-width:100%;">
+      <b-form class="form-control ukupnoBoja" style="width:200px; max-width:100%;">
              
            <span>{{odabranoMeso * multiplajerMeso}} kcal</span>
             </b-form>
@@ -56,7 +56,7 @@
     
    <b-input-group class=" mx-auto my-4 " style="width:220px; max-width:100%;">
      
-         <b-form-select class="form-control" v-model="odabranoKruh" :options="placeholderKruh" >
+         <b-form-select class="form-control tamnije" v-model="odabranoKruh" :options="placeholderKruh" >
          <option v-for="kruh in kruh" v-bind:value="kruh.kolicina" v-bind:key="kruh.id">{{ kruh.Vrsta_kruha }}</option>
          </b-form-select>
         </b-input-group>
@@ -76,7 +76,7 @@
 
     
     <b-input-group class="mx-auto my-4" style="width:200px; max-width:100%;">
-     <b-form class="form-control" style="width:200px; max-width:100%;">
+     <b-form class="form-control ukupnoBoja" style="width:200px; max-width:100%;">
              
            <span>{{odabranoKruh * multiplajerKruh}} kcal</span>
             </b-form>
@@ -90,7 +90,7 @@
    
     <b-input-group class=" mx-auto my-4 " style="width:220px; max-width:100%;">
      
-         <b-form-select class="form-control" v-model="odabranoRiba" :options="placeholderRiba" > 
+         <b-form-select class="form-control tamnije" v-model="odabranoRiba" :options="placeholderRiba" > 
          <option v-for="ribe in ribe" v-bind:value="ribe.kolicina" v-bind:key="ribe.id">{{ ribe.Vrsta_ribe }}</option>
          </b-form-select>
         </b-input-group>
@@ -112,7 +112,7 @@
 
   
     <b-input-group class="mx-auto my-4" style="width:200px; max-width:100%;">
-     <b-form class="form-control" style="width:200px; max-width:100%;">
+     <b-form class="form-control ukupnoBoja" style="width:200px; max-width:100%;">
              
            <span>{{odabranoRiba * multiplajerRiba}} kcal</span>
             </b-form>
@@ -129,7 +129,7 @@
     
     <b-input-group class=" mx-auto my-4 " style="width:220px; max-width:100%;">
      
-         <b-form-select class="form-control" v-model="odabranoBH" :options="placeholderBH"> 
+         <b-form-select class="form-control tamnije" v-model="odabranoBH" :options="placeholderBH"> 
          <option v-for="brza_hrana in brza_hrana" v-bind:value="brza_hrana.kolicina" v-bind:key="brza_hrana.id">{{ brza_hrana.Vrsta_BH }}</option>
          </b-form-select>
         </b-input-group>
@@ -149,7 +149,7 @@
 
    
     <b-input-group class="mx-auto my-4" style="width:200px; max-width:100%;">
-       <b-form class="form-control" style="width:200px; max-width:100%;" disabled>
+       <b-form class="form-control ukupnoBoja" style="width:200px; max-width:100%;" disabled>
              
            <span >{{odabranoBH * multiplajerBH}} kcal</span>
             </b-form>
@@ -164,7 +164,7 @@
     
    <b-input-group class=" mx-auto my-4 " style="width:220px; max-width:100%;">
      
-         <b-form-select class="form-control" v-model="odabranoVoce" :options="placeholderVoce"> 
+         <b-form-select class="form-control tamnije" v-model="odabranoVoce" :options="placeholderVoce"> 
          <option v-for="voce in voce" v-bind:value="voce.kolicina" v-bind:key="voce.id">{{ voce.Vrsta_voca }}</option>
          </b-form-select>
         </b-input-group>
@@ -183,7 +183,7 @@
 
     
     <b-input-group class="mx-auto my-4" style="width:200px; max-width:100%;">
-       <b-form class="form-control" style="width:200px; max-width:100%;" disabled>
+       <b-form class="form-control ukupnoBoja" style="width:200px; max-width:100%;" disabled>
              
            <span >{{odabranoVoce * multiplajerVoce}} kcal</span>
             </b-form>
@@ -198,7 +198,7 @@
    
   <b-input-group class=" mx-auto my-4 " style="width:220px; max-width:100%;">
      
-         <b-form-select class="form-control" v-model="odabranoPovrce" :options="placeholderPovrce">
+         <b-form-select class="form-control tamnije" v-model="odabranoPovrce" :options="placeholderPovrce">
          <option v-for="povrce in povrce" v-bind:value="povrce.kolicina" v-bind:key="povrce.id">{{ povrce.Vrsta_povrca }}</option>
          </b-form-select>
         </b-input-group>
@@ -218,7 +218,7 @@
 
     
     <b-input-group class="mx-auto my-4" style="width:200px; max-width:100%;">
-       <b-form class="form-control" style="width:200px; max-width:100%;" disabled>
+       <b-form class="form-control ukupnoBoja" style="width:200px; max-width:100%;" disabled>
              
            <span >{{odabranoPovrce * multiplajerPovrce}} kcal</span>
             </b-form>
@@ -233,7 +233,7 @@
     
    <b-input-group class=" mx-auto my-4 " style="width:220px; max-width:100%;">
      
-         <b-form-select class="form-control" v-model="odabranoMlPro" :options="placeholderMlPro">
+         <b-form-select class="form-control tamnije" v-model="odabranoMlPro" :options="placeholderMlPro">
 
          <option
           v-for="mlijecni_proizvodi in mlijecni_proizvodi" v-bind:value="mlijecni_proizvodi.kolicina" 
@@ -258,7 +258,7 @@
 
     
     <b-input-group class="mx-auto my-4" style="width:200px; max-width:100%;">
-    <b-form class="form-control" style="width:200px; max-width:100%;" disabled>
+    <b-form class="form-control ukupnoBoja" style="width:200px; max-width:100%;" disabled>
              
            <span >{{odabranoMlPro * multiplajerMlPro}} kcal</span>
             </b-form>
@@ -437,6 +437,15 @@ methods:{
   filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.788));
   overflow: visible;
   border-radius: 25px;
+}
+
+.tamnije{
+  color:black;
+  background-color: #c7fff0;
+}
+
+.ukupnoBoja{
+background-color: #99ffe4;
 }
 
 

@@ -13,7 +13,7 @@
 
       
 
- <b-form class="mx-auto" >
+ <b-form class="mx-auto neku px-3 my-3  " >
      <h3 class="text-center pb-4">Žene</h3>
      <b-form-group class="mx-auto my-4" label="Spol">
       
@@ -49,72 +49,67 @@
 
 
 
- <b-form class="mx-auto">
+ <b-form class="mx-auto neku px-3 my-3">
      <h3 class="text-center pb-4">Muškarci</h3>
-      <b-form-group
-        id="input-group-1"
-        label="Spol:"
-        label-for="input-1"
-      >
-        <b-form-input
-          id="input-1"
-          
+      <b-form-group class="mx-auto my-4" label="Spol">
+      
+            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%;"  >
+               {{muskiSpol.spol}}
+   
+            </b-form>
 
-          disabled
-        ></b-form-input>
-      </b-form-group>
+     </b-form-group>
 
-      <b-form-group id="input-group-2" label="Cilj:" label-for="input-2">
-        <b-form-input
-          id="input-2"
+      <b-form-group class="mx-auto my-4" label="Cilj">
+      
+            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%;"  >
+               {{muskiSpol.cilj}}
+   
+            </b-form>
 
-          disabled
-        ></b-form-input>
-      </b-form-group>
+     </b-form-group>
 
-      <b-form-group id="input-group-3" label="Kalorije:" label-for="input-3">
-        <b-form-input
-          id="input-3"
-          disabled
-        ></b-form-input>
-      </b-form-group>
+       <b-form-group class="mx-auto my-4" label="Dnevni unos kalorija:">
+      
+            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%;"  >
+               {{muskiSpol.kalorije}} kcal
+   
+            </b-form>
+
+     </b-form-group>
 
  </b-form>
 
 
 
 
- <b-form class="mx-auto ">
+ <b-form class="mx-auto neku px-3 my-3 ">
    <h3 class="text-center pb-4">Djeca</h3>
-      <b-form-group
-        id="input-group-1"
-        label="Doručak:"
-        label-for="input-1"
-      >
-        <b-form-input
-          id="input-1"
-          
+      <b-form-group class="mx-auto my-4" label="Doručak">
+      
+            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%;"  >
+               
+   
+            </b-form>
 
-          disabled
-        ></b-form-input>
-      </b-form-group>
+     </b-form-group>
+ <b-form-group class="mx-auto my-4" label="Ručak">
+      
+            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%;"  >
+              
+   
+            </b-form>
 
-      <b-form-group id="input-group-2" label="Ručak:" label-for="input-2">
-        <b-form-input
-          id="input-2"
-          
+     </b-form-group>
 
-          disabled
-        ></b-form-input>
-      </b-form-group>
+     <b-form-group class="mx-auto my-4" label="Večera">
+      
+            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%;"  >
+               
+   
+            </b-form>
 
-      <b-form-group id="input-group-3" label="Večera:" label-for="input-3">
-        <b-form-input
-          id="input-3"
-          
-          disabled
-        ></b-form-input>
-      </b-form-group>
+     </b-form-group>
 
  </b-form>
  
@@ -143,6 +138,7 @@ export default {
       vecera:null,
 
       zeneSpol:"",
+      muskiSpol:""
     }
   },
 
@@ -154,6 +150,7 @@ methods:{
   async pozoviBackend(){
 
     this.zeneSpol = await PojedinacniPlan.getOne("60a38c7b8d1ad63034a23671")  
+    this.muskiSpol = await PojedinacniPlan.getOne("60a6364bfc63e21c610aab3b")  
     
 
 
@@ -186,8 +183,21 @@ methods:{
   filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.788));
   overflow: visible;
    border-radius: 20px;
-   max-width: 1200px;
+   max-width: 1300px;
 }
 
+.neku{
+  background-color: #97ddf7;
+   fill: rgba(196, 196, 196, 1);
+  filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.788));
+  overflow: visible;
+   border-radius: 20px;
+   max-width: 300px;
+
+}
+
+.form-control{
+  background-color: #F8F8F8;
+}
 
 </style>

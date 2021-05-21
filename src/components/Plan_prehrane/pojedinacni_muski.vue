@@ -132,7 +132,7 @@
 </div>
   </div>
 
-
+<b-form @submit.prevent="spremi" >
   <div v-if="opcija.muskarci=='Mršavljenje' && jeSakriven && rezultat1 !== 0 || opcija.muskarci == 'Teretana'  && jeSakriven && rezultat2 !== 0" class="calorie p-4 mx-auto mt-5 rounded-lg text-center" style="max-width:744px; background-color: #f8f8f8; !important;  ">
 
 <h3 v-if="opcija.muskarci=='Mršavljenje' && rezultat1>500 && rezultat1<6000">Vaš dnevni unos mora biti {{rezultat1.toFixed(0)}} kalorija <br></h3>
@@ -141,11 +141,12 @@
 <p style="font-size:25px; color:red;">{{feedback}}</p>
 
 
-<b-button class=""  size="lg" variant=" background-color:#30CFC0; !important; font-family:Segoe UI; " style=" font-family:Segoe UI; color:white; border-radius:40px; ; background-color:#30CFC0; !important;">Spremi</b-button>
+<b-button v-if="rezultat1>500 && rezultat1<6000 || rezultat2>500 && rezultat2<6000" class=""  size="lg" type="submit" variant=" background-color:#30CFC0; !important; font-family:Segoe UI; " style=" font-family:Segoe UI; color:white; border-radius:40px; ; background-color:#30CFC0; !important;">Spremi</b-button>
 
  
-<h5 class="mt-4"><router-link to="/Kalkulator_kalorija"><span style="color:blue;">Ovdje</span></router-link> pogledajte koliko namirnica ima kalorija</h5>
+<h5 v-if="rezultat1>500 && rezultat1<6000 || rezultat2>500 && rezultat2<6000 " class="mt-4"><router-link to="/Kalkulator_kalorija"><span style="color:blue;">Ovdje</span></router-link> pogledajte koliko namirnica ima kalorija</h5>
   </div>
+</b-form>
 </div>
 
 
@@ -163,12 +164,16 @@
 
 
 <script>
+
+import {Service} from '@/services/index.js'
+
 export default {
 
     data(){
         return{
 
             jeSakriven:false,
+            spremiFeedback:"",
 
             feedback:"",
 
@@ -247,7 +252,50 @@ export default {
             }
 
            
-            }
+            },
+
+            spremi(){
+
+              if(this.spol.muskarci){
+
+                this.spremiFeedback = "Uspješno spremljeno"
+
+
+
+                 if(this.spol.muskarci && this.spol.aktivnost_m){
+
+            let NewSpremiPojedinacnoMuskiM = {
+                   spol: this.spol.muskarci,
+                   cilj: this.spol.aktivnost_m,
+                   kalorije: this.rezultat1,
+        }
+
+                      Service.patch('/pojedinacniPlan/60a6364bfc63e21c610aab3b', NewSpremiPojedinacnoMuskiM)
+
+                    .then((result) => {
+                      console.log(result)
+                    })
+          }
+
+         else if(this.spol.muskarci && this.spol.aktivnost_t){
+
+             let NewSpremiPojedinacnoMuskiT = {
+                   spol: this.spol.muskarci,
+                   cilj: this.spol.aktivnost_t,
+                   kalorije: this.rezultat2,
+        }
+
+             Service.patch('/pojedinacniPlan/60a6364bfc63e21c610aab3b', NewSpremiPojedinacnoMuskiT)
+
+                    .then((result) => {
+                      console.log(result)
+                    })
+
+          }
+              }
+              
+
+            },
     }
     
 }

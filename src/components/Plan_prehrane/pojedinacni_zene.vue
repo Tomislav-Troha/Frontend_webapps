@@ -153,11 +153,11 @@
 <p style="font-size:25px; color:red;">{{feedback}}</p>
 
 
-       <b-button  type="submit"  size="lg"  variant=" background-color:#30CFC0; !important; font-family:Segoe UI; " style=" font-family:Segoe UI; color:white; border-radius:40px; ; background-color:#30CFC0; !important;">Spremi</b-button>
+       <b-button v-if="rezultat1>500 && rezultat1<6000 || rezultat2>500 && rezultat2<6000 || rezultat3>500 && rezultat3<6000"  type="submit"  size="lg"  variant=" background-color:#30CFC0; !important; font-family:Segoe UI; " style=" font-family:Segoe UI; color:white; border-radius:40px; ; background-color:#30CFC0; !important;">Spremi</b-button>
 
 <p>{{spremiFeedback}}</p>
  
-<h5 class="mt-4"><router-link to="/Kalkulator_kalorija"><span style="color:blue;">Ovdje</span></router-link> pogledajte koliko vaša hrana ima kalorija</h5>
+<h5 v-if="rezultat1>500 && rezultat1<6000 || rezultat2>500 && rezultat2<6000 || rezultat3>500 && rezultat3<6000" class="mt-4"><router-link to="/Kalkulator_kalorija"><span style="color:blue;">Ovdje</span></router-link> pogledajte koliko vaša hrana ima kalorija</h5>
 
   </div>
   </b-form>
@@ -255,6 +255,7 @@ export default {
                 if(this.rezultat1 < 500 || this.rezultat1 > 6000 ){
                   return this.feedback = "Krivo uneseni podaci, pokušajte ponovno"
             }
+            
             else{this.feedback=""}
             }
 
@@ -310,7 +311,7 @@ export default {
                     })
           }
 
-           if(this.spol.zene && this.spol.aktivnost_f){
+          else if(this.spol.zene && this.spol.aktivnost_f){
 
              let NewSpremiPojedinacnoZeneMF = {
                    spol: this.spol.zene,
@@ -327,7 +328,7 @@ export default {
           }
 
 
-            if(this.spol.zene && this.spol.aktivnost_t){
+            else if(this.spol.zene && this.spol.aktivnost_t){
 
              let NewSpremiPojedinacnoZeneMT = {
                    spol: this.spol.zene,
