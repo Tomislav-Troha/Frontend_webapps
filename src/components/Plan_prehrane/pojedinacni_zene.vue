@@ -296,7 +296,7 @@ export default {
 
        
 
-          if(this.spol.zene && this.spol.aktivnost_m){
+          if(this.opcija.zene === "Mršavljenje"){
 
             let NewSpremiPojedinacnoZeneM = {
                    spol: this.spol.zene,
@@ -311,7 +311,7 @@ export default {
                     })
           }
 
-          else if(this.spol.zene && this.spol.aktivnost_f){
+          else if(this.opcija.zene === "Fitness"){
 
              let NewSpremiPojedinacnoZeneMF = {
                    spol: this.spol.zene,
@@ -328,7 +328,7 @@ export default {
           }
 
 
-            else if(this.spol.zene && this.spol.aktivnost_t){
+            else if(this.opcija.zene === "Trudnice"){
 
              let NewSpremiPojedinacnoZeneMT = {
                    spol: this.spol.zene,

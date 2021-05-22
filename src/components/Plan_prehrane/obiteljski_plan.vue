@@ -462,18 +462,16 @@ export default {
         if(this.varijante.rucak || this.varijante.dorucak || this.varijante.vecera && this.odabirObroka.DorucakRucakVecera){
           this.spremiTjedan = "Uspješno spremljeno"
 
-          let NewSpremiPoTjednu = {
-            radni_dan: this.radni_tjedan.dan,
-            obrok: this.odabirObroka.DorucakRucakVecera,
-            dorucak: this.varijante.dorucak,
-            rucak: this.varijante.rucak,
-            vecera: this.varijante.vecera
-          }
 
       //------------------------------------BAZA_PO_DANIMA_I_OBROKU; TJEDNA---------------------------------//
            
 
       if(this.radni_tjedan.dan == "Ponedjeljak" && this.odabirObroka.DorucakRucakVecera == "Doručak") {
+
+        let NewSpremiPoTjednu = {
+            radni_dan: this.radni_tjedan.dan,
+            dorucak: this.varijante.dorucak,
+          }
 
         Service.patch('/SpremiTjedan/60a39dfa3e2c6f2ba83b6d58', NewSpremiPoTjednu)
 
@@ -484,7 +482,13 @@ export default {
         }
 
         else if(this.radni_tjedan.dan == "Ponedjeljak" && this.odabirObroka.DorucakRucakVecera == "Ručak" ) {
-            Service.patch('/SpremiTjedan/60a39dfd3e2c6f2ba83b6d59', NewSpremiPoTjednu)
+
+        let NewSpremiPoTjednu = {
+            radni_dan: this.radni_tjedan.dan,
+            rucak: this.varijante.rucak,
+                  }
+
+            Service.patch('/SpremiTjedan/60a39dfa3e2c6f2ba83b6d58', NewSpremiPoTjednu)
 
          .then((result) => {
           console.log(result)
@@ -492,7 +496,13 @@ export default {
         }
 
         else if(this.radni_tjedan.dan == "Ponedjeljak" && this.odabirObroka.DorucakRucakVecera == "Večera" ) {
-            Service.patch('/SpremiTjedan/60a39dff3e2c6f2ba83b6d5a', NewSpremiPoTjednu)
+
+          let NewSpremiPoTjednu = {
+            radni_dan: this.radni_tjedan.dan,
+            vecera: this.varijante.vecera,
+                  }
+
+            Service.patch('/SpremiTjedan/60a39dfa3e2c6f2ba83b6d58', NewSpremiPoTjednu)
 
          .then((result) => {
           console.log(result)
@@ -500,6 +510,12 @@ export default {
         }
 
          else if(this.radni_tjedan.dan == "Utorak" && this.odabirObroka.DorucakRucakVecera == "Doručak" ) {
+
+           let NewSpremiPoTjednu = {
+            radni_dan: this.radni_tjedan.dan,
+            dorucak: this.varijante.dorucak,
+                  }
+
             Service.patch('/SpremiTjedan/60a39e083e2c6f2ba83b6d5b', NewSpremiPoTjednu)
 
          .then((result) => {
@@ -508,7 +524,13 @@ export default {
         }
 
         else if(this.radni_tjedan.dan == "Utorak" && this.odabirObroka.DorucakRucakVecera == "Ručak" ) {
-            Service.patch('/SpremiTjedan/60a39e0e3e2c6f2ba83b6d5c', NewSpremiPoTjednu)
+
+          let NewSpremiPoTjednu = {
+            radni_dan: this.radni_tjedan.dan,
+            rucak: this.varijante.rucak,
+                  }
+
+            Service.patch('/SpremiTjedan/60a39e083e2c6f2ba83b6d5b', NewSpremiPoTjednu)
 
          .then((result) => {
           console.log(result)
@@ -516,7 +538,13 @@ export default {
         }
 
         else if(this.radni_tjedan.dan == "Utorak" && this.odabirObroka.DorucakRucakVecera == "Večera" ) {
-            Service.patch('/SpremiTjedan/60a39e113e2c6f2ba83b6d5d', NewSpremiPoTjednu)
+
+          let NewSpremiPoTjednu = {
+            radni_dan: this.radni_tjedan.dan,
+            vecera: this.varijante.vecera,
+                  }
+
+            Service.patch('/SpremiTjedan/60a39e083e2c6f2ba83b6d5b', NewSpremiPoTjednu)
 
          .then((result) => {
           console.log(result)
@@ -524,6 +552,12 @@ export default {
         }
 
         else if(this.radni_tjedan.dan == "Srijeda" && this.odabirObroka.DorucakRucakVecera == "Doručak" ) {
+
+          let NewSpremiPoTjednu = {
+            radni_dan: this.radni_tjedan.dan,
+            dorucak: this.varijante.dorucak,
+                  }
+
             Service.patch('/SpremiTjedan/60a39e163e2c6f2ba83b6d5e', NewSpremiPoTjednu)
 
          .then((result) => {
@@ -532,7 +566,13 @@ export default {
         }
 
         else if(this.radni_tjedan.dan == "Srijeda" && this.odabirObroka.DorucakRucakVecera == "Ručak" ) {
-            Service.patch('/SpremiTjedan/60a39e1b3e2c6f2ba83b6d5f', NewSpremiPoTjednu)
+
+          let NewSpremiPoTjednu = {
+            radni_dan: this.radni_tjedan.dan,
+            rucak: this.varijante.rucak,
+                  }
+
+            Service.patch('/SpremiTjedan/60a39e163e2c6f2ba83b6d5e', NewSpremiPoTjednu)
 
          .then((result) => {
           console.log(result)
@@ -540,7 +580,13 @@ export default {
         }
 
         else if(this.radni_tjedan.dan == "Srijeda" && this.odabirObroka.DorucakRucakVecera == "Večera" ) {
-            Service.patch('/SpremiTjedan/60a39e203e2c6f2ba83b6d60', NewSpremiPoTjednu)
+
+          let NewSpremiPoTjednu = {
+            radni_dan: this.radni_tjedan.dan,
+            vecera: this.varijante.vecera,
+                  }
+
+            Service.patch('/SpremiTjedan/60a39e163e2c6f2ba83b6d5e', NewSpremiPoTjednu)
 
          .then((result) => {
           console.log(result)
@@ -548,7 +594,13 @@ export default {
         }
 
         else if(this.radni_tjedan.dan == "Četvrtak" && this.odabirObroka.DorucakRucakVecera == "Doručak" ) {
-            Service.patch('/SpremiTjedan/60a39e213e2c6f2ba83b6d61', NewSpremiPoTjednu)
+
+          let NewSpremiPoTjednu = {
+            radni_dan: this.radni_tjedan.dan,
+            dorucak: this.varijante.dorucak,
+                  }
+
+            Service.patch('/SpremiTjedan/60a39e203e2c6f2ba83b6d60', NewSpremiPoTjednu)
 
          .then((result) => {
           console.log(result)
@@ -556,7 +608,13 @@ export default {
         }
 
         else if(this.radni_tjedan.dan == "Četvrtak" && this.odabirObroka.DorucakRucakVecera == "Ručak" ) {
-            Service.patch('/SpremiTjedan/60a39e233e2c6f2ba83b6d62', NewSpremiPoTjednu)
+
+          let NewSpremiPoTjednu = {
+            radni_dan: this.radni_tjedan.dan,
+            rucak: this.varijante.rucak,
+                  }
+
+            Service.patch('/SpremiTjedan/60a39e203e2c6f2ba83b6d60', NewSpremiPoTjednu)
 
          .then((result) => {
           console.log(result)
@@ -564,7 +622,13 @@ export default {
         }
 
         else if(this.radni_tjedan.dan == "Četvrtak" && this.odabirObroka.DorucakRucakVecera == "Večera" ) {
-            Service.patch('/SpremiTjedan/60a39e273e2c6f2ba83b6d63', NewSpremiPoTjednu)
+
+          let NewSpremiPoTjednu = {
+            radni_dan: this.radni_tjedan.dan,
+            vecera: this.varijante.vecera,
+                  }
+
+            Service.patch('/SpremiTjedan/60a39e203e2c6f2ba83b6d60', NewSpremiPoTjednu)
 
          .then((result) => {
           console.log(result)
@@ -572,7 +636,13 @@ export default {
         }
 
          else if(this.radni_tjedan.dan == "Petak" && this.odabirObroka.DorucakRucakVecera == "Doručak" ) {
-            Service.patch('/SpremiTjedan/60a39e283e2c6f2ba83b6d64', NewSpremiPoTjednu)
+
+           let NewSpremiPoTjednu = {
+            radni_dan: this.radni_tjedan.dan,
+            dorucak: this.varijante.dorucak,
+                  }
+
+            Service.patch('/SpremiTjedan/60a39e273e2c6f2ba83b6d63', NewSpremiPoTjednu)
 
          .then((result) => {
           console.log(result)
@@ -580,7 +650,13 @@ export default {
         }
 
          else if(this.radni_tjedan.dan == "Petak" && this.odabirObroka.DorucakRucakVecera == "Ručak" ) {
-            Service.patch('/SpremiTjedan/60a39e2a3e2c6f2ba83b6d65', NewSpremiPoTjednu)
+
+           let NewSpremiPoTjednu = {
+            radni_dan: this.radni_tjedan.dan,
+            rucak: this.varijante.rucak,
+                  }
+
+            Service.patch('/SpremiTjedan/60a39e273e2c6f2ba83b6d63', NewSpremiPoTjednu)
 
          .then((result) => {
           console.log(result)
@@ -588,7 +664,13 @@ export default {
         }
 
         else if(this.radni_tjedan.dan == "Petak" && this.odabirObroka.DorucakRucakVecera == "Večera" ) {
-            Service.patch('/SpremiTjedan/60a4116709b3a991da95d8b5', NewSpremiPoTjednu)
+
+          let NewSpremiPoTjednu = {
+            radni_dan: this.radni_tjedan.dan,
+            vecera: this.varijante.vecera,
+                  }
+
+            Service.patch('/SpremiTjedan/60a39e273e2c6f2ba83b6d63', NewSpremiPoTjednu)
 
          .then((result) => {
           console.log(result)
@@ -621,14 +703,16 @@ setTimeout(function () { location.reload(1); }, 1500);
 
           let NewSpremiPoTjednu = {
             radni_dan: this.radni_tjedan.dan,
-            obrok: this.odabirObroka.DorucakRucakVecera,
             dorucak: this.varijante.dorucak,
-            rucak: this.varijante.rucak,
-            vecera: this.varijante.vecera
           }
          
           
           if(this.radni_tjedan.vikend_dan == "Subota" && this.odabirObroka.DorucakRucakVecera1 == "Doručak") {
+
+             let NewSpremiPoTjednu = {
+            radni_dan: this.radni_tjedan.dan,
+            dorucak: this.varijante.dorucak,
+          }
 
            Service.patch('/SpremiTjedan/60a4116709b3a991da95d8b5', NewSpremiPoTjednu)
 
@@ -641,7 +725,12 @@ setTimeout(function () { location.reload(1); }, 1500);
 
          else if(this.radni_tjedan.vikend_dan == "Subota" && this.odabirObroka.DorucakRucakVecera1 == "Ručak") {
 
-           Service.patch('/SpremiTjedan/60a569e7cc15356506973c00', NewSpremiPoTjednu)
+           let NewSpremiPoTjednu = {
+            radni_dan: this.radni_tjedan.dan,
+            rucak: this.varijante.rucak,
+          }
+
+           Service.patch('/SpremiTjedan/60a4116709b3a991da95d8b5', NewSpremiPoTjednu)
 
          .then((result) => {
           console.log(result)
@@ -651,7 +740,12 @@ setTimeout(function () { location.reload(1); }, 1500);
 
         else if(this.radni_tjedan.vikend_dan == "Subota" && this.odabirObroka.DorucakRucakVecera1 == "Večera") {
 
-           Service.patch('/SpremiTjedan/60a56a0bcc15356506973c01', NewSpremiPoTjednu)
+           let NewSpremiPoTjednu = {
+            radni_dan: this.radni_tjedan.dan,
+            vecera: this.varijante.vecera,
+          }
+
+           Service.patch('/SpremiTjedan/60a4116709b3a991da95d8b5', NewSpremiPoTjednu)
 
          .then((result) => {
           console.log(result)
@@ -660,6 +754,11 @@ setTimeout(function () { location.reload(1); }, 1500);
         }
 
         else if(this.radni_tjedan.vikend_dan == "Nedjelja" && this.odabirObroka.DorucakRucakVecera1 == "Doručak") {
+
+          let NewSpremiPoTjednu = {
+            radni_dan: this.radni_tjedan.dan,
+            dorucak: this.varijante.dorucak,
+          }
 
            Service.patch('/SpremiTjedan/60a56a2ecc15356506973c02', NewSpremiPoTjednu)
 
@@ -671,7 +770,12 @@ setTimeout(function () { location.reload(1); }, 1500);
 
         else if(this.radni_tjedan.vikend_dan == "Nedjelja" && this.odabirObroka.DorucakRucakVecera1 == "Ručak") {
 
-           Service.patch('/SpremiTjedan/60a56a4fcc15356506973c03', NewSpremiPoTjednu)
+          let NewSpremiPoTjednu = {
+            radni_dan: this.radni_tjedan.dan,
+            rucak: this.varijante.rucak,
+          }
+
+           Service.patch('/SpremiTjedan/60a56a2ecc15356506973c02', NewSpremiPoTjednu)
 
          .then((result) => {
           console.log(result)
@@ -681,7 +785,12 @@ setTimeout(function () { location.reload(1); }, 1500);
 
          else if(this.radni_tjedan.vikend_dan == "Nedjelja" && this.odabirObroka.DorucakRucakVecera1 == "Večera") {
 
-           Service.patch('/SpremiTjedan/60a56a68cc15356506973c04', NewSpremiPoTjednu)
+           let NewSpremiPoTjednu = {
+            radni_dan: this.radni_tjedan.dan,
+            vecera: this.varijante.vecera,
+          }
+
+           Service.patch('/SpremiTjedan/60a56a2ecc15356506973c02', NewSpremiPoTjednu)
 
          .then((result) => {
           console.log(result)

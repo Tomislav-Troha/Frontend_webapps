@@ -31,7 +31,6 @@ let NadipoId = {
         return{
                 id: doc._id,
                 radni_dan: doc.radni_dan,
-                obrok: doc.obrok,
                 dorucak: doc.dorucak,
                 rucak: doc.rucak,
                 vecera: doc.vecera
