@@ -5,19 +5,19 @@
 
 <div class="mx-auto container mt-5  rounded-lg login" style= "max-width:500px;">
   
-  <form>
+  <form @submit.prevent="login">
     <p class="h4 text-center mb-4 ">Prijava</p>
     <div class="grey-text mx-4">
-      <mdb-input label="Email" type="email"/>
-      <mdb-input label="Lozinka"  type="password"/>
+      <mdb-input v-model="email" label="Email" type="email"/>
+      <mdb-input v-model="lozinka" label="Lozinka"  type="password"/>
     </div>
     <br>
     <div class="text-center">
-      <router-link to = "/Home" > <mdb-btn class="rounded-lg">Prijava</mdb-btn></router-link>
+       <mdb-btn type="submit" class="rounded-lg">Prijava</mdb-btn>
 <br><br>
 
 <mdb-modal-footer class="mx-5 pt-3 mb-1">
-            <p class="font-small grey-text d-flex justify-content-end">Niste član? <router-link to = "/Register_1" ><a href="#" class="blue-text ml-1">Registriraj te se!</a></router-link></p>
+            <p class="font-small grey-text d-flex justify-content-end">Niste član? <router-link to = "/register" ><a  class="blue-text ml-1">Registriraj te se!</a></router-link></p>
           </mdb-modal-footer>
 
     </div>
@@ -40,13 +40,31 @@
 
 <script>
 
-
+import {Auth} from "@/services"
 
 export default {
 data(){
   return {
+
+    email:"",
+    lozinka:"",
+
     show: true,
     name: 'Basic',
+  }
+},
+
+methods:{
+
+ async login(){
+
+    let succes = await Auth.login(this.email, this.lozinka)
+    console.log("Rezultat prijave", succes)
+
+    if(succes == true){
+      this.$router.push({name: "home"})
+    }
+
   }
 }
 

@@ -29,29 +29,33 @@
       
         
 <b-navbar-nav >
-        <b-nav-item right>Nadimak obitelji
+  <span v-if="auth.prijavljen">
+        <b-nav-item right>{{auth.userEmail}}
           <!-- Using 'button-content' slot -->
           <template #button-content>
             <em style="font-size:25px;"></em>
           </template>
          
-         
         </b-nav-item>
+  </span>
+        
 
        
-
-        <b-nav-item right>Odjava
+<span v-if="auth.prijavljen">
+        <b-nav-item right @click="odjava" >Odjava
           <!-- Using 'button-content' slot -->
           <template #button-content>
             <em style="font-size:25px;"></em>
-          </template>
-          
-         
+          </template>    
+
         </b-nav-item>
+</span>
         
      </b-navbar-nav >
     </b-collapse>   
   </b-navbar>
+
+  
 </div>
 </template>
 
@@ -60,7 +64,7 @@
 
 
 
-
+import {Auth} from "@/services"
 
 
 export default {
@@ -68,9 +72,17 @@ export default {
   data() {
     return {
       user: null,
+      auth: Auth.state,
       
     };
   },
+
+  methods:{
+    odjava(){
+      Auth.logout();
+      this.$router.go()
+    }
+  }
 }
 </script>
 

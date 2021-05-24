@@ -4,7 +4,7 @@
 
 
  
-  <b-card-group style="max-width:1200px;" deck class="zeleno text-center mx-auto" >
+  <b-card-group style="max-width:1200px;" deck class="zeleno text-center mx-auto " >
 
     <b-card class="mt-5 zeleno mx-5"  >
      
@@ -23,7 +23,7 @@
        
     </b-card>
 
-    <b-card class="mt-5 zeleno mx-5" >
+    <b-card class="mt-5 zeleno  mx-5" >
        <h2 style="color:black; height:80px;">
       Vaš pojedinačni plan
       </h2>
@@ -36,7 +36,7 @@
       
     </b-card>
 
-    <b-card class="mt-5 zeleno mx-5" >
+    <b-card class="mt-5 zeleno  mx-5" >
       <h2 style=" color:black; height:80px;">
        BMI, udio masti
       </h2>

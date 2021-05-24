@@ -30,7 +30,7 @@
       
     <b-form-group class="mx-auto my-4" label="Doručak">
       
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%;"  >
+            <b-form class="form-control text-center mx-auto" style="width:300px; min-height:38px; max-width:100%;"  >
                {{Ponedjeljakdorucak.dorucak}}
         
             </b-form>
@@ -44,7 +44,7 @@
  
     <b-form-group class="mx-auto my-4" label="Ručak">
       
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%;"  >
+            <b-form class="form-control text-center mx-auto" style="width:300px; min-height:38px; max-width:100%;"  >
              {{Ponedjeljakdorucak.rucak}}
         
             </b-form>
@@ -57,7 +57,7 @@
      
     <b-form-group class="mx-auto my-4" label="Večera">
       
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%;"  >
+            <b-form class="form-control text-center mx-auto" style="width:300px; min-height:38px;  max-width:100%;"  >
              {{Ponedjeljakdorucak.vecera}}
         
             </b-form>
@@ -85,7 +85,7 @@
     
     <b-form-group class="mx-auto my-4" label="Doručak">
       
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%; height:auto;"  >
+            <b-form class="form-control text-center mx-auto" style="width:300px; min-height:38px; max-width:100%; height:auto;">
              {{Utorakdorucak.dorucak}}
         
             </b-form>
@@ -97,7 +97,7 @@
     
      <b-form-group class="mx-auto my-4" label="Ručak">
       
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%; height:auto;"  >
+            <b-form class="form-control text-center mx-auto" style="width:300px; min-height:38px; max-width:100%; height:auto;">
              {{Utorakdorucak.rucak}}
         
             </b-form>
@@ -106,7 +106,7 @@
     
      <b-form-group class="mx-auto my-4" label="Večera">
       
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%; height:auto;"  >
+            <b-form class="form-control text-center mx-auto" style="width:300px; min-height:38px; max-width:100%; height:auto;"  >
              {{Utorakdorucak.vecera}}
             </b-form>
      </b-form-group>
@@ -131,7 +131,7 @@
     
     <b-form-group class="mx-auto my-4" label="Doručak">
       
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%; height:auto;"  >
+            <b-form class="form-control text-center mx-auto" style="width:300px; min-height:38px; max-width:100%; height:auto;"  >
              {{Srijedadorucak.dorucak}}
         
             </b-form>
@@ -143,7 +143,7 @@
     
      <b-form-group class="mx-auto my-4" label="Ručak">
       
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%; height:auto;"  >
+            <b-form class="form-control text-center mx-auto" style="width:300px; min-height:38px; max-width:100%; height:auto;"  >
              {{Srijedadorucak.rucak}}
         
             </b-form>
@@ -152,7 +152,7 @@
     
      <b-form-group class="mx-auto my-4" label="Večera">
       
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%; height:auto;"  >
+            <b-form class="form-control text-center mx-auto" style="width:300px; min-height:38px; max-width:100%; height:auto;"  >
              {{Srijedadorucak.vecera}}
             </b-form>
      </b-form-group>
@@ -179,7 +179,7 @@
     
     <b-form-group class="mx-auto my-4" label="Doručak">
       
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%; height:auto;"  >
+            <b-form class="form-control text-center mx-auto" style="width:300px; min-height:38px; max-width:100%; height:auto;"  >
              {{Cetvrtakdorucak.dorucak}}
         
             </b-form>
@@ -191,7 +191,7 @@
     
      <b-form-group class="mx-auto my-4" label="Ručak">
       
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%; height:auto;"  >
+            <b-form class="form-control text-center mx-auto" style="width:300px; min-height:38px; max-width:100%; height:auto;"  >
              {{Cetvrtakdorucak.rucak}}
         
             </b-form>
@@ -200,7 +200,7 @@
     
      <b-form-group class="mx-auto my-4" label="Večera">
       
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%;  height:auto;"  >
+            <b-form class="form-control text-center mx-auto" style="width:300px; min-height:38px; max-width:100%;  height:auto;"  >
              {{Cetvrtakdorucak.vecera}}
             </b-form>
      </b-form-group>
@@ -226,7 +226,7 @@
     
     <b-form-group class="mx-auto my-4" label="Doručak">
       
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%; height:auto;"  >
+            <b-form class="form-control text-center mx-auto" style="width:300px; min-height:38px; max-width:100%; height:auto;"  >
              {{Petakdorucak.dorucak}}
         
             </b-form>
@@ -238,7 +238,7 @@
     
      <b-form-group class="mx-auto my-4" label="Ručak">
       
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%; height:auto;"  >
+            <b-form class="form-control text-center mx-auto" style="width:300px; min-height:38px; max-width:100%; height:auto;"  >
              {{Petakdorucak.rucak}}
         
             </b-form>
@@ -247,7 +247,7 @@
     
      <b-form-group class="mx-auto my-4" label="Večera">
       
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%; height:auto;"  >
+            <b-form class="form-control text-center mx-auto" style="width:300px; min-height:38px; max-width:100%; height:auto;"  >
              {{Petakdorucak.vecera}}
             </b-form>
      </b-form-group>
@@ -272,7 +272,7 @@
     
     <b-form-group class="mx-auto my-4" label="Doručak">
       
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%; height:auto;"  >
+            <b-form class="form-control text-center mx-auto" style="width:300px; min-height:38px; max-width:100%; height:auto;"  >
              {{Subotadorucak.dorucak}}
         
             </b-form>
@@ -284,7 +284,7 @@
     
      <b-form-group class="mx-auto my-4" label="Ručak">
       
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%; height:auto;"  >
+            <b-form class="form-control text-center mx-auto" style="width:300px; min-height:38px; max-width:100%; height:auto;"  >
              {{Subotadorucak.rucak}}
         
             </b-form>
@@ -293,7 +293,7 @@
     
      <b-form-group class="mx-auto my-4" label="Večera">
       
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%; height:auto;"  >
+            <b-form class="form-control text-center mx-auto" style="width:300px; min-height:38px; max-width:100%; height:auto;"  >
              {{Subotadorucak.vecera}}
             </b-form>
      </b-form-group>
@@ -318,7 +318,7 @@
     
     <b-form-group class="mx-auto my-4" label="Doručak">
       
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%; height:auto;"  >
+            <b-form class="form-control text-center mx-auto" style="width:300px; min-height:38px; max-width:100%; height:auto;"  >
              {{Nedjeljadorucak.dorucak}}
         
             </b-form>
@@ -330,7 +330,7 @@
     
      <b-form-group class="mx-auto my-4" label="Ručak">
       
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%; height:auto;"  >
+            <b-form class="form-control text-center mx-auto" style="width:300px; min-height:38px; max-width:100%; height:auto;"  >
              {{Nedjeljadorucak.rucak}}
         
             </b-form>
@@ -339,7 +339,7 @@
     
      <b-form-group class="mx-auto my-4" label="Večera">
       
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%; height:auto;"  >
+            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%; min-height:38px; height:auto;"  >
             {{Nedjeljadorucak.vecera}}
             </b-form>
      </b-form-group>

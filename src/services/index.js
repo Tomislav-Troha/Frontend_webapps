@@ -1,4 +1,5 @@
 import axios from "axios";
+import $router from "@/router"
 
 //vezan uz konkretni backend
 let Service = axios.create({
@@ -6,6 +7,21 @@ let Service = axios.create({
     timeout: 3000
 })
 
+Service.interceptors.request.use((request) => {
+    try {
+        request.headers['Authorization'] = 'Bearer ' + Auth.getToken();
+    } catch (e) {
+        console.error(e);
+    }
+    return request;
+});
+
+Service.interceptors.response.use((response) => response, (error) => {
+    if(error.response.status == 401 || error.response.status == 403){
+        Auth.logout();
+        $router.go();
+    }
+})
    
 //vezan za pojedine rute
 
@@ -176,6 +192,99 @@ let MlPro = {
     }
 }
 
+/*let Register = {
+
+    async register(nadimak_obitelji, broj_clanova, email, lozinka){
+        
+        let response = await Service.post("/users", {
+            nadimak_obitelji: nadimak_obitelji,
+            broj_clanova: broj_clanova,
+            email: email,
+            lozinka: lozinka
+        })
+
+        let user = response.data
+
+        localStorage.setItem("user", JSON.stringify(user));
+
+        return true;
+    },
+
+    
+}*/
+
+let Auth = {
+
+    async register(nadimak_obitelji, broj_clanova, email, lozinka){
+        
+        let response = await Service.post("/users", {
+            nadimak_obitelji: nadimak_obitelji,
+            broj_clanova: broj_clanova,
+            email: email,
+            lozinka: lozinka
+        })
+
+        let user = response.data
+
+        localStorage.setItem("user", JSON.stringify(user));
+
+        return true;
+    },  
+
+  async  login(email, lozinka){
+      let response = await Service.post("/auth", {
+            email: email,
+            lozinka: lozinka
+        })
+
+      let user = response.data
+
+      localStorage.setItem("user", JSON.stringify(user));
+
+      return true;
+    },
+
+    logout() {
+        localStorage.removeItem("user")
+    },
+
+    getUser(){
+      return JSON.parse(localStorage.getItem("user"))
+    },
+
+    getToken()  {
+        let user = Auth.getUser();
+        if(user && user.token){
+            return user.token
+        }
+        else {
+            return false
+        }
+    },
+
+    prijavljen(){
+        let user = Auth.getUser()
+        if(user && user.token){
+            return true
+        }
+        return false 
+    },
+
+    state: {
+        get prijavljen(){
+            return Auth.prijavljen();
+        },
+
+        get userEmail(){
+            let user = Auth.getUser();
+            if(user){
+                return user.email
+            }
+            
+        }
+    },
+
+}
 
 
 
@@ -196,4 +305,5 @@ let MlPro = {
 
 
 
-export  {Service, Meso, Kruh, Ribe, Brza_hrana, Voce, Povrce, MlPro, spremljeneVarijenteTjedan, NadipoId, PojedinacniPlan}
+
+export  {Service, Meso, Kruh, Ribe, Brza_hrana, Voce, Povrce, MlPro, spremljeneVarijenteTjedan, NadipoId, PojedinacniPlan, Auth}

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/Prijava/Login'
-import Register_1 from '@/components/Prijava/Register_1'
+import Register from '@/components/Prijava/Register'
 import Home from '@/components/Home'
 import Kalkulator_kalorija from '@/components/Kalkulator_kalorija'
 import Plan_prehrane from '@/components/Plan_prehrane/plan_prehrane_home'
@@ -14,6 +14,8 @@ import TvojeStanje_home from '@/components/Tvoje_stanje/tvojeStanje_home'
 import Vas_obiteljski_plan from '@/components/Tvoje_stanje/vas_obiteljski_plan'
 import Vas_pojedinacni_plan from '@/components/Tvoje_stanje/vas_pojedinacni_plan'
 import Index from '@/components/Tvoje_stanje/index'
+import {Auth} from "@/services"
+
 
 
 
@@ -25,14 +27,14 @@ const router =  new Router({
   base: process.env.BASE_URL,
   routes: [
   {
-    path: '/',
+    path: '/login',
     name: 'login',
     component: Login,
   },
   {
-    path: '/register_1',
-    name: 'register_1',
-    component: Register_1
+    path: '/register',
+    name: 'register',
+    component: Register
   },
   {
     path: '/home',
@@ -102,6 +104,18 @@ const router =  new Router({
 ]
 })
 
+router.beforeEach((to, from, next) => {
+  const javneStranice = ['/login', '/register']
+  const loginPotreban = !javneStranice.includes(to.path)
+  const user = Auth.getUser()
 
+  if(loginPotreban && !user){
+    next("/login")
+    return
+  }
+
+  next()
+
+})
 
 export default router
