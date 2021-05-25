@@ -10,11 +10,13 @@
       <form @submit.prevent="register">
     <p style="text-style:Segoe UI" class="h4 text-center mb-5">Registracija</p>
     <div class="grey-text mx-4">
-      <mdb-input v-model="nadimak_obitelji" label="Nadimak obitelji"  type="text"/>
-      <mdb-input v-model="broj_clanova" label="Broj članova obitelji"  type="number"/>
-      <mdb-input v-model="email" label="E-mail"  type="email"/>
-      <mdb-input v-model="lozinka" label="Lozinka"  type="password"/>
+      <mdb-input required v-model="nadimak_obitelji" label="Nadimak obitelji"  type="text"/>
+      <mdb-input required v-model="broj_clanova" label="Broj članova obitelji"  type="number"/>
+      <mdb-input required v-model="email" label="E-mail"  type="email"/>
+      <mdb-input required v-model="lozinka" label="Lozinka"  type="password"/>
+
     </div>
+     <span class="text-center" v-if="showError"><p style="color:red;" >E-mail već postoji</p></span>
     <div class="text-center">
        <mdb-btn type="sumbit" class="rounded-lg">Registriraj se!</mdb-btn>
 <br><br>
@@ -43,24 +45,37 @@ export default {
   data(){
     return{
 
+      showError:false,
+
       nadimak_obitelji:"",
       broj_clanova:"",
       email:"",
-      lozinka:""
-
+      lozinka:"",
     }
   },
 
   methods:{
 
     async register (){
+
+       this.showError = false
+
+      try {
+
        let succes = await Auth.register(this.nadimak_obitelji, this.broj_clanova, this.email, this.lozinka)
-    console.log("Rezultat prijave", succes)
+       console.log("Rezultat registracije", succes)
 
     if(succes == true){
-      alert( this.nadimak_obitelji, "Uspjesno ste registirani")
+      
+     
+      alert("Uspjesna registracija")
       this.$router.push({name: "login"})
+      
     }
+      } catch (e){
+          this.showError = true
+          
+      }
     }
   }
 }

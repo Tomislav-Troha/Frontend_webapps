@@ -11,8 +11,6 @@ for (const component in mdbvue) {
 Vue.component(component, mdbvue[component])
 }
 
-
-
 Vue.use(BootstrapVue)
 
 

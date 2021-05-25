@@ -8,10 +8,11 @@
   <form @submit.prevent="login">
     <p class="h4 text-center mb-4 ">Prijava</p>
     <div class="grey-text mx-4">
-      <mdb-input v-model="email" label="Email" type="email"/>
-      <mdb-input v-model="lozinka" label="Lozinka"  type="password"/>
+      <mdb-input required v-model="email" label="Email" type="email"/>
+      <mdb-input required v-model="lozinka" label="Lozinka"  type="password"/>
     </div>
     <br>
+    <span class="text-center" v-if="showError"><p style="color:red;">Podaci koje ste unijeli nisu valjani</p></span>
     <div class="text-center">
        <mdb-btn type="submit" class="rounded-lg">Prijava</mdb-btn>
 <br><br>
@@ -46,27 +47,42 @@ export default {
 data(){
   return {
 
+    
+    
     email:"",
     lozinka:"",
+    showError: false,
 
     show: true,
-    name: 'Basic',
+
   }
 },
+
 
 methods:{
 
  async login(){
 
+    this.showError = false
+
+    try{
+
     let succes = await Auth.login(this.email, this.lozinka)
     console.log("Rezultat prijave", succes)
 
     if(succes == true){
-      this.$router.push({name: "home"})
+      this.$router.replace({name: "home"})
     }
 
+    } catch (e) {
+
+      this.showError = true
+
+    }
   }
-}
+},
+
+
 
 }
     

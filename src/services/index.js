@@ -3,7 +3,7 @@ import $router from "@/router"
 
 //vezan uz konkretni backend
 let Service = axios.create({
-    baseURL: 'http://localhost:3200',
+    baseURL: 'http://localhost:3000',
     timeout: 3000
 })
 
@@ -192,26 +192,7 @@ let MlPro = {
     }
 }
 
-/*let Register = {
 
-    async register(nadimak_obitelji, broj_clanova, email, lozinka){
-        
-        let response = await Service.post("/users", {
-            nadimak_obitelji: nadimak_obitelji,
-            broj_clanova: broj_clanova,
-            email: email,
-            lozinka: lozinka
-        })
-
-        let user = response.data
-
-        localStorage.setItem("user", JSON.stringify(user));
-
-        return true;
-    },
-
-    
-}*/
 
 let Auth = {
 
