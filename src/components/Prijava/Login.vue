@@ -5,14 +5,15 @@
 
 <div class="mx-auto container mt-5  rounded-lg login" style= "max-width:500px;">
   
-  <form @submit.prevent="login">
+  <form novalidate @submit.prevent="login">
     <p class="h4 text-center mb-4 ">Prijava</p>
     <div class="grey-text mx-4">
-      <mdb-input required v-model="email" label="Email" type="email"/>
-      <mdb-input required v-model="lozinka" label="Lozinka"  type="password"/>
+      <mdb-input  v-model="email" label="Email" type="email" id="validationCustom12" required  invalidFeedback="Molimo unesite ispravan e-mail." validFeedback="Izgleda dobro!"/>
+      <mdb-input  v-model="lozinka" label="Lozinka"  type="password" id="validationCustom12" required  invalidFeedback="Molimo unesite ispravanu lozinku." validFeedback="Izgleda dobro!"/>
     </div>
     <br>
     <span class="text-center" v-if="showError"><p style="color:red;">Podaci koje ste unijeli nisu valjani</p></span>
+    <span class="text-center" v-if="showError1"><p style="color:red;">Ispunite sva polja</p></span>
     <div class="text-center">
        <mdb-btn type="submit" class="rounded-lg">Prijava</mdb-btn>
 <br><br>
@@ -52,6 +53,7 @@ data(){
     email:"",
     lozinka:"",
     showError: false,
+    showError1: false,
 
     show: true,
 
@@ -61,7 +63,15 @@ data(){
 
 methods:{
 
- async login(){
+ async login(event){
+
+     if(this.email =="" || this.lozinka == ""){
+           event.target.classList.add('was-validated')
+           return this.showError1 = true
+         }
+
+       this.showError = false
+       this.showError1 = false
 
     this.showError = false
 
@@ -70,7 +80,7 @@ methods:{
     let succes = await Auth.login(this.email, this.lozinka)
     console.log("Rezultat prijave", succes)
 
-    if(succes == true){
+    if(succes == true && this.email !=="" || this.lozinka !== ""){
       this.$router.replace({name: "home"})
     }
 

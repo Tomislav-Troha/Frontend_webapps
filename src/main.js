@@ -11,6 +11,9 @@ for (const component in mdbvue) {
 Vue.component(component, mdbvue[component])
 }
 
+import Vuelidate from 'vuelidate'
+Vue.use(Vuelidate)
+
 Vue.use(BootstrapVue)
 
 

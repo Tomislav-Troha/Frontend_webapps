@@ -13,6 +13,7 @@
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",
     "mdbvue": "^6.7.2",
+    "vee-validate": "^3.4.6",
     "vue": "^2.6.11",
     "vue-info-card": "^0.1.4",
     "vue-page-transition": "^0.2.2",

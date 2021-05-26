@@ -15,6 +15,7 @@ import Vas_obiteljski_plan from '@/components/Tvoje_stanje/vas_obiteljski_plan'
 import Vas_pojedinacni_plan from '@/components/Tvoje_stanje/vas_pojedinacni_plan'
 import Index from '@/components/Tvoje_stanje/index'
 import {Auth} from "@/services"
+import Proba from '@/components/probavanje/proba'
 
 
 
@@ -96,6 +97,11 @@ const router =  new Router({
     path: '/index',
     name: 'index',
     component: Index
+  },
+  {
+    path: '/proba',
+    name: 'proba',
+    component: Proba,
   },
 
 
