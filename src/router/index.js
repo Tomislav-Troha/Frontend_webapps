@@ -14,114 +14,106 @@ import TvojeStanje_home from '@/components/Tvoje_stanje/tvojeStanje_home'
 import Vas_obiteljski_plan from '@/components/Tvoje_stanje/vas_obiteljski_plan'
 import Vas_pojedinacni_plan from '@/components/Tvoje_stanje/vas_pojedinacni_plan'
 import Index from '@/components/Tvoje_stanje/index'
-import {Auth} from "@/services"
+import { Auth } from '@/services'
 import Proba from '@/components/probavanje/proba'
-
-
-
 
 Vue.use(Router)
 
-const router =  new Router({
-
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
-  {
-    path: '/login',
-    name: 'login',
-    component: Login,
-  },
-  {
-    path: '/register',
-    name: 'register',
-    component: Register
-  },
-  {
-    path: '/home',
-    name: 'home',
-    component: Home
-  },
-  {
-    path: '/kalkulator_kalorija',
-    name: 'kalkulator_kalorija',
-    component: Kalkulator_kalorija,
-   
-  },
-  {
-    path: '/plan_prehrane_home',
-    name: 'plan_prehrane_home',
-    component: Plan_prehrane
-  },
-  {
-    path: '/obiteljski_plan',
-    name: 'obiteljski_plan',
-    component: Obiteljski_plan
-  },
-  {
-    path: '/pojedinacni_plan',
-    name: 'pojedinacni_plan',
-    component: Pojedinacni_plan
-  },
-  {
-    path: '/pojedinacni_zene',
-    name: 'pojedinacni_zene',
-    component: Pojedinacni_zene
-  },
-  {
-    path: '/pojedinacni_muski',
-    name: 'pojedinacni_muski',
-    component: Pojedinacni_muski
-  },
-  {
-    path: '/pojedinacni_djeca',
-    name: 'pojedinacni_djeca',
-    component: Pojedinacni_djeca
-  },
-  {
-    path: '/tvojeStanje_home',
-    name: 'tvojeStanje_home',
-    component: TvojeStanje_home
-  },
-  {
-    path: '/vas_obiteljski_plan',
-    name: 'vas_obiteljski_plan',
-    component: Vas_obiteljski_plan
-  },
-  {
-    path: '/vas_pojedinacni_plan',
-    name: 'vas_pojedinacni_plan',
-    component: Vas_pojedinacni_plan
-  },
-  {
-    path: '/index',
-    name: 'index',
-    component: Index
-  },
-  {
-    path: '/proba',
-    name: 'proba',
-    component: Proba,
-  },
-
-
-  
- 
-]
+    {
+      path: '/',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: Register
+    },
+    {
+      path: '/home',
+      name: 'home',
+      component: Home
+    },
+    {
+      path: '/kalkulator_kalorija',
+      name: 'kalkulator_kalorija',
+      component: Kalkulator_kalorija
+    },
+    {
+      path: '/plan_prehrane_home',
+      name: 'plan_prehrane_home',
+      component: Plan_prehrane
+    },
+    {
+      path: '/obiteljski_plan',
+      name: 'obiteljski_plan',
+      component: Obiteljski_plan
+    },
+    {
+      path: '/pojedinacni_plan',
+      name: 'pojedinacni_plan',
+      component: Pojedinacni_plan
+    },
+    {
+      path: '/pojedinacni_zene',
+      name: 'pojedinacni_zene',
+      component: Pojedinacni_zene
+    },
+    {
+      path: '/pojedinacni_muski',
+      name: 'pojedinacni_muski',
+      component: Pojedinacni_muski
+    },
+    {
+      path: '/pojedinacni_djeca',
+      name: 'pojedinacni_djeca',
+      component: Pojedinacni_djeca
+    },
+    {
+      path: '/tvojeStanje_home',
+      name: 'tvojeStanje_home',
+      component: TvojeStanje_home
+    },
+    {
+      path: '/vas_obiteljski_plan',
+      name: 'vas_obiteljski_plan',
+      component: Vas_obiteljski_plan
+    },
+    {
+      path: '/vas_pojedinacni_plan',
+      name: 'vas_pojedinacni_plan',
+      component: Vas_pojedinacni_plan
+    },
+    {
+      path: '/index',
+      name: 'index',
+      component: Index
+    },
+    {
+      path: '/proba',
+      name: 'proba',
+      component: Proba
+    }
+  ]
 })
 
+
+
 router.beforeEach((to, from, next) => {
-  const javneStranice = ['/login', '/register']
+  const javneStranice = ['/', '/register']
   const loginPotreban = !javneStranice.includes(to.path)
   const user = Auth.getUser()
 
-  if(loginPotreban && !user){
-    next("/login")
+  if (loginPotreban && !user) {
+    next('/')
     return
   }
 
   next()
-
 })
 
 export default router

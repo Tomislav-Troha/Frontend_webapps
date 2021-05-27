@@ -18,7 +18,7 @@
      <b-form-group class="mx-auto my-4" label="Spol">
       
             <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%;"  >
-               {{zeneSpol.spol}}
+               {{zeneSpol.spolZene}}
    
             </b-form>
 
@@ -29,7 +29,7 @@
      <b-form-group class="mx-auto my-4" label="Cilj:">
       
             <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%;"  >
-               {{zeneSpol.cilj}}
+               {{zeneSpol.ciljZene}}
    
             </b-form>
 
@@ -38,7 +38,7 @@
        <b-form-group class="mx-auto my-4" label="Dnevni unos kalorija:">
       
             <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%;"  >
-               {{zeneSpol.kalorije}} kcal
+               {{zeneSpol.kalorijeZene}} kcal
    
             </b-form>
 
@@ -54,7 +54,7 @@
       <b-form-group class="mx-auto my-4" label="Spol">
       
             <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%;"  >
-               {{muskiSpol.spol}}
+               {{muskiSpol.spolMuski}}
    
             </b-form>
 
@@ -63,7 +63,7 @@
       <b-form-group class="mx-auto my-4" label="Cilj">
       
             <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%;"  >
-               {{muskiSpol.cilj}}
+               {{muskiSpol.ciljMuski}}
    
             </b-form>
 
@@ -72,7 +72,7 @@
        <b-form-group class="mx-auto my-4" label="Dnevni unos kalorija:">
       
             <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%;"  >
-               {{muskiSpol.kalorije}} kcal
+               {{muskiSpol.kalorijeMuski}} kcal
    
             </b-form>
 
@@ -128,11 +128,15 @@
 <script>
 
 import {PojedinacniPlan} from "@/services"
+import { Auth } from '@/services'
 
 export default {
 
   data(){
     return{
+
+      auth: Auth.state,
+
       dorucak:null,
       rucak:null,
       vecera:null,
@@ -149,8 +153,8 @@ export default {
 methods:{
   async pozoviBackend(){
 
-    this.zeneSpol = await PojedinacniPlan.getOne("60a38c7b8d1ad63034a23671")  
-    this.muskiSpol = await PojedinacniPlan.getOne("60a6364bfc63e21c610aab3b")  
+    this.zeneSpol = await PojedinacniPlan.getOne(this.auth.userEmail)  
+    this.muskiSpol = await PojedinacniPlan.getOne(this.auth.userEmail)  
     
 
 

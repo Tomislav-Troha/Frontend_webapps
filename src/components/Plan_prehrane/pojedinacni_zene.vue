@@ -180,12 +180,16 @@
 <script>
 
 import {Service} from '@/services/index.js'
+import { Auth } from '@/services'
 
 export default {
 
 
     data(){
         return{
+
+            auth: Auth.state,
+
             feedback:"",
             spremiFeedback:"",
 
@@ -299,12 +303,12 @@ export default {
           if(this.opcija.zene === "Mršavljenje"){
 
             let NewSpremiPojedinacnoZeneM = {
-                   spol: this.spol.zene,
-                   cilj: this.spol.aktivnost_m,
-                   kalorije: this.rezultat1,
+                   spolZene: this.spol.zene,
+                   ciljZene: this.spol.aktivnost_m,
+                   kalorijeZene: this.rezultat1,
         }
 
-                      Service.patch('/pojedinacniPlan/60a38c7b8d1ad63034a23671', NewSpremiPojedinacnoZeneM)
+                      Service.patch(`/pojedinacniPlan/${this.auth.userEmail }`, NewSpremiPojedinacnoZeneM)
 
                     .then((result) => {
                       console.log(result)
@@ -314,12 +318,12 @@ export default {
           else if(this.opcija.zene === "Fitness"){
 
              let NewSpremiPojedinacnoZeneMF = {
-                   spol: this.spol.zene,
-                   cilj: this.spol.aktivnost_f,
-                   kalorije: this.rezultat2,
+                   spolZene: this.spol.zene,
+                   ciljZene: this.spol.aktivnost_f,
+                   kalorijeZene: this.rezultat2,
         }
 
-             Service.patch('/pojedinacniPlan/60a38c7b8d1ad63034a23671', NewSpremiPojedinacnoZeneMF)
+             Service.patch(`/pojedinacniPlan/${this.auth.userEmail }`, NewSpremiPojedinacnoZeneMF)
 
                     .then((result) => {
                       console.log(result)
@@ -331,12 +335,12 @@ export default {
             else if(this.opcija.zene === "Trudnice"){
 
              let NewSpremiPojedinacnoZeneMT = {
-                   spol: this.spol.zene,
-                   cilj: this.spol.aktivnost_t,
-                   kalorije: this.rezultat3,
+                   spolZene: this.spol.zene,
+                   ciljZene: this.spol.aktivnost_t,
+                   kalorijeZene: this.rezultat3,
         }
 
-             Service.patch('/pojedinacniPlan/60a38c7b8d1ad63034a23671', NewSpremiPojedinacnoZeneMT)
+             Service.patch(`/pojedinacniPlan/${this.auth.userEmail }`, NewSpremiPojedinacnoZeneMT)
 
                     .then((result) => {
                       console.log(result)

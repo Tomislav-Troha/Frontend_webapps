@@ -166,11 +166,14 @@
 <script>
 
 import {Service} from '@/services/index.js'
+import { Auth } from '@/services'
 
 export default {
 
     data(){
         return{
+
+            auth: Auth.state,
 
             jeSakriven:false,
             spremiFeedback:"",
@@ -259,13 +262,13 @@ export default {
                  if(this.opcija.muskarci == "Mršavljenje"){
 
             let NewSpremiPojedinacnoMuskiM = {
-                   spol: this.spol.muskarci,
-                   cilj: this.spol.aktivnost_m,
-                   kalorije: this.rezultat1,
+                   spolMuski: this.spol.muskarci,
+                   ciljMuski: this.spol.aktivnost_m,
+                   kalorijeMuski: this.rezultat1,
         }
         console.log("mrsavljenje", NewSpremiPojedinacnoMuskiM)
 
-                      Service.patch('/pojedinacniPlan/60a6364bfc63e21c610aab3b', NewSpremiPojedinacnoMuskiM)
+                      Service.patch(`/pojedinacniPlan/${this.auth.userEmail }`, NewSpremiPojedinacnoMuskiM)
 
                     .then((result) => {
                       console.log(result)
@@ -275,13 +278,13 @@ export default {
           else if(this.opcija.muskarci == "Teretana"){
 
              let NewSpremiPojedinacnoMuskiT = {
-                   spol: this.spol.muskarci,
-                   cilj: this.spol.aktivnost_t,
-                   kalorije: this.rezultat2,
+                   spolMuski: this.spol.muskarci,
+                   ciljMuski: this.spol.aktivnost_t,
+                   kalorijeMuski: this.rezultat2,
         }
         console.log("teretana", NewSpremiPojedinacnoMuskiT)
 
-             Service.patch('/pojedinacniPlan/60a6364bfc63e21c610aab3b', NewSpremiPojedinacnoMuskiT)
+             Service.patch(`/pojedinacniPlan/${this.auth.userEmail }`, NewSpremiPojedinacnoMuskiT)
 
                     .then((result) => {
                       console.log(result)

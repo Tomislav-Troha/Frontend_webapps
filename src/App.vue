@@ -1,26 +1,25 @@
 <template>
   <div id="app">
-    <Navbar/>
-    <router-view/>
+    <Navbar />
+    <router-view />
 
     <Footer />
   </div>
 </template>
 
 <script>
-import Navbar from "./components/NavbarFooter/Navbar"
-import Footer from "./components/NavbarFooter/Footer"
-
+import Navbar from './components/NavbarFooter/Navbar'
+import Footer from './components/NavbarFooter/Footer'
+import { Auth } from '@/services'
 
 export default {
-  name:"App",
+  name: 'App',
   components: {
-    Navbar,Footer
-  }
+    Navbar,
+    Footer
+  },
+
 }
 </script>
 
-
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>
