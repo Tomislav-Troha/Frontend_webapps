@@ -179,7 +179,9 @@ export default {
           this.lozinka !== '' ||
           this.checked !== false
         ) {
-          alert('Uspjesna registracija')
+          this.$alert('Uspiješna registacija', 'Odlično', 'success', {
+            confirmButtonText: 'Prijava!'
+          })
           this.$router.push({ name: 'login' })
         }
       } catch (e) {

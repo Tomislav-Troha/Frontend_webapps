@@ -5,7 +5,11 @@
         <h2 class="mx-3" id="befit">Family health</h2>
       </b-navbar-brand>
 
-      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+      
+
+      <b-navbar-toggle target="nav-collapse">
+        
+      </b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="mx-auto">
@@ -19,7 +23,7 @@
 
         <b-navbar-nav>
           <span v-if="auth.prijavljen">
-            <b-nav-item right
+            <b-nav-item style="font-size:20px;" right
               >{{ auth.userEmail }}
               <!-- Using 'button-content' slot -->
               <template #button-content>
@@ -29,11 +33,12 @@
           </span>
 
           <span v-if="auth.prijavljen">
-            <b-nav-item right @click="odjava"
+            
+            <b-nav-item style="font-size:20px;" right @click="odjava"
               >Odjava
               <!-- Using 'button-content' slot -->
               <template #button-content>
-                <em style="font-size:25px;"></em>
+                <em style="font-size:23px;"></em>
               </template>
             </b-nav-item>
           </span>
