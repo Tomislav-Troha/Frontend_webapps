@@ -45,15 +45,33 @@ let PojedinacniPlan = {
 }
 
 let NadipoId = {
-  async getOne (id) {
-    let response = await Service.get(`/SpremiTjedan/${id}`)
+  async getOne (emailpoID) {
+    let response = await Service.get(`/SpremiTjedan/${emailpoID}`)
     let doc = response.data
     return {
-      id: doc._id,
+      email: doc.email,
       radni_dan: doc.radni_dan,
-      dorucak: doc.dorucak,
-      rucak: doc.rucak,
-      vecera: doc.vecera
+      Pdorucak: doc.Pdorucak,
+      Prucak: doc.Prucak,
+      Pvecera: doc.Pvecera,
+      Udorucak: doc.Udorucak,
+      Urucak: doc.Urucak,
+      Uvecera: doc.Uvecera,
+      Sdorucak: doc.Sdorucak,
+      Srucak: doc.Srucak,
+      Svecera: doc.Svecera,
+      Cdorucak: doc.Cdorucak,
+      Crucak: doc.Crucak,
+      Cvecera: doc.Cvecera,
+      PEdorucak: doc.PEdorucak,
+      PErucak: doc.PErucak,
+      PEvecera: doc.PEvecera,
+      SUdorucak: doc.SUdorucak,
+      SUrucak:  doc.SUrucak,
+      SUvecera: doc.SUvecera,
+      Ndorucak: doc.Ndorucak,
+      Nrucak: doc.Nrucak,
+      Nvecera: doc.Nvecera
     }
   }
 }
