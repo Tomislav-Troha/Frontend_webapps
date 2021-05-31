@@ -5,23 +5,27 @@
       style="background-color: #f8f8f8; !important;  "
     >
       <b-form inline>
-        <b-button
+        <mdb-btn
+          gradient="blue"
+          rounded
           v-on:click="isHidden = !isHidden"
           v-if="!isHidden1"
           class="mx-auto "
           style="color:white; font-size:20px; width:300px; height:80px; border-radius:30px; ; background-color:#30CFC0; !important;"
           variant="border-radius:30px; ; background-color:#30CFC0; !important;"
           ><p class="mt-2" v-if="isHidden == true">Nazad</p>
-          <p class="mt-3" v-if="isHidden == false">Radni tjedan</p></b-button
+          <p class="mt-3" v-if="isHidden == false">Radni tjedan</p></mdb-btn
         >
-        <b-button
+        <mdb-btn
+          gradient="blue"
+          rounded
           v-on:click="isHidden1 = !isHidden1"
           v-if="!isHidden"
           class=" mx-auto"
           style="color:white; font-size:20px; width:300px; height:80px; border-radius:30px; ; background-color:#30CFC0; !important;"
           variant="border-radius:30px; ; background-color:#30CFC0; !important;"
           ><p class="mt-2" v-if="isHidden1 == true">Nazad</p>
-          <p class="mt-3" v-if="isHidden1 == false">Vikend</p></b-button
+          <p class="mt-3" v-if="isHidden1 == false">Vikend</p></mdb-btn
         >
       </b-form>
     </div>

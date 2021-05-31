@@ -1,37 +1,63 @@
-import axios from 'axios'
-import $router from '@/router'
+import axios from "axios";
+import $router from "@/router";
 
 //vezan uz konkretni backend
 let Service = axios.create({
-  baseURL: 'http://localhost:3000',
-  timeout: 3000
-})
+  baseURL: "http://localhost:3100",
+  timeout: 3000,
+});
 
-Service.interceptors.request.use(request => {
+Service.interceptors.request.use((request) => {
   try {
-    request.headers['Authorization'] = 'Bearer ' + Auth.getToken()
+    request.headers["Authorization"] = "Bearer " + Auth.getToken();
   } catch (e) {
-    console.error(e)
+    console.error(e);
   }
-  return request
-})
+  return request;
+});
 
 Service.interceptors.response.use(
-  response => response,
-  error => {
+  (response) => response,
+  (error) => {
     if (error.response.status == 401 || error.response.status == 403) {
-      Auth.logout()
-      $router.go()
+      Auth.logout();
+      $router.go();
     }
   }
-)
+);
 
 //vezan za pojedine rute
 
+let UserProfil = {
+  async getOne(podaci) {
+    let response = await Service.get(`/UserProfile/${podaci}`);
+    let doc = response.data;
+    return {
+      email: doc.email,
+      ime: doc.ime,
+      prezime: doc.prezime,
+      spol: doc.spol,
+      datumRodenja: doc.datumRodenja,
+      zanimanje: doc.zanimanje,
+    };
+  },
+};
+
+let UzmiNadimak = {
+  async getOne(nadimak) {
+    let response = await Service.get(`/users/${nadimak}`);
+    let doc = response.data;
+    return {
+      nadimak: doc.nadimak_obitelji,
+      broj_clanova: doc.broj_clanova,
+    };
+  },
+};
+
 let PojedinacniPlan = {
-  async getOne (email) {
-    let response = await Service.get(`/pojedinacniPlan/${email}`)
-    let doc = response.data
+  async getOne(email) {
+    let response = await Service.get(`/pojedinacniPlan/${email}`);
+    let doc = response.data;
     return {
       email: doc.email,
       spolMuski: doc.spolMuski,
@@ -39,15 +65,15 @@ let PojedinacniPlan = {
       ciljMuski: doc.ciljMuski,
       ciljZene: doc.ciljZene,
       kalorijeMuski: doc.kalorijeMuski,
-      kalorijeZene: doc.kalorijeZene
-    }
-  }
-}
+      kalorijeZene: doc.kalorijeZene,
+    };
+  },
+};
 
 let NadipoId = {
-  async getOne (emailpoID) {
-    let response = await Service.get(`/SpremiTjedan/${emailpoID}`)
-    let doc = response.data
+  async getOne(emailpoID) {
+    let response = await Service.get(`/SpremiTjedan/${emailpoID}`);
+    let doc = response.data;
     return {
       email: doc.email,
       radni_dan: doc.radni_dan,
@@ -67,14 +93,14 @@ let NadipoId = {
       PErucak: doc.PErucak,
       PEvecera: doc.PEvecera,
       SUdorucak: doc.SUdorucak,
-      SUrucak:  doc.SUrucak,
+      SUrucak: doc.SUrucak,
       SUvecera: doc.SUvecera,
       Ndorucak: doc.Ndorucak,
       Nrucak: doc.Nrucak,
-      Nvecera: doc.Nvecera
-    }
-  }
-}
+      Nvecera: doc.Nvecera,
+    };
+  },
+};
 
 /*let spremljeneVarijenteTjedan = {
 
@@ -100,177 +126,177 @@ let NadipoId = {
 //NAMIRNICE
 
 let Meso = {
-  async getAll (namirniceMeso) {
-    let response = await Service.get(`/meso?${namirniceMeso}`)
-    let data = response.data
-    data = data.map(doc => {
+  async getAll(namirniceMeso) {
+    let response = await Service.get(`/meso?${namirniceMeso}`);
+    let data = response.data;
+    data = data.map((doc) => {
       return {
         id: doc.id,
         Vrsta_mesa: doc.naziv,
-        kolicina: doc.kolicina
-      }
-    })
-    return data
-  }
-}
+        kolicina: doc.kolicina,
+      };
+    });
+    return data;
+  },
+};
 
 let Kruh = {
-  async getAll (namirniceKruh) {
-    let response = await Service.get(`/kruh?${namirniceKruh}`)
-    let data = response.data
-    data = data.map(doc => {
+  async getAll(namirniceKruh) {
+    let response = await Service.get(`/kruh?${namirniceKruh}`);
+    let data = response.data;
+    data = data.map((doc) => {
       return {
         id: doc.id,
         Vrsta_kruha: doc.naziv,
-        kolicina: doc.kolicina
-      }
-    })
-    return data
-  }
-}
+        kolicina: doc.kolicina,
+      };
+    });
+    return data;
+  },
+};
 
 let Ribe = {
-  async getAll (namirniceRibe) {
-    let response = await Service.get(`/ribe?${namirniceRibe}`)
-    let data = response.data
-    data = data.map(doc => {
+  async getAll(namirniceRibe) {
+    let response = await Service.get(`/ribe?${namirniceRibe}`);
+    let data = response.data;
+    data = data.map((doc) => {
       return {
         id: doc.id,
         Vrsta_ribe: doc.naziv,
-        kolicina: doc.kolicina
-      }
-    })
-    return data
-  }
-}
+        kolicina: doc.kolicina,
+      };
+    });
+    return data;
+  },
+};
 
 let Brza_hrana = {
-  async getAll (namirniceBH) {
-    let response = await Service.get(`/brza_hrana?${namirniceBH}`)
-    let data = response.data
-    data = data.map(doc => {
+  async getAll(namirniceBH) {
+    let response = await Service.get(`/brza_hrana?${namirniceBH}`);
+    let data = response.data;
+    data = data.map((doc) => {
       return {
         id: doc.id,
         Vrsta_BH: doc.naziv,
-        kolicina: doc.kolicina
-      }
-    })
-    return data
-  }
-}
+        kolicina: doc.kolicina,
+      };
+    });
+    return data;
+  },
+};
 
 let Voce = {
-  async getAll (namirniceVoce) {
-    let response = await Service.get(`/voce?${namirniceVoce}`)
-    let data = response.data
-    data = data.map(doc => {
+  async getAll(namirniceVoce) {
+    let response = await Service.get(`/voce?${namirniceVoce}`);
+    let data = response.data;
+    data = data.map((doc) => {
       return {
         id: doc.id,
         Vrsta_voca: doc.naziv,
-        kolicina: doc.kolicina
-      }
-    })
-    return data
-  }
-}
+        kolicina: doc.kolicina,
+      };
+    });
+    return data;
+  },
+};
 
 let Povrce = {
-  async getAll (namirnicePovrce) {
-    let response = await Service.get(`/povrce?${namirnicePovrce}`)
-    let data = response.data
-    data = data.map(doc => {
+  async getAll(namirnicePovrce) {
+    let response = await Service.get(`/povrce?${namirnicePovrce}`);
+    let data = response.data;
+    data = data.map((doc) => {
       return {
         id: doc.id,
         Vrsta_povrca: doc.naziv,
-        kolicina: doc.kolicina
-      }
-    })
-    return data
-  }
-}
+        kolicina: doc.kolicina,
+      };
+    });
+    return data;
+  },
+};
 
 let MlPro = {
-  async getAll (namirniceMlPro) {
-    let response = await Service.get(`/mlijecni_proizvodi?${namirniceMlPro}`)
-    let data = response.data
-    data = data.map(doc => {
+  async getAll(namirniceMlPro) {
+    let response = await Service.get(`/mlijecni_proizvodi?${namirniceMlPro}`);
+    let data = response.data;
+    data = data.map((doc) => {
       return {
         id: doc.id,
         Vrsta_MlPro: doc.naziv,
-        kolicina: doc.kolicina
-      }
-    })
-    return data
-  }
-}
+        kolicina: doc.kolicina,
+      };
+    });
+    return data;
+  },
+};
 
 let Auth = {
-  async register (nadimak_obitelji, broj_clanova, email, lozinka) {
-    let response = await Service.post('/users', {
+  async register(nadimak_obitelji, broj_clanova, email, lozinka) {
+    let response = await Service.post("/users", {
       nadimak_obitelji: nadimak_obitelji,
       broj_clanova: broj_clanova,
       email: email,
-      lozinka: lozinka
-    })
+      lozinka: lozinka,
+    });
 
-    let user = response.data
+    let user = response.data;
 
-    localStorage.setItem('user', JSON.stringify(user))
+    localStorage.setItem("user", JSON.stringify(user));
 
-    return true
+    return true;
   },
 
-  async login (email, lozinka) {
-    let response = await Service.post('/auth', {
+  async login(email, lozinka) {
+    let response = await Service.post("/auth", {
       email: email,
-      lozinka: lozinka
-    })
+      lozinka: lozinka,
+    });
 
-    let user = response.data
+    let user = response.data;
 
-    localStorage.setItem('user', JSON.stringify(user))
+    localStorage.setItem("user", JSON.stringify(user));
 
-    return true
+    return true;
   },
 
-  logout () {
-    localStorage.removeItem('user')
+  logout() {
+    localStorage.removeItem("user");
   },
 
-  getUser () {
-    return JSON.parse(localStorage.getItem('user'))
+  getUser() {
+    return JSON.parse(localStorage.getItem("user"));
   },
 
-  getToken () {
-    let user = Auth.getUser()
+  getToken() {
+    let user = Auth.getUser();
     if (user && user.token) {
-      return user.token
+      return user.token;
     } else {
-      return false
+      return false;
     }
   },
 
-  prijavljen () {
-    let user = Auth.getUser()
+  prijavljen() {
+    let user = Auth.getUser();
     if (user && user.token) {
-      return true
+      return true;
     }
-    return false
+    return false;
   },
 
   state: {
-    get prijavljen () {
-      return Auth.prijavljen()
+    get prijavljen() {
+      return Auth.prijavljen();
     },
 
-    get userEmail () {
-      let user = Auth.getUser()
+    get userEmail() {
+      let user = Auth.getUser();
       if (user) {
-        return user.email
+        return user.email;
       }
-    }
-  }
-}
+    },
+  },
+};
 
 export {
   Service,
@@ -283,5 +309,7 @@ export {
   MlPro,
   NadipoId,
   PojedinacniPlan,
-  Auth
-}
+  Auth,
+  UzmiNadimak,
+  UserProfil,
+};

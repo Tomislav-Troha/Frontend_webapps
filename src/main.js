@@ -18,6 +18,10 @@ Vue.use(Vuelidate)
 import VueSimpleAlert from "vue-simple-alert";
 Vue.use(VueSimpleAlert);
 
+
+
+
+
 Vue.use(BootstrapVue)
 
 

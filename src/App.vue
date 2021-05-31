@@ -8,18 +8,18 @@
 </template>
 
 <script>
-import Navbar from './components/NavbarFooter/Navbar'
-import Footer from './components/NavbarFooter/Footer'
-import { Auth } from '@/services'
+import Navbar from "./components/NavbarFooter/Navbar";
+import Footer from "./components/NavbarFooter/Footer";
+import { Auth } from "@/services";
 
 export default {
-  name: 'App',
+  name: "App",
+  props: ["fields"],
   components: {
     Navbar,
-    Footer
+    Footer,
   },
-
-}
+};
 </script>
 
 <style lang="scss"></style>

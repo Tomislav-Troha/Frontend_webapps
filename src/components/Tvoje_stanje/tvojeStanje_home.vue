@@ -1,44 +1,53 @@
 <template>
   <div class=" mx-auto" style="">
     <br /><br />
-    <b-card class="mt-5  mx-auto hover text-center" style="max-width:700px;">
+    <div class="pt-5">
       <router-link to="/vas_obiteljski_plan">
-        <span
-          v-on:mouseover="mouseover"
-          v-on:mouseleave="mouseleave"
-          class=""
-          style="color:black; font-size:28px;"
-        >
-          {{ messagePrvi }}
-        </span>
+        <b-card class="mt-5 mx-auto hover text-center" style="max-width:700px;">
+          <span
+            v-on:mouseover="mouseover"
+            v-on:mouseleave="mouseleave"
+            class=""
+            style="color:black; font-size:28px;"
+          >
+            {{ messagePrvi }}
+          </span>
+        </b-card>
       </router-link>
-    </b-card>
+    </div>
 
-    <b-card class="mt-5 mx-auto hover text-center" style="max-width:700px;">
+    <div class="pt-4">
       <router-link to="/Vas_pojedinacni_plan">
-        <span
-          v-on:mouseover="mouseover1"
-          v-on:mouseleave="mouseleave1"
-          class=""
-          style="color:black; font-size:28px;"
+        <b-card
+          class=" mt-5 mx-auto hover text-center"
+          style="max-width:700px;"
         >
-          {{ messageDrugi }}
-        </span>
+          <span
+            v-on:mouseover="mouseover1"
+            v-on:mouseleave="mouseleave1"
+            class=""
+            style="color:black; font-size:28px;"
+          >
+            {{ messageDrugi }}
+          </span>
+        </b-card>
       </router-link>
-    </b-card>
+    </div>
 
-    <b-card class="mt-5 mx-auto hover text-center" style="max-width:700px;">
+    <div class="pt-4">
       <router-link to="/index">
-        <span
-          v-on:mouseover="mouseover2"
-          v-on:mouseleave="mouseleave2"
-          class=""
-          style="color:black; font-size:28px;"
-        >
-          {{ messageTreci }}
-        </span>
+        <b-card class="mt-5 mx-auto hover text-center" style="max-width:700px;">
+          <span
+            v-on:mouseover="mouseover2"
+            v-on:mouseleave="mouseleave2"
+            class=""
+            style="color:black; font-size:28px;"
+          >
+            {{ messageTreci }}
+          </span>
+        </b-card>
       </router-link>
-    </b-card>
+    </div>
 
     <br /><br /><br /><br /><br /><br /><br />
   </div>
@@ -84,6 +93,9 @@ export default {
 <style scoped>
 .hover:hover {
   background-color: #009dc5;
+}
+.hover {
+  background-color: #87ceeb;
 }
 
 .hover1:hover {
