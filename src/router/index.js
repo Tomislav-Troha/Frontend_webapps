@@ -98,11 +98,13 @@ const router = new Router({
       path: "/profil",
       name: "profil",
       component: profil,
-    },
-    {
-      path: "/profil/dodaj_clanove",
-      name: "dodajClanove",
-      component: dodajClanove,
+      children: [
+        {
+          name: "promjena_lozinke",
+          path: "/promjena_lozinke",
+          component: dodajClanove,
+        },
+      ],
     },
   ],
 });

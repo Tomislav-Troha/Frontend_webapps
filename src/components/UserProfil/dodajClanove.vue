@@ -1,112 +1,57 @@
 <template>
-  <div class="col-lg-8 mx-auto mt-5" style="max-width:700px;">
-    <div class="card forma mx-auto">
-      <div class="card-body forma">
-        <b-form class="text-left">
-          <b-form-group id="input-group-1" label="Ime:" label-for="input-1">
-            <b-form-input id="input-1" v-model="form.ime" required>
-            </b-form-input>
-          </b-form-group>
-          <b-form-group id="input-group-1" label="Prezime:" label-for="input-1">
-            <b-form-input id="input-1" v-model="form.prezime" required>
-            </b-form-input>
-          </b-form-group>
-          <b-form-group id="input-group-2" label="Spol" label-for="input-2">
-            <b-form-select
-              v-model="form.spol"
-              :options="spol"
-              type="number"
-              required
-            ></b-form-select>
-          </b-form-group>
-          <b-form-group
-            id="input-group-1"
-            label="Datum rođenja"
-            label-for="input-1"
-          >
-            <b-form-input
-              v-model="form.datumRodenja"
-              id="input-1"
-              type="date"
-              required
-            >
-            </b-form-input>
-          </b-form-group>
-          <b-form-group
-            id="input-group-1"
-            label="Zanimanje"
-            label-for="input-1"
-          >
-            <b-form-select
-              v-model="form.zanimanje"
-              :options="zanimanje"
-              id="input-1"
-              type="number"
-              required
-            >
-            </b-form-select>
-          </b-form-group>
-          <p style="color:red;">{{ feedback }}</p>
-          <mdb-btn @click="spremiPromjene" gradient="blue" rounded
-            >Spremi</mdb-btn
-          >
-        </b-form>
-      </div>
-    </div>
+  <div class="mt-5 mx-auto iza">
+    <b-form-group class="mx-auto promjena" label="Unesite staru lozinku">
+      <b-form-input v-model="staraLozinka"></b-form-input>
+    </b-form-group>
+    <b-form-group class="mx-auto promjena" label="Unesite novu lozinku">
+      <b-form-input v-model="novaLozinka"></b-form-input>
+
+      <mdb-btn
+        class="mt-4 ml-1"
+        gradient="blue"
+        @click="promjenaLozinke"
+        rounded
+        >Spremi</mdb-btn
+      >
+      <router-link to="/profil"
+        ><mdb-btn class="mt-4 ml-1" color="danger" rounded
+          >Odustani</mdb-btn
+        ></router-link
+      >
+      {{ feedback }} {{ feedback1 }}
+    </b-form-group>
   </div>
 </template>
 
 <script>
-import { Service } from "@/services/index.js";
 import { Auth } from "@/services";
+import { Service } from "@/services/index.js";
 
 export default {
   data() {
     return {
       auth: Auth.state,
-      form: {
-        ime: "",
-        prezime: "",
-        spol: "",
-        datumRodenja: "",
-        zanimanje: "",
-      },
-
+      staraLozinka: "",
+      novaLozinka: "",
       feedback: "",
-
-      spol: ["Muškarac", "Žena"],
-
-      zanimanje: ["Zaposlen", "Učenik", "Student", "Nezaposlen"],
+      feedback1: "",
     };
   },
 
   methods: {
-    spremiPromjene() {
-      if (
-        this.form.ime == "" ||
-        this.form.prezime == "" ||
-        this.form.spol == "" ||
-        this.form.datumRodenja == "" ||
-        this.form.zanimanje == ""
-      ) {
-        this.feedback = "Unesite sva polja";
+    async promjenaLozinke() {
+      if (this.staraLozinka == "" || this.novaLozinka == "") {
+        this.feedback1 = "Unesite sva polja";
       } else {
-        this.feedback = "";
-        let newSpremiPromjene = {
-          ime: this.form.ime,
-          prezime: this.form.prezime,
-          spol: this.form.spol,
-          datumRodenja: this.form.datumRodenja,
-          zanimanje: this.form.zanimanje,
-        };
-        console.log(newSpremiPromjene);
-
-        Service.post(
-          `/UserProfile/${this.auth.userEmail}`,
-          newSpremiPromjene
-        ).then((result) => {
-          console.log(result);
-        });
+        this.feedback = null;
+        let succes = await Auth.promjenaLozinke(
+          this.staraLozinka,
+          this.novaLozinka
+        );
+        console.log(succes);
+        if (succes == true) {
+          this.$router.push({ name: "promjena_lozinke" });
+        }
       }
     },
   },
@@ -114,11 +59,16 @@ export default {
 </script>
 
 <style scoped>
-.tekstInput {
-  font-size: 18px;
+.promjena {
+  max-width: 300px;
 }
 
-.forma {
+.iza {
+  background-color: #f8f9fa;
   max-width: 500px;
+  fill: rgba(196, 196, 196, 1);
+  filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.788));
+  overflow: visible;
+  border-radius: 25px;
 }
 </style>

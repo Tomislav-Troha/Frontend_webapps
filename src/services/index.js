@@ -28,21 +28,6 @@ Service.interceptors.response.use(
 
 //vezan za pojedine rute
 
-let UserProfil = {
-  async getOne(podaci) {
-    let response = await Service.get(`/UserProfile/${podaci}`);
-    let doc = response.data;
-    return {
-      email: doc.email,
-      ime: doc.ime,
-      prezime: doc.prezime,
-      spol: doc.spol,
-      datumRodenja: doc.datumRodenja,
-      zanimanje: doc.zanimanje,
-    };
-  },
-};
-
 let UzmiNadimak = {
   async getOne(nadimak) {
     let response = await Service.get(`/users/${nadimak}`);
@@ -50,6 +35,7 @@ let UzmiNadimak = {
     return {
       nadimak: doc.nadimak_obitelji,
       broj_clanova: doc.broj_clanova,
+      lozinka: doc.lozinka,
     };
   },
 };
@@ -231,6 +217,20 @@ let MlPro = {
 };
 
 let Auth = {
+  async promjenaLozinke(email, old_password, new_password) {
+    let response = await Service.patch("/users", {
+      email: email,
+      old_password: old_password,
+      new_password: new_password,
+    });
+    let user = response.data;
+    console.log(user);
+
+    localStorage.setItem("user", JSON.stringify(user));
+
+    return true;
+  },
+
   async register(nadimak_obitelji, broj_clanova, email, lozinka) {
     let response = await Service.post("/users", {
       nadimak_obitelji: nadimak_obitelji,
@@ -311,5 +311,4 @@ export {
   PojedinacniPlan,
   Auth,
   UzmiNadimak,
-  UserProfil,
 };

@@ -28,9 +28,13 @@
                   <h6 class="mb-0">Email</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <b-form type="text" class="form-control">{{
-                    auth.userEmail
-                  }}</b-form>
+                  <b-form-input
+                    v-model="auth.userEmail"
+                    :disabled="!isEditing"
+                    :class="{ view: !isEditing }"
+                    type="text"
+                    class="form-control"
+                  ></b-form-input>
                 </div>
               </div>
               <div class="row mb-3">
@@ -38,28 +42,83 @@
                   <h6 class="mb-0">Broj članova</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <b-form type="text" class="form-control">{{
-                    nadimak_obitelji.broj_clanova
-                  }}</b-form>
+                  <b-form-input
+                    v-model="nadimak_obitelji.broj_clanova"
+                    :disabled="!isEditing"
+                    :class="{ view: !isEditing }"
+                    type="text"
+                    class="form-control"
+                  ></b-form-input>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Nadimak:</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <b-form-input
+                    v-model="nadimak_obitelji.nadimak"
+                    :disabled="!isEditing"
+                    :class="{ view: !isEditing }"
+                    type="text"
+                    class="form-control"
+                  ></b-form-input>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Lozinka:</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <b-form-input
+                    v-model="lozinka"
+                    disabled
+                    type="password"
+                    class="form-control"
+                  >
+                  </b-form-input>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-sm-3"></div>
                 <div class="col-sm-9 text-secondary">
-                  <router-link to="/profil/dodaj_clanove">
-                    <mdb-btn gradient="blue"
-                      >Dodaj članove</mdb-btn
+                  <mdb-btn
+                    gradient="blue"
+                    rounded
+                    @click="isEditing = !isEditing"
+                    v-if="!isEditing && $route.name === 'profil'"
+                    >Uredi</mdb-btn
+                  >
+                  <mdb-btn
+                    gradient="blue"
+                    rounded
+                    @click="save"
+                    v-else-if="isEditing"
+                    >Spremi</mdb-btn
+                  >
+                  <mdb-btn
+                    color="danger"
+                    rounded
+                    v-if="isEditing"
+                    @click="cancel"
+                    >Odustani</mdb-btn
+                  >
+                  <router-link to="/promjena_lozinke">
+                    <mdb-btn
+                      gradient="aqua"
+                      rounded
+                      v-if="isEditing"
+                      @click="cancel"
+                      >Promjeni lozinku</mdb-btn
                     ></router-link
                   >
                 </div>
               </div>
+              <router-view></router-view>
             </div>
           </div>
         </div>
-        <b-card-group deck class="pokazi">
-          <karticaClanova class="ravno " />
-        </b-card-group>
       </div>
     </div>
   </div>
@@ -68,27 +127,59 @@
 import karticaClanova from "../UserProfil/karticaClanova";
 import { UzmiNadimak } from "@/services";
 import { Auth } from "@/services";
+import { Service } from "@/services/index.js";
 
 export default {
   name: "profil",
   components: { karticaClanova },
   data() {
     return {
+      lozinka: "ladno",
       auth: Auth.state,
       nadimak_obitelji: "",
       broj_clanova: "",
+      ime_roditelja: "",
+      ime_djece: "",
+      Nadimak: "",
+      isEditing: false,
     };
   },
 
   created() {
-    this.pozoviBackend();
+    this.pozoviGetBackend();
   },
 
   methods: {
-    pokazi() {},
-
-    async pozoviBackend() {
+    async pozoviGetBackend() {
       this.nadimak_obitelji = await UzmiNadimak.getOne(this.auth.userEmail);
+    },
+
+    save() {
+      this.isEditing = false;
+      let newSpremiNadimak = {
+        nadimak_obitelji: this.nadimak_obitelji.nadimak,
+      };
+      console.log(newSpremiNadimak);
+
+      Service.patch(`/users/${this.auth.userEmail}`, newSpremiNadimak).then(
+        (result) => {
+          console.log(result);
+        }
+      );
+
+      let newSpremiBroj = {
+        broj_clanova: this.nadimak_obitelji.broj_clanova,
+      };
+      console.log(newSpremiBroj);
+
+      Service.patch(`/users/${this.auth.userEmail}`, newSpremiBroj).then(
+        (result) => {
+          console.log(result);
+        }
+      );
+    },
+    cancel() {
+      this.isEditing = false;
     },
   },
 };
