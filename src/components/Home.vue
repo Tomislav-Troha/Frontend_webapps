@@ -1,7 +1,6 @@
 <template>
   <div class="sivo mx-auto mt-5">
-    <h1 style="color:black;" class="text-center  ">Glavni izbornik</h1>
-
+    <br /><br />
     <b-card-group
       style="max-width:1600px;"
       deck

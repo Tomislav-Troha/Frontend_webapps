@@ -3,7 +3,7 @@ import $router from "@/router";
 
 //vezan uz konkretni backend
 let Service = axios.create({
-  baseURL: "http://localhost:3100",
+  baseURL: "http://localhost:3000",
   timeout: 3000,
 });
 
@@ -217,14 +217,13 @@ let MlPro = {
 };
 
 let Auth = {
-  async promjenaLozinke(email, old_password, new_password) {
+  async promjenaLozinke(old_password, new_password) {
     let response = await Service.patch("/users", {
-      email: email,
       old_password: old_password,
       new_password: new_password,
     });
+
     let user = response.data;
-    console.log(user);
 
     localStorage.setItem("user", JSON.stringify(user));
 

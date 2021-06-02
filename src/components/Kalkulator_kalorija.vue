@@ -311,10 +311,12 @@
     </b-form>
     <p></p>
 
+    <hr class="mt-4" />
+
     <b-form class="mx-5 ">
       <b-form-group class="mx-5 my-5" label="Ukupna vrijednost: ">
         <b-form
-          class="form-control text-center py-2"
+          class="form-control text-center py-2 ukupno"
           style="max-width:250px; height:60px;"
         >
           <span style="font-size:25px;"
@@ -431,6 +433,10 @@ export default {
 }
 
 .ukupnoBoja {
-  background-color: #87ceeb;
+  border: 2px solid #87ceeb;
+}
+
+.ukupno {
+  border: 4px solid #009183;
 }
 </style>

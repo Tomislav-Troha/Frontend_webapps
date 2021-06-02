@@ -1,207 +1,152 @@
 <template>
-    
+  <div class="mt-5">
+    <b-card-group deck class="zeleno fadeInDown mx-auto">
+      <b-form class="mx-auto neku px-3 my-3  ">
+        <h3 class="text-center pb-4">Žene</h3>
+        <b-form-group class="mx-auto my-4" label="Spol">
+          <b-form
+            class="form-control text-center mx-auto"
+            style="width:300px; max-width:100%;"
+          >
+            {{ zeneSpol.spolZene }}
+          </b-form>
+        </b-form-group>
 
-    <div 
-      class="pojplan  p-4 mx-auto mt-5 "
-      style="background-color: #f8f8f8; !important; "
-      
-    >
+        <b-form-group class="mx-auto my-4" label="Cilj:">
+          <b-form
+            class="form-control text-center mx-auto"
+            style="width:300px; max-width:100%;"
+          >
+            {{ zeneSpol.ciljZene }}
+          </b-form>
+        </b-form-group>
 
-    
+        <b-form-group class="mx-auto my-4" label="Dnevni unos kalorija:">
+          <b-form
+            class="form-control text-center mx-auto"
+            style="width:300px; max-width:100%;"
+          >
+            {{ zeneSpol.kalorijeZene }} kcal
+          </b-form>
+        </b-form-group>
+      </b-form>
 
-    <b-card-group deck  class="zeleno wrapper fadeInDown mx-auto">
+      <b-form class="mx-auto neku px-3 my-3">
+        <h3 class="text-center pb-4">Muškarci</h3>
+        <b-form-group class="mx-auto my-4" label="Spol">
+          <b-form
+            class="form-control text-center mx-auto"
+            style="width:300px; max-width:100%;"
+          >
+            {{ muskiSpol.spolMuski }}
+          </b-form>
+        </b-form-group>
 
-      
+        <b-form-group class="mx-auto my-4" label="Cilj">
+          <b-form
+            class="form-control text-center mx-auto"
+            style="width:300px; max-width:100%;"
+          >
+            {{ muskiSpol.ciljMuski }}
+          </b-form>
+        </b-form-group>
 
- <b-form class="mx-auto neku px-3 my-3  " >
-     <h3 class="text-center pb-4">Žene</h3>
-     <b-form-group class="mx-auto my-4" label="Spol">
-      
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%;"  >
-               {{zeneSpol.spolZene}}
-   
-            </b-form>
+        <b-form-group class="mx-auto my-4" label="Dnevni unos kalorija:">
+          <b-form
+            class="form-control text-center mx-auto"
+            style="width:300px; max-width:100%;"
+          >
+            {{ muskiSpol.kalorijeMuski }} kcal
+          </b-form>
+        </b-form-group>
+      </b-form>
 
-     </b-form-group>
-               
-          
-        
-     <b-form-group class="mx-auto my-4" label="Cilj:">
-      
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%;"  >
-               {{zeneSpol.ciljZene}}
-   
-            </b-form>
+      <b-form class="mx-auto neku px-3 my-3 ">
+        <h3 class="text-center pb-4">Djeca</h3>
+        <b-form-group class="mx-auto my-4" label="Doručak">
+          <b-form
+            class="form-control text-center mx-auto"
+            style="width:300px; max-width:100%;"
+          >
+          </b-form>
+        </b-form-group>
+        <b-form-group class="mx-auto my-4" label="Ručak">
+          <b-form
+            class="form-control text-center mx-auto"
+            style="width:300px; max-width:100%;"
+          >
+          </b-form>
+        </b-form-group>
 
-     </b-form-group>
-
-       <b-form-group class="mx-auto my-4" label="Dnevni unos kalorija:">
-      
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%;"  >
-               {{zeneSpol.kalorijeZene}} kcal
-   
-            </b-form>
-
-     </b-form-group>
-
- </b-form>
-
-
-
-
- <b-form class="mx-auto neku px-3 my-3">
-     <h3 class="text-center pb-4">Muškarci</h3>
-      <b-form-group class="mx-auto my-4" label="Spol">
-      
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%;"  >
-               {{muskiSpol.spolMuski}}
-   
-            </b-form>
-
-     </b-form-group>
-
-      <b-form-group class="mx-auto my-4" label="Cilj">
-      
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%;"  >
-               {{muskiSpol.ciljMuski}}
-   
-            </b-form>
-
-     </b-form-group>
-
-       <b-form-group class="mx-auto my-4" label="Dnevni unos kalorija:">
-      
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%;"  >
-               {{muskiSpol.kalorijeMuski}} kcal
-   
-            </b-form>
-
-     </b-form-group>
-
- </b-form>
-
-
-
-
- <b-form class="mx-auto neku px-3 my-3 ">
-   <h3 class="text-center pb-4">Djeca</h3>
-      <b-form-group class="mx-auto my-4" label="Doručak">
-      
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%;"  >
-               
-   
-            </b-form>
-
-     </b-form-group>
- <b-form-group class="mx-auto my-4" label="Ručak">
-      
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%;"  >
-              
-   
-            </b-form>
-
-     </b-form-group>
-
-     <b-form-group class="mx-auto my-4" label="Večera">
-      
-            <b-form class="form-control text-center mx-auto" style="width:300px; max-width:100%;"  >
-               
-   
-            </b-form>
-
-     </b-form-group>
-
- </b-form>
- 
+        <b-form-group class="mx-auto my-4" label="Večera">
+          <b-form
+            class="form-control text-center mx-auto"
+            style="width:300px; max-width:100%;"
+          >
+          </b-form>
+        </b-form-group>
+      </b-form>
     </b-card-group>
-
-
-
-
-    </div>
-
+  </div>
 </template>
 
-
-
-
 <script>
-
-import {PojedinacniPlan} from "@/services"
-import { Auth } from '@/services'
+import { PojedinacniPlan } from "@/services";
+import { Auth } from "@/services";
 
 export default {
-
-  data(){
-    return{
-
+  data() {
+    return {
       auth: Auth.state,
 
-      dorucak:null,
-      rucak:null,
-      vecera:null,
+      dorucak: null,
+      rucak: null,
+      vecera: null,
 
-      zeneSpol:"",
-      muskiSpol:""
-    }
+      zeneSpol: "",
+      muskiSpol: "",
+    };
   },
 
-  created(){
+  created() {
     this.pozoviBackend();
   },
 
-methods:{
-  async pozoviBackend(){
-
-    this.zeneSpol = await PojedinacniPlan.getOne(this.auth.userEmail)  
-    this.muskiSpol = await PojedinacniPlan.getOne(this.auth.userEmail)  
-    
-
-
-
-  }
-}
-
-}
-
-
-
-
+  methods: {
+    async pozoviBackend() {
+      this.zeneSpol = await PojedinacniPlan.getOne(this.auth.userEmail);
+      this.muskiSpol = await PojedinacniPlan.getOne(this.auth.userEmail);
+    },
+  },
+};
 </script>
 
-
-
-
-
 <style scoped>
-
-.pojplan{
+.pojplan {
   border-radius: 20px;
-  background-color: white !important
+  background-color: white !important;
 }
 
-.zeleno{
-  background-color: #F8F8F8;
-  
+.zeleno {
+  background-color: #f8f8f8;
+
   fill: rgba(196, 196, 196, 1);
   filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.788));
   overflow: visible;
-   border-radius: 20px;
-   max-width: 1300px;
+  border-radius: 20px;
+  max-width: 1300px;
 }
 
-.neku{
+.neku {
   background-color: #97ddf7;
-   fill: rgba(196, 196, 196, 1);
+  fill: rgba(196, 196, 196, 1);
   filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.788));
   overflow: visible;
-   border-radius: 20px;
-   max-width: 300px;
-
+  border-radius: 20px;
+  max-width: 300px;
 }
 
-.form-control{
-  background-color: #F8F8F8;
+.form-control {
+  background-color: #f8f8f8;
 }
-
 </style>

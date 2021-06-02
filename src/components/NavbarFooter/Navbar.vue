@@ -2,32 +2,51 @@
   <div class="mx-5 ">
     <b-navbar toggleable="lg" class="navbar rounded-lg">
       <b-navbar-brand>
-        <h2 class="mx-3" id="befit">Family health</h2>
+        <h2 class="mx-3" id="FH">Family health</h2>
       </b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"> </b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="mx-auto">
-          <h1 v-if="$route.name === 'plan_prehrane_home'">Plan prehrane</h1>
-          <h1 v-if="$route.name === 'obiteljski_plan'">Obiteljski plan</h1>
-          <h1 v-if="$route.name === 'pojedinacni_plan'">Pojedinačni plan</h1>
-          <h1 v-if="$route.name === 'tvojeStanje_home'">Vaše stanje</h1>
+          <span class="home-text" v-if="$route.name === 'home'"
+            >Dobro došli</span
+          >
+          <span class="home-text" v-if="$route.name === 'plan_prehrane_home'"
+            >Plan prehrane</span
+          >
+          <span class="home-text" v-if="$route.name === 'obiteljski_plan'"
+            >Obiteljski plan</span
+          >
+          <span class="home-text" v-if="$route.name === 'pojedinacni_plan'"
+            >Pojedinačni plan</span
+          >
+          <span class="home-text" v-if="$route.name === 'tvojeStanje_home'"
+            >Vaše stanje</span
+          >
+          <span class="home-text" v-if="$route.name === 'vas_pojedinacni_plan'"
+            >Pojedinačni plan</span
+          >
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
 
         <b-navbar-nav>
           <span @click="profil" v-if="auth.prijavljen">
-            <b-nav-item style="font-size:20px;" right
-              >{{ auth.userEmail }}
+            <b-nav-item class="mt-2" style="font-size:25px;" right
+              ><p class="mt-1">{{ user.nadimak }}</p>
+
               <!-- Using 'button-content' slot -->
             </b-nav-item>
           </span>
 
           <span v-if="auth.prijavljen">
-            <b-nav-item style="font-size:20px;" right @click="odjava"
-              >Odjava
+            <b-nav-item
+              class="mt-3 "
+              style="font-size:20px;"
+              right
+              @click="odjava"
+              ><p class="odjava">Odjava</p>
               <!-- Using 'button-content' slot -->
               <template #button-content>
                 <em style="font-size:23px;"></em>
@@ -42,16 +61,26 @@
 
 <script>
 import { Auth } from "@/services";
+import { Service } from "@/services/index.js";
+import { UzmiNadimak } from "@/services";
 
 export default {
   data() {
     return {
-      user: null,
+      user: "",
       auth: Auth.state,
     };
   },
 
+  created() {
+    this.pozoviBackend();
+  },
+
   methods: {
+    async pozoviBackend() {
+      this.user = await UzmiNadimak.getOne(this.auth.userEmail);
+    },
+
     odjava() {
       Auth.logout();
       this.$router.go();
@@ -74,17 +103,22 @@ export default {
   color: #009dc5;
 }
 
-#befit {
+#FH {
   font-family: "Script MT";
   font-style: normal;
   font-weight: normal;
   font-size: 44px;
   color: #000000 !important;
 }
-h1 {
+
+.odjava {
+  color: blue !important;
+}
+
+.home-text {
   color: black;
-  font-size: 60px;
+  font-size: 45px;
   font-family: "Segoe UI";
-  font-weight: bold;
+  font-weight: 500;
 }
 </style>
