@@ -17,6 +17,7 @@ import Index from "@/components/Tvoje_stanje/index";
 import { Auth } from "@/services";
 import profil from "@/components/UserProfil/profil";
 import dodajClanove from "@/components/UserProfil/dodajClanove";
+import Admin from "@/components/adminPage";
 
 Vue.use(Router);
 
@@ -105,6 +106,11 @@ const router = new Router({
           component: dodajClanove,
         },
       ],
+    },
+    {
+      path: "/admin",
+      name: "admin",
+      component: Admin,
     },
   ],
 });

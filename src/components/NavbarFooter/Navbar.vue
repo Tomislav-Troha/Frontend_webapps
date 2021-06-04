@@ -2,7 +2,9 @@
   <div class="mx-5 ">
     <b-navbar toggleable="lg" class="navbar rounded-lg">
       <b-navbar-brand>
-        <h2 class="mx-3" id="FH">Family health</h2>
+        <h2 @click="goHome" class="mx-3 naslov" id="FH">
+          Family health
+        </h2>
       </b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"> </b-navbar-toggle>
@@ -32,9 +34,19 @@
         <!-- Right aligned nav items -->
 
         <b-navbar-nav>
+          <span
+            @click="goAdmin"
+            v-if="auth.prijavljen && horvat.role == 'admin'"
+          >
+            <b-nav-item class="mt-2" style="font-size:25px;" right
+              ><p class="mt-1">Admin</p>
+
+              <!-- Using 'button-content' slot -->
+            </b-nav-item>
+          </span>
           <span @click="profil" v-if="auth.prijavljen">
             <b-nav-item class="mt-2" style="font-size:25px;" right
-              ><p class="mt-1">{{ user.nadimak }}</p>
+              ><p class="mt-1">{{ auth.userEmail }}</p>
 
               <!-- Using 'button-content' slot -->
             </b-nav-item>
@@ -69,16 +81,25 @@ export default {
     return {
       user: "",
       auth: Auth.state,
+      horvat: "",
     };
   },
 
   created() {
-    this.pozoviBackend();
+    this.pozoviGetBackend();
   },
 
   methods: {
-    async pozoviBackend() {
-      this.user = await UzmiNadimak.getOne(this.auth.userEmail);
+    async pozoviGetBackend() {
+      this.horvat = await UzmiNadimak.getOne(this.auth.userEmail);
+    },
+
+    goHome() {
+      this.$router.push("/home");
+    },
+
+    goAdmin() {
+      this.$router.push("/admin");
     },
 
     odjava() {
@@ -120,5 +141,8 @@ export default {
   font-size: 45px;
   font-family: "Segoe UI";
   font-weight: 500;
+}
+.naslov {
+  cursor: pointer;
 }
 </style>

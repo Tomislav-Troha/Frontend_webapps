@@ -94,7 +94,15 @@ export default {
         console.log("rezultat promjene", succes);
 
         if (succes == true) {
-          this.showSucces = true;
+          this.$alert(
+            "Ponovno se prijavite",
+            "Lozinka promjenjena",
+            "success",
+            {
+              confirmButtonText: "Prijava!",
+            }
+          );
+          this.$router.push({ name: "login" });
         }
       } catch (e) {
         //console.log(e);

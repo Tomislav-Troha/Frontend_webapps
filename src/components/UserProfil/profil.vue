@@ -85,6 +85,7 @@
                 <div class="col-sm-9 text-secondary">
                   <mdb-btn
                     gradient="blue"
+                    class="urediButton"
                     rounded
                     @click="isEditing = !isEditing"
                     v-if="!isEditing && $route.name === 'profil'"
@@ -92,6 +93,7 @@
                   >
                   <mdb-btn
                     gradient="blue"
+                    class="spremiButton"
                     rounded
                     @click="save"
                     v-else-if="isEditing"
@@ -100,6 +102,7 @@
                   <mdb-btn
                     color="danger"
                     rounded
+                    class="odustaniButton"
                     v-if="isEditing"
                     @click="cancel"
                     >Odustani</mdb-btn
@@ -107,6 +110,7 @@
                   <router-link to="/promjena_lozinke">
                     <mdb-btn
                       gradient="aqua"
+                      class="promijeniLozinkuButton"
                       rounded
                       v-if="isEditing"
                       @click="cancel"
@@ -188,5 +192,17 @@ export default {
 <style scoped>
 .drugi {
   max-width: 740px;
+}
+.urediButton {
+  border-radius: 15px;
+}
+.spremiButton {
+  border-radius: 0 25px;
+}
+.odustaniButton {
+  border-radius: 0 25px;
+}
+.promijeniLozinkuButton {
+  border-radius: 0 25px;
 }
 </style>

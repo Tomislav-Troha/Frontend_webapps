@@ -56,43 +56,44 @@
 </template>
 
 <script>
-import { Auth } from '@/services'
+import { Auth } from "@/services";
 
 export default {
-  data () {
+  data() {
     return {
-      email: '',
-      lozinka: '',
+      email: "",
+      lozinka: "",
       showError: false,
       showError1: false,
 
-      show: true
-    }
+      show: true,
+    };
   },
 
   methods: {
-    async login (event) {
-      if (this.email == '' || this.lozinka == '') {
-        event.target.classList.add('was-validated')
-        return (this.showError1 = true)
+    async login(event) {
+      if (this.email == "" || this.lozinka == "") {
+        event.target.classList.add("was-validated");
+        return (this.showError1 = true);
       }
 
-      this.showError = false
-      this.showError1 = false
+      this.showError = false;
+      this.showError1 = false;
 
       try {
-        let succes = await Auth.login(this.email, this.lozinka)
-        console.log('Rezultat prijave', succes)
+        let succes = await Auth.login(this.email, this.lozinka);
+        console.log("Rezultat prijave", succes);
 
-        if ((succes == true && this.email !== '') || this.lozinka !== '') {
-          this.$router.replace({ path: '/home' })
+        if ((succes == true && this.email !== "") || this.lozinka !== "") {
+          this.$router.replace({ path: "/home" });
+          this.$router.go();
         }
       } catch (e) {
-        this.showError = true
+        this.showError = true;
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>

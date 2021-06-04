@@ -3,7 +3,7 @@ import $router from "@/router";
 
 //vezan uz konkretni backend
 let Service = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "http://localhost:3100",
   timeout: 3000,
 });
 
@@ -36,6 +36,7 @@ let UzmiNadimak = {
       nadimak: doc.nadimak_obitelji,
       broj_clanova: doc.broj_clanova,
       lozinka: doc.lozinka,
+      role: doc.role,
     };
   },
 };
@@ -108,6 +109,28 @@ let NadipoId = {
     }
       
 } */
+
+let Admin = {
+  async getAll(admin) {
+    let response = await Service.get(`/admin?${admin}`);
+    let data = response.data;
+    data = data.map((doc) => {
+      return {
+        email: doc.email,
+        role: doc.role,
+      };
+    });
+    return data;
+  },
+
+  async getOne(admin) {
+    let response = await Service.get(`/admin/${admin}`);
+    let doc = response.data;
+    return {
+      role: doc.role,
+    };
+  },
+};
 
 //NAMIRNICE
 
@@ -310,4 +333,5 @@ export {
   PojedinacniPlan,
   Auth,
   UzmiNadimak,
+  Admin,
 };
