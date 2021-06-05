@@ -30,14 +30,14 @@
     >
       <h5 v-if="opcija.muskarci == 'Mršavljenje'">
         Odabrali ste opciju mršavljenje,<br />
-        da bi ste dobili plan, izračunajte svoju dnevnu kalorijsku vrijednosti
-        koju morate ispuniti za vaš cilj.
+        izračunajte svoju dnevnu kalorijsku vrijednosti koju morate ispuniti za
+        vaš cilj.
       </h5>
 
       <h5 v-if="opcija.muskarci == 'Teretana'">
         Odabrali ste opciju teretan,<br />
-        da bi ste dobili plan, izračunajte svoju dnevnu kalorijsku vrijednosti
-        koju morate ispuniti za vaš cilj.
+        izračunajte svoju dnevnu kalorijsku vrijednosti koju morate ispuniti za
+        vaš cilj.
       </h5>
 
       <div
@@ -275,8 +275,7 @@ export default {
         Service.patch(
           `/pojedinacniPlan/${this.auth.userEmail}`,
           NewSpremiPojedinacnoMuskiM
-        )
-        .then((result) => {
+        ).then((result) => {
           console.log(result);
         });
       } else if (this.opcija.muskarci == "Teretana") {
@@ -290,8 +289,7 @@ export default {
         Service.patch(
           `/pojedinacniPlan/${this.auth.userEmail}`,
           NewSpremiPojedinacnoMuskiT
-        )
-        .then((result) => {
+        ).then((result) => {
           console.log(result);
         });
       }

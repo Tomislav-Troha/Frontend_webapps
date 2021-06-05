@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="app">
     <Navbar />
     <router-view />
 
@@ -18,6 +18,12 @@ export default {
   components: {
     Navbar,
     Footer,
+  },
+
+  data() {
+    return {
+      mode: "dark",
+    };
   },
 };
 </script>

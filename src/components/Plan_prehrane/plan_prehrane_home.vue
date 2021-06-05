@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="calorie p-4 mx-auto mt-5   w-75  w-75   "
-    style="background-color: #f8f8f8; !important;  "
-  >
+  <div class="calorie p-4 mx-auto mt-5   w-75  w-75   ">
     <div>
       <b-card-group deck class="text-center">
         <b-card
@@ -58,7 +55,7 @@ export default {};
 <style scoped>
 .calorie {
   fill: rgba(196, 196, 196, 1);
-  filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.788));
+  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.788));
   overflow: visible;
   border-radius: 8px;
 }

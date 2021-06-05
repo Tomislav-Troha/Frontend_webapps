@@ -11,14 +11,14 @@
       </div>
 
       <mdb-btn
-        class="mt-4 ml-1"
+        class="mt-4 ml-1 spremi"
         gradient="blue"
         @click="promjenaLozinke"
         rounded
         >Spremi</mdb-btn
       >
       <router-link to="/profil"
-        ><mdb-btn class="mt-4 ml-1" color="danger" rounded
+        ><mdb-btn class="mt-4 ml-1 odustani" color="danger" rounded
           >Odustani</mdb-btn
         ></router-link
       >
@@ -130,5 +130,13 @@ export default {
   filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.788));
   overflow: visible;
   border-radius: 25px;
+}
+
+.spremi {
+  border-radius: 0 18px;
+}
+
+.odustani {
+  border-radius: 0 18px;
 }
 </style>
