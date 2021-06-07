@@ -12,6 +12,7 @@
     "axois": "*",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",
+    "lodash": "^4.17.21",
     "mdbvue": "^6.7.2",
     "vee-validate": "^3.4.6",
     "vue": "^2.6.11",

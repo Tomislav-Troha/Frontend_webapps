@@ -5,6 +5,10 @@ import $router from "@/router";
 let Service = axios.create({
   baseURL: "http://localhost:3100",
   timeout: 3000,
+  headers: {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  },
 });
 
 Service.interceptors.request.use((request) => {
@@ -19,7 +23,11 @@ Service.interceptors.request.use((request) => {
 Service.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response.status == 401 || error.response.status == 403) {
+    if (error.response.status == 403) {
+      $router.replace("/error");
+      return Promise.reject("Ovoj ruti ne možes pristupiti", error);
+    }
+    if (error.response.status == 401) {
       Auth.logout();
       $router.go();
     }
@@ -89,26 +97,25 @@ let NadipoId = {
   },
 };
 
-/*let spremljeneVarijenteTjedan = {
+let Search = {
+  async getAll(search_text) {
+    let options = {};
 
-    async getAll(tjedneVarijante) {
-        
-        let response = await Service.get(`/SpremiTjedan?${tjedneVarijante}`)
-        let data = response.data
-        data = data.map(doc => {
-            return {
-                id: doc._id,
-                radni_dan: doc.radni_dan,
-                dorucak: doc.dorucak,
-                rucak: doc.rucak,
-                vecera: doc.vecera
-               
-            };
-        });
-        return data
+    if (search_text) {
+      options.params = {
+        name2: search_text,
+      };
     }
-      
-} */
+    let response = await Service.get("/admin/search/one", options);
+    let data = response.data;
+    data = data.map((doc) => {
+      return {
+        email: doc.email,
+      };
+    });
+    return data;
+  },
+};
 
 let Admin = {
   async getAll(admin) {
@@ -334,4 +341,5 @@ export {
   Auth,
   UzmiNadimak,
   Admin,
+  Search,
 };

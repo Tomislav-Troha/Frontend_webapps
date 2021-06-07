@@ -12,7 +12,6 @@
             v-model="email"
             label="Email"
             type="email"
-            id="validationCustom12"
             required
             invalidFeedback="Molimo unesite ispravan e-mail."
             validFeedback="Izgleda dobro!"
@@ -21,7 +20,6 @@
             v-model="lozinka"
             label="Lozinka"
             type="password"
-            id="validationCustom12"
             required
             invalidFeedback="Molimo unesite ispravanu lozinku."
             validFeedback="Izgleda dobro!"

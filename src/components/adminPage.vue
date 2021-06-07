@@ -1,7 +1,19 @@
 <template>
   <div class="card-body mx-auto mt-5">
+    <div class="active-cyan-3 active-cyan-4">
+      <input
+        class="form-control mx-auto"
+        type="text"
+        placeholder="Search"
+        aria-label="Search"
+        v-model="store.search_text"
+      />
+    </div>
+
+    <hr class="mt-5 mx-4" />
+
     <div
-      class="mx-5"
+      class="mx-5 mt-5"
       v-for="EmailAdmin in EmailAdmin"
       v-bind:key="EmailAdmin.email"
       v-bind:value="EmailAdmin.email"
@@ -13,7 +25,7 @@
           }}</b-form>
 
           <button
-            @click="izbrisiUsera(EmailAdmin.email)"
+            @click.prevent="izbrisiUsera(EmailAdmin.role, EmailAdmin.email)"
             class="noselect my-1 mx-3"
           >
             <span class="text">Obriši</span
@@ -40,7 +52,9 @@
 import { Admin } from "@/services";
 import { Service } from "@/services";
 import { Auth } from "@/services";
-import { UzmiNadimak } from "@/services";
+import { Search } from "@/services";
+import _ from "lodash";
+import store from "@/store";
 
 export default {
   data() {
@@ -48,36 +62,66 @@ export default {
       auth: Auth.state,
       EmailAdmin: {},
       feedback: "",
+      store,
     };
   },
 
   created() {
     this.pozoviBackend();
+    this.fetchEmail();
+  },
+
+  watch: {
+    "store.search_text": _.debounce(function(val) {
+      this.fetchEmail(val);
+    }, 500),
   },
 
   methods: {
+    async fetchEmail(term) {
+      term = term || store.search_text;
+      this.EmailAdmin = await Search.getAll(term);
+      //console.log(this.email);
+    },
+
     async pozoviBackend(term) {
       this.EmailAdmin = await Admin.getAll(term);
     },
 
-    izbrisiUsera(email) {
+    izbrisiUsera(role, email) {
       let newMail = {
+        role: role,
         email: email,
       };
-      if (newMail.email == "horvat@gmail.com") {
+      //console.log(newMail);
+      if (newMail.role == "admin") {
         return (this.feedback = "Nije baš cool obrisat admina");
       } else {
+        this.feedback = "";
         console.log(newMail);
         Service.post("/admin/" + email, newMail).then((result) => {
           console.log(result);
         });
+        this.$router.go();
       }
+    },
+  },
+
+  watch: {
+    "store.search_text": function() {
+      //console.log("Promjenio sam se!", this.store.search_text)
+      this.fetchEmail();
     },
   },
 };
 </script>
 
 <style scoped>
+.active-cyan-4 input[type="text"]:focus:not([readonly]) {
+  border: 1px solid #4dd0e1;
+  box-shadow: 0 0 0 1px #4dd0e1;
+}
+
 .form-control {
   max-width: 350px;
 }
@@ -162,5 +206,9 @@ button:hover .icon {
 
 button:focus {
   outline: none;
+}
+
+.search {
+  max-width: 300px;
 }
 </style>

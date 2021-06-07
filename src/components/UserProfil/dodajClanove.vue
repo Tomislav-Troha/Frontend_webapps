@@ -17,7 +17,7 @@
         rounded
         >Spremi</mdb-btn
       >
-      <router-link to="/profil"
+      <router-link :to="{ name: 'profil', params: { email: nadimak.nadimak } }"
         ><mdb-btn class="mt-4 ml-1 odustani" color="danger" rounded
           >Odustani</mdb-btn
         ></router-link
@@ -36,6 +36,7 @@
 import { Auth } from "@/services";
 import { Service } from "@/services/index.js";
 import { required, minLength, between } from "vuelidate/lib/validators";
+import { UzmiNadimak } from "@/services";
 
 export default {
   data() {
@@ -43,6 +44,7 @@ export default {
       auth: Auth.state,
       staraLozinka: "",
       novaLozinka: "",
+      nadimak: "",
       feedback: "",
       feedback1: "",
       showError: false,
@@ -58,7 +60,15 @@ export default {
     },
   },
 
+  created() {
+    this.pozoviGetBackend();
+  },
+
   methods: {
+    async pozoviGetBackend() {
+      this.nadimak = await UzmiNadimak.getOne(this.auth.userEmail);
+    },
+
     async promjenaLozinke() {
       this.showError = false;
 

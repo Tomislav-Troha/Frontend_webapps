@@ -96,13 +96,13 @@ const router = new Router({
       component: Index,
     },
     {
-      path: "/profil",
+      path: "/profil/:nadimak",
       name: "profil",
       component: profil,
       children: [
         {
           name: "promjena_lozinke",
-          path: "/promjena_lozinke",
+          path: "/promjena_lozinke/:nadimak",
           component: dodajClanove,
         },
       ],
@@ -111,6 +111,19 @@ const router = new Router({
       path: "/admin",
       name: "admin",
       component: Admin,
+      meta: { isAdmin: true },
+    },
+
+    {
+      name: "error",
+      path: "/error",
+      component: () => import("@/Error/403"),
+    },
+
+    {
+      name: "404",
+      path: "/:pathMatch(.*)*",
+      component: () => import("@/Error/pageNotFound"),
     },
   ],
 });
@@ -124,7 +137,6 @@ router.beforeEach((to, from, next) => {
     next("/");
     return;
   }
-
   next();
 });
 

@@ -107,7 +107,12 @@
                     @click="cancel"
                     >Odustani</mdb-btn
                   >
-                  <router-link to="/promjena_lozinke">
+                  <router-link
+                    :to="{
+                      name: 'promjena_lozinke',
+                      params: { email: nadimak_obitelji.nadimak },
+                    }"
+                  >
                     <mdb-btn
                       gradient="aqua"
                       class="promijeniLozinkuButton"

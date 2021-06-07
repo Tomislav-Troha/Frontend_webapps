@@ -108,7 +108,7 @@ export default {
     },
 
     profil() {
-      this.$router.push("/profil");
+      this.$router.push(`/profil/${this.horvat.nadimak}`);
     },
   },
 };

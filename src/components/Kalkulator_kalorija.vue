@@ -6,8 +6,8 @@
   >
     <h1 class="text-center mb-5 ">Kalkulator kalorija obroka</h1>
 
-    <b-form inline class="mx-4 ">
-      <b-form-group class=" mx-auto my-4 " label="Meso:">
+    <b-form inline class="mx-4">
+      <b-form-group class=" mx-auto my-4" label="Meso:">
         <b-form-select
           class="form-control tamnije"
           style="width:220px; max-width:100%;"

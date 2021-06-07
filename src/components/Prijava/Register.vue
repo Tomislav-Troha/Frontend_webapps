@@ -16,7 +16,6 @@
                 v-model="nadimak_obitelji"
                 label="Nadimak obitelji"
                 type="text"
-                id="validationCustom12"
                 required
                 invalidFeedback="Molimo odaberite nadimak."
               />
@@ -24,7 +23,6 @@
                 v-model="broj_clanova"
                 label="Broj članova obitelji"
                 type="number"
-                id="validationCustom12"
                 required
                 invalidFeedback="Molimo odaberite broj članova."
               />
@@ -32,7 +30,6 @@
                 v-model="email"
                 label="E-mail"
                 type="email"
-                id="validationCustom12"
                 required
                 invalidFeedback="Molimo unesite ispravan e-mail."
                 validFeedback="Izgleda dobro!"
@@ -106,60 +103,60 @@
 </template>
 
 <script>
-import { Auth } from '@/services'
-import { mdbBtn, mdbIcon, mdbRow, mdbCol, mdbInput } from 'mdbvue'
-import { required, minLength, between } from 'vuelidate/lib/validators'
+import { Auth } from "@/services";
+import { mdbBtn, mdbIcon, mdbRow, mdbCol, mdbInput } from "mdbvue";
+import { required, minLength, between } from "vuelidate/lib/validators";
 
 export default {
-  name: 'ValidationPagePro',
+  name: "ValidationPagePro",
   components: {
     mdbBtn,
     mdbIcon,
     mdbRow,
     mdbCol,
-    mdbInput
+    mdbInput,
   },
-  data () {
+  data() {
     return {
       showError: false,
       showError1: false,
       showError2: false,
       checked: false,
 
-      nadimak_obitelji: '',
-      broj_clanova: '',
-      email: '',
-      lozinka: ''
-    }
+      nadimak_obitelji: "",
+      broj_clanova: "",
+      email: "",
+      lozinka: "",
+    };
   },
 
   validations: {
     lozinka: {
       required,
-      minLength: minLength(6)
-    }
+      minLength: minLength(6),
+    },
   },
 
   methods: {
-    async register (event) {
+    async register(event) {
       if (
-        this.nadimak_obitelji == '' ||
-        this.broj_clanova == '' ||
-        this.email == '' ||
-        this.lozinka == '' ||
+        this.nadimak_obitelji == "" ||
+        this.broj_clanova == "" ||
+        this.email == "" ||
+        this.lozinka == "" ||
         this.checked == false
       ) {
-        event.target.classList.add('was-validated')
-        return (this.showError1 = true)
+        event.target.classList.add("was-validated");
+        return (this.showError1 = true);
       }
       if (this.$v.lozinka.minLength == false) {
-        this.showError1 = false
-        return (this.showError2 = true)
+        this.showError1 = false;
+        return (this.showError2 = true);
       }
 
-      this.showError2 = false
-      this.showError = false
-      this.showError1 = false
+      this.showError2 = false;
+      this.showError = false;
+      this.showError1 = false;
 
       try {
         let succes = await Auth.register(
@@ -167,29 +164,29 @@ export default {
           this.broj_clanova,
           this.email,
           this.lozinka
-        )
-        console.log('Rezultat registracije', succes)
+        );
+        console.log("Rezultat registracije", succes);
 
         if (
           (succes == true &&
             this.$v.lozinka.minLength == true &&
-            this.nadimak_obitelji !== '') ||
-          this.broj_clanova !== '' ||
-          this.email !== '' ||
-          this.lozinka !== '' ||
+            this.nadimak_obitelji !== "") ||
+          this.broj_clanova !== "" ||
+          this.email !== "" ||
+          this.lozinka !== "" ||
           this.checked !== false
         ) {
-          this.$alert('Uspiješna registacija', 'Odlično', 'success', {
-            confirmButtonText: 'Prijava!'
-          })
-          this.$router.push({ name: 'login' })
+          this.$alert("Uspiješna registacija", "Odlično", "success", {
+            confirmButtonText: "Prijava!",
+          });
+          this.$router.push({ name: "login" });
         }
       } catch (e) {
-        this.showError = true
+        this.showError = true;
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
