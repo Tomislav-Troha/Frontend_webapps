@@ -79,6 +79,9 @@
                   </b-form-input>
                 </div>
               </div>
+              <span class="text-center"
+                ><p style="font-size:20px">{{ feedback }}</p></span
+              >
 
               <div class="row">
                 <div class="col-sm-3"></div>
@@ -147,8 +150,7 @@ export default {
       auth: Auth.state,
       nadimak_obitelji: "",
       broj_clanova: "",
-      ime_roditelja: "",
-      ime_djece: "",
+      feedback: "",
       Nadimak: "",
       isEditing: false,
     };
