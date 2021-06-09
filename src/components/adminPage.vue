@@ -1,8 +1,8 @@
 <template>
-  <div class="card-body mx-auto mt-5">
+  <div class="card mx-auto mt-5">
     <div class="active-cyan-3 active-cyan-4">
       <input
-        class="form-control mx-auto"
+        class="form-control mx-auto mt-3"
         type="text"
         placeholder="Search"
         aria-label="Search"
@@ -93,12 +93,11 @@ export default {
         role: role,
         email: email,
       };
-      //console.log(newMail);
+      console.log("Tu bi trebao pisati ", newMail.role);
       if (newMail.role == "admin") {
         return (this.feedback = "Nije baš cool obrisat admina");
       } else {
         this.feedback = "";
-        console.log(newMail);
         Service.post("/admin/" + email, newMail).then((result) => {
           console.log(result);
           this.pozoviBackend();
@@ -125,7 +124,7 @@ export default {
 .form-control {
   max-width: 350px;
 }
-.card-body {
+.card {
   background-color: #f8f9fa;
   max-width: 650px;
   fill: rgba(196, 196, 196, 1);
