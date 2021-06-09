@@ -101,8 +101,8 @@ export default {
         console.log(newMail);
         Service.post("/admin/" + email, newMail).then((result) => {
           console.log(result);
+          this.pozoviBackend();
         });
-        this.$router.go();
       }
     },
   },

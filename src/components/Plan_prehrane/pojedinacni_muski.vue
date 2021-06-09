@@ -278,6 +278,7 @@ export default {
         ).then((result) => {
           console.log(result);
         });
+        this.feedback = "Uspješno spremljeno";
       } else if (this.opcija.muskarci == "Teretana") {
         let NewSpremiPojedinacnoMuskiT = {
           spolMuski: this.spol.muskarci,
@@ -292,6 +293,7 @@ export default {
         ).then((result) => {
           console.log(result);
         });
+        this.feedback = "Uspješno spremljeno";
       }
     },
   },

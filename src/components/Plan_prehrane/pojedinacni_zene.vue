@@ -183,7 +183,7 @@
           >Spremi</b-button
         >
 
-        <p>{{ spremiFeedback }}</p>
+        <p style="font-size:25px; color:red;">{{ spremiFeedback }}</p>
 
         <h5
           v-if="
@@ -317,8 +317,7 @@ export default {
           Service.patch(
             `/pojedinacniPlan/${this.auth.userEmail}`,
             NewSpremiPojedinacnoZeneM
-          )
-          .then((result) => {
+          ).then((result) => {
             console.log(result);
           });
         } else if (this.opcija.zene === "Fitness") {
@@ -331,8 +330,7 @@ export default {
           Service.patch(
             `/pojedinacniPlan/${this.auth.userEmail}`,
             NewSpremiPojedinacnoZeneMF
-          )
-          .then((result) => {
+          ).then((result) => {
             console.log(result);
           });
         } else if (this.opcija.zene === "Trudnice") {
@@ -345,8 +343,7 @@ export default {
           Service.patch(
             `/pojedinacniPlan/${this.auth.userEmail}`,
             NewSpremiPojedinacnoZeneMT
-          )
-          .then((result) => {
+          ).then((result) => {
             console.log(result);
           });
         }

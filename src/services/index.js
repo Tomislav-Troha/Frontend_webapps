@@ -3,6 +3,7 @@ import $router from "@/router";
 
 //vezan uz konkretni backend
 let Service = axios.create({
+  // baseURL: "https://fast-badlands-32396.herokuapp.com/",
   baseURL: "https://fast-badlands-32396.herokuapp.com/",
   timeout: 3000,
   headers: {
@@ -61,6 +62,10 @@ let PojedinacniPlan = {
       ciljZene: doc.ciljZene,
       kalorijeMuski: doc.kalorijeMuski,
       kalorijeZene: doc.kalorijeZene,
+      godina: doc.godina,
+      dorucak: doc.dorucak,
+      rucak: doc.rucak,
+      vecera: doc.vecera,
     };
   },
 };

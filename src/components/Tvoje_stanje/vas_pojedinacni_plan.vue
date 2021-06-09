@@ -62,19 +62,19 @@
       </b-form>
 
       <b-form class="mx-auto neku px-3 my-3 ">
-        <h3 class="text-center pb-4">Djeca</h3>
+        <h3 class="text-center pb-4">Djeca {{ djeca.godina }}</h3>
         <b-form-group class="mx-auto my-4" label="Doručak">
           <b-form
             class="form-control text-center mx-auto"
             style="width:300px; max-width:100%;"
-          >
+            >{{ djeca.dorucak }}
           </b-form>
         </b-form-group>
         <b-form-group class="mx-auto my-4" label="Ručak">
           <b-form
             class="form-control text-center mx-auto"
             style="width:300px; max-width:100%;"
-          >
+            >{{ djeca.rucak }}
           </b-form>
         </b-form-group>
 
@@ -82,7 +82,7 @@
           <b-form
             class="form-control text-center mx-auto"
             style="width:300px; max-width:100%;"
-          >
+            >{{ djeca.vecera }}
           </b-form>
         </b-form-group>
       </b-form>
@@ -105,6 +105,7 @@ export default {
 
       zeneSpol: "",
       muskiSpol: "",
+      djeca: "",
     };
   },
 
@@ -116,6 +117,7 @@ export default {
     async pozoviBackend() {
       this.zeneSpol = await PojedinacniPlan.getOne(this.auth.userEmail);
       this.muskiSpol = await PojedinacniPlan.getOne(this.auth.userEmail);
+      this.djeca = await PojedinacniPlan.getOne(this.auth.userEmail);
     },
   },
 };
