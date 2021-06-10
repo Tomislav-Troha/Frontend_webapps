@@ -13,7 +13,7 @@
     <hr class="mt-5 mx-4" />
 
     <div
-      class="mx-5 mt-5"
+      class="mx-5 mt-2"
       v-for="EmailAdmin in EmailAdmin"
       v-bind:key="EmailAdmin.email"
       v-bind:value="EmailAdmin.email"
@@ -93,9 +93,9 @@ export default {
         role: role,
         email: email,
       };
-      console.log("Tu bi trebao pisati ", newMail.role);
-      if (newMail.role == "admin") {
-        return (this.feedback = "Nije baš cool obrisat admina");
+      //console.log(newMail.email);
+      if (newMail.email == "horvat@gmail.com") {
+        return (this.feedback = "Hmm?");
       } else {
         this.feedback = "";
         Service.post("/admin/" + email, newMail).then((result) => {

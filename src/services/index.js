@@ -3,7 +3,7 @@ import $router from "@/router";
 
 //vezan uz konkretni backend
 let Service = axios.create({
-  // baseURL: "https://fast-badlands-32396.herokuapp.com/",
+  //baseURL: "http://localhost:3100",
   baseURL: "https://fast-badlands-32396.herokuapp.com/",
   timeout: 3000,
   headers: {

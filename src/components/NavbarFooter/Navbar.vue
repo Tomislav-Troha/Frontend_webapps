@@ -91,7 +91,11 @@ export default {
 
   methods: {
     async pozoviGetBackend() {
-      this.horvat = await UzmiNadimak.getOne(this.auth.userEmail);
+      try {
+        this.horvat = await UzmiNadimak.getOne(this.auth.userEmail);
+      } catch (e) {
+        throw new Error("Niste ulogirani");
+      }
     },
 
     goHome() {
