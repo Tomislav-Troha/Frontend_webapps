@@ -2,7 +2,7 @@
   <div class="card mx-auto mt-5">
     <div class="active-cyan-3 active-cyan-4">
       <input
-        class="form-control mx-auto mt-3"
+        class="form-control mx-auto mt-3 "
         type="text"
         placeholder="Search"
         aria-label="Search"
@@ -12,39 +12,44 @@
 
     <hr class="mt-5 mx-4" />
 
-    <div
-      class="mx-5 mt-2"
-      v-for="EmailAdmin in EmailAdmin"
-      v-bind:key="EmailAdmin.email"
-      v-bind:value="EmailAdmin.email"
-    >
-      <b-form-group label="Email">
-        <b-form inline>
-          <b-form id="Email" class="w-75 form-control ">{{
-            EmailAdmin.email
-          }}</b-form>
+    <transition-group tag="div" name="staggered">
+      <div
+        class="mx-5 mt-2 "
+        v-for="EmailAdmin in EmailAdmin"
+        v-bind:key="EmailAdmin.email"
+        v-bind:value="EmailAdmin.email"
+      >
+        <b-form-group label="Email">
+          <b-form inline>
+            <b-form id="Email" class="w-75 form-control  ">{{
+              EmailAdmin.email
+            }}</b-form>
 
-          <button
-            @click.prevent="izbrisiUsera(EmailAdmin.role, EmailAdmin.email)"
-            class="noselect my-1 mx-3"
-          >
-            <span class="text">Obriši</span
-            ><span class="icon"
-              ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"
-                /></svg
-            ></span>
-          </button>
-        </b-form>
-      </b-form-group>
-    </div>
-    <p class="text-center" style="color:red; font-size:25px;">{{ feedback }}</p>
+            <button
+              @click.prevent="izbrisiUsera(EmailAdmin.role, EmailAdmin.email)"
+              class="noselect my-1 mx-3"
+            >
+              <span class="text">Obriši</span
+              ><span class="icon"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"
+                  /></svg
+              ></span>
+            </button>
+          </b-form>
+        </b-form-group>
+      </div>
+    </transition-group>
+
+    <p class="text-center " style="color:red; font-size:25px;">
+      {{ feedback }}
+    </p>
   </div>
 </template>
 
@@ -116,6 +121,19 @@ export default {
 </script>
 
 <style scoped>
+.staggered-enter-active,
+.staggered-leave-active {
+  transition: all 0.3s ease-in;
+  overflow: hidden;
+  margin: 0;
+  height: 100px;
+}
+.staggered-enter,
+.staggered-leave-to {
+  opacity: 0;
+  height: 0;
+}
+
 .active-cyan-4 input[type="text"]:focus:not([readonly]) {
   border: 1px solid #4dd0e1;
   box-shadow: 0 0 0 1px #4dd0e1;

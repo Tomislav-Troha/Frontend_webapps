@@ -1,5 +1,7 @@
 <template>
-  <div class="mt-5 mx-auto iza">
+  <div
+    class="mt-5 mx-auto iza animate__animated animate__fadeInTopRight animate__faster"
+  >
     <b-form-group class="mx-auto promjena" label="Unesite staru lozinku">
       <b-form-input type="password" v-model="staraLozinka"></b-form-input>
     </b-form-group>

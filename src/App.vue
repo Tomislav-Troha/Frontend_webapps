@@ -23,9 +23,7 @@ export default {
   },
 
   data() {
-    return {
-      mode: "dark",
-    };
+    return {};
   },
 };
 </script>
