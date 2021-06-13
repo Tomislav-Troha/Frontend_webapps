@@ -1,19 +1,26 @@
-# frontend
+# Frontend
 
-## Project setup
-```
-npm install
-```
+## Sastav tima i zaduženja
+Tomislav Troha, programer
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### Fakultete informatike u Puli (https://fipu.unipu.hr/)
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Web aplikacije (http://ntankovic.unipu.hr/)
+
+
+### Mentori: Doc.dr.sc. Nikola Tanković (http://ntankovic.unipu.hr/), Nikki Bernobić, bacc. inf.
+
+### Kratki opis funkcionalnosti
+
+ ```
+ Family Health, frontend dio aplikacije
+ 
+ ```
+ 
+ ### Javni LINK
+  ```
+https://frontend-webapps-familyhealth.vercel.app/
+ 
+ ```
